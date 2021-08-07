@@ -148,10 +148,11 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="再析世界生成生物群系"><a class="header" href="#再析世界生成生物群系">再析世界生成：生物群系</a></h1>
+<p><font color=red size=64><strong>警告：文章未完成（WIP），非请勿入</strong></font></p>
 <h2 id="摘要"><a class="header" href="#摘要">摘要</a></h2>
 <p><strong>世界生成</strong>是我的世界的一个重要内容。如果把世界生成比作一首长诗，那么<strong>生物群系</strong>就是它的诗眼。本文详尽梳理了生物群系和世界生成，多方面探究世界生成的来龙去脉，并凸显它的核心——生物群系。</p>
 <h2 id="文章链接"><a class="header" href="#文章链接">文章链接</a></h2>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="a-for-abstract"><a class="header" href="#a-for-abstract">A for Abstract</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="a-for-abstract-almanac"><a class="header" href="#a-for-abstract-almanac">A for Abstract almanac</a></h1>
 <p><img src="1-introduction/../resources/icon.png" alt="" /></p>
 <h2 id="绪言"><a class="header" href="#绪言">绪言</a></h2>
 <h3 id="前作"><a class="header" href="#前作">前作</a></h3>
@@ -160,7 +161,7 @@
 <p>1.13 原本是技术更新，代码大重写。在此之前我也开发过 1.12 Forge 的模组，对于 1.13 的代码可以说是耳目一新。这样的代码是 Mojang 写出来的？对我来说在以前想都不敢想。1.13 Forge 刚出的时候，正好是寒假，我马不停蹄开始了创作，那几天几乎是不分昼夜，终于在令我自己都难以相信的短时间内完成了文章。我硬着头皮发布了，不假思索。</p>
 <p>为什么是「浅析」呢，因为我几乎是囫囵吞枣地把每个环节都过了一遍，造成差点把我噎死——我的理解不尽完善，文章漏洞百出，在这里再次感谢提出指正意见的读者。也有反馈说感觉内容不够详细，我想大概也是事实，但这也是不可避免的。海螺向我抛出了橄榄枝，我们互相在自己的帖子里加了对方帖子的链接。我当时还未意识到，海螺实际上也是国内在这条路上行走的、为数不多的先驱者。海螺曾向我们生动地描述过世界生成所用的那个数组，而那个数组从未走远。它的的确确在黑暗之中照出一条路，一条前人未曾走过、未曾设想的路。</p>
 <p>后来我又进行了再版，是根据新版和新版教程进行的修订。最重要的删改可能是删去了生物群系有关的内容，这也意味着有关这一部分内容的中心全部转向这个教程。无论如何，旧的教程应该走入历史的垃圾桶了。</p>
-<h3 id="续作"><a class="header" href="#续作">续作</a></h3>
+<h3 id="续作-almanac"><a class="header" href="#续作-almanac">续作 almanac</a></h3>
 <blockquote>
 <p>一切都要从一只蝙蝠说起</p>
 <p>——网络</p>
@@ -238,7 +239,7 @@
 <p>——Yaossg《浅析1.13世界生成》</p>
 </blockquote>
 <p>在代码层面，生物群系的世界生成的影响也十分深远。正如小标题所言：无论是 1.13 之前还是之后，<strong>生成生物群系都是生成区块的的第一个步骤</strong>。这样的特殊位置也就意味着，要研究世界生成，第一步就是研究生物群系。</p>
-<h2 id="生物群系的历史回顾"><a class="header" href="#生物群系的历史回顾">生物群系的历史回顾</a></h2>
+<h2 id="生物群系的历史回顾-almanac"><a class="header" href="#生物群系的历史回顾-almanac">生物群系的历史回顾 almanac</a></h2>
 <p>在历史上生物群系发生了许多重大的变迁。下面我们一起走进历史，领略一下过往的经验与教训。</p>
 <p>这一部分资料部分整理自 Minecraft 官方维基百科</p>
 <h3 id="alpha-12"><a class="header" href="#alpha-12">Alpha 1.2</a></h3>
@@ -393,7 +394,7 @@
 <h2 id="引子我的世界"><a class="header" href="#引子我的世界">引子：我的世界</a></h2>
 <p>早年的 Minecraft 中文圈子，最常见的一个译名就是<strong>我的世界</strong>。当然也有老玩家认为，“我的世界”在之前从未被官方承认，不应该作为“真正的 mc 粉丝”所用之语。但我认为既然是粉丝行为，能够被广泛接受，也不存在什么原则问题，是否被官方承认并不重要。</p>
 <p>后来随着网易代理，这个名字终于得到了正式承认。不幸的是，网易的所作所为彻底搞臭了这个名字，以至于很多人把“我的世界”和“Minecraft”对立起来，认为是中国版和国际版的象征。作为多年的老玩家，这样的做法我无法认同，但也无可奈何。</p>
-<p>但不可否认的是，这个译名承载了太多。如果你向朋友推荐，或者朋友向你打听，“我的世界”依旧是中文环境下最合适的名字。为什么多年前，许多人能普遍认同这个译名？因为它直观的反映了这个游戏带给我们的——一个属于自己的世界。在玩家的讨论中，世界也是非常常见的一个主题，而本文标题中也有个世界两字。然而，**世界（World）**一词，往往指代了许多的概念。</p>
+<p>但不可否认的是，这个译名承载了太多。如果你向朋友推荐，或者朋友向你打听，“我的世界”依旧是中文环境下最合适的名字。为什么多年前，许多人能普遍认同这个译名？因为它直观的反映了这个游戏带给我们的——一个属于自己的世界。在玩家的讨论中，世界也是非常常见的一个主题，而本文标题中也有个世界两字。然而，<strong>世界（World）</strong> 一词，往往指代了许多的概念。</p>
 <h3 id="世界的现实来源"><a class="header" href="#世界的现实来源">「世界」的现实来源</a></h3>
 <blockquote>
 <p>四方上下曰宇，往古来今曰宙</p>
@@ -803,7 +804,7 @@ return context.nextInt(3) == 0 ? ret : ret == COLD_OR_FOREST ? COLD_OR_FOREST : 
 <p><img src="2-the-overworld/../resources/layers/river/3.png" alt="" /> <img src="2-the-overworld/../resources/layers/river/4.png" alt="" /> <img src="2-the-overworld/../resources/layers/river/5.png" alt="" /> <img src="2-the-overworld/../resources/layers/river/6.png" alt="" /></p>
 <h2 id="河流距离"><a class="header" href="#河流距离">河流距离</a></h2>
 <p><a href="2-the-overworld/2.2-main-layer.html#%E5%90%91%E6%97%A5%E8%91%B5%E5%B9%B3%E5%8E%9F">主线链接</a></p>
-<p>河流支线先被放大化。放大的次数取决于官方名称叫<strong>河流大小（RiverSize）</strong>，而我更偏向于叫它<strong>河流距离（RiverDistance）</strong>。因为这个数值越大，河流之间的间距越大，而河流宽度并不会受此影响。默认为 4，**自定义（Customized）**世界类型删除后便无法修改。接着迎接河流支线的是河流层和平滑层。</p>
+<p>河流支线先被放大化。放大的次数取决于官方名称叫<strong>河流大小（RiverSize）</strong>，而我更偏向于叫它<strong>河流距离（RiverDistance）</strong>。因为这个数值越大，河流之间的间距越大，而河流宽度并不会受此影响。默认为 4，<strong>自定义（Customized）</strong> 世界类型删除后便无法修改。接着迎接河流支线的是河流层和平滑层。</p>
 <p>值得注意的是，生物群系大小的默认值和河流距离的默认值都是 4，也造就了在默认世界中河流更贴合生物群系边界的景观。</p>
 <p><img src="2-the-overworld/../resources/layers/river/7.png" alt="" /></p>
 <h2 id="河流"><a class="header" href="#河流">河流</a></h2>
@@ -971,8 +972,9 @@ return context.nextInt(3) == 0 ? ret : ret == COLD_OR_FOREST ? COLD_OR_FOREST : 
 <tr><td align="center">牡丹</td><td align="center">-</td><td align="center">-</td><td align="center">G</td><td align="center">G</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr>
 </tbody></table>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="数据表"><a class="header" href="#数据表">数据表</a></h1>
+<p>版本：1.16.5，命名：offical</p>
 <h2 id="通用数据表"><a class="header" href="#通用数据表">通用数据表</a></h2>
-<p>下表中整理汇总了原版 79 个生物群系的 23 个属性（不包含对于所有生物群系都相同的属性和部分特殊属性，参见后文），版本：1.16.5，命名：offical</p>
+<p>下表中整理汇总了原版 79 个生物群系的 23 个属性（不包含对于所有生物群系都相同的属性和部分特有属性，参见后文）</p>
 <iframe src="../resources/data.htm" width=800 height=640></iframe>
 <hr />
 <p>接下来的表格中 SE 代表 specialEffects</p>
