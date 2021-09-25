@@ -1,0 +1,421 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>主线 - Biome</title>
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="../favicon.svg">
+                        <link rel="shortcut icon" href="../favicon.png">
+                <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+                <link rel="stylesheet" href="../css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="../fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">再析世界生成：生物群系</a></li><li class="chapter-item expanded affix "><a href="../preface.html">绪言</a></li><li class="chapter-item expanded affix "><a href="../notes.html">凡例</a></li><li class="chapter-item expanded "><a href="../1-introduction/1.0-introduction.html"><strong aria-hidden="true">1.</strong> 引入 Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../1-introduction/1.1-biome.html"><strong aria-hidden="true">1.1.</strong> 生物群系</a></li><li class="chapter-item expanded "><a href="../1-introduction/1.2-the-world.html"><strong aria-hidden="true">1.2.</strong> The World</a></li><li class="chapter-item expanded "><a href="../1-introduction/1.3-chunk.html"><strong aria-hidden="true">1.3.</strong> 区块</a></li><li class="chapter-item expanded "><a href="../1-introduction/1.4-dimension.html"><strong aria-hidden="true">1.4.</strong> 维度</a></li></ol></li><li class="chapter-item expanded "><a href="../2-the-overworld/2.0-the-overworld.html"><strong aria-hidden="true">2.</strong> 主世界 the Overworld</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../2-the-overworld/2.1-layers.html"><strong aria-hidden="true">2.1.</strong> 层</a></li><li class="chapter-item expanded "><a href="../2-the-overworld/2.2-main-layer.html" class="active"><strong aria-hidden="true">2.2.</strong> 主线</a></li><li class="chapter-item expanded "><a href="../2-the-overworld/2.3-river-layer.html"><strong aria-hidden="true">2.3.</strong> 河流支线</a></li><li class="chapter-item expanded "><a href="../2-the-overworld/2.4-ocean-layer.html"><strong aria-hidden="true">2.4.</strong> 海洋支线</a></li><li class="chapter-item expanded "><a href="../2-the-overworld/2.5-altogether.html"><strong aria-hidden="true">2.5.</strong> 三线合一</a></li></ol></li><li class="chapter-item expanded "><a href="../3-the-otherworlds/3.0-the-otherworlds.html"><strong aria-hidden="true">3.</strong> 异世界 the Otherworlds</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../3-the-otherworlds/3.1-fixed.html"><strong aria-hidden="true">3.1.</strong> Fixed</a></li><li class="chapter-item expanded "><a href="../3-the-otherworlds/3.2-the-nether.html"><strong aria-hidden="true">3.2.</strong> The Nether</a></li><li class="chapter-item expanded "><a href="../3-the-otherworlds/3.3-the-end.html"><strong aria-hidden="true">3.3.</strong> The End</a></li><li class="chapter-item expanded "><a href="../3-the-otherworlds/3.4-checkerboard.html"><strong aria-hidden="true">3.4.</strong> Checkerboard</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> TODO</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 附录 Appendices</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../appendices/tables-of-data.html"><strong aria-hidden="true">5.1.</strong> 数据表</a></li><li class="chapter-item expanded "><a href="../appendices/mutations-of-biomes.html"><strong aria-hidden="true">5.2.</strong> 变种生物群系表</a></li></ol></li><li class="chapter-item expanded "><a href="../finale.html">终章</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">Biome</h1>
+
+                    <div class="right-buttons">
+                                                <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        <a href="https://github.com/Yaossg/biome" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                                                
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="主线"><a class="header" href="#主线">主线</a></h1>
+<p>主线承载了主要生物群系生成任务。</p>
+<h2 id="第一阶段"><a class="header" href="#第一阶段">第一阶段</a></h2>
+<p><img src="../resources/layers/main/0.png" alt="" /></p>
+<h3 id="原始层"><a class="header" href="#原始层">原始层</a></h3>
+<p>主线的第一阶段并非用实际上的生物群系来标记区元的，而是用 1、2、3、4 来表示大陆区元的温度（分别表示炎热、温暖、凉爽、寒冷）；海洋、深海和蘑菇岛仍然使用生物群系 id 表示（混合表示法）。</p>
+<p>主线的原始层 90% 被海洋覆盖，剩下 10% 是炎热大陆，是随机分布的。特别地，区元<code>0, 0</code>一定是炎热大陆。这就是你出生在大陆上比直接被扔进海里的概率高的原因之一（另一个原因是基于生物群系的出生点选择）</p>
+<p><img src="../resources/layers/main/1.png" alt="" /></p>
+<p>锯齿放大化，这是唯一一次又是使用锯齿放大化，而不是普通的放大化。</p>
+<h3 id="放大化"><a class="header" href="#放大化">放大化</a></h3>
+<p><strong>放大化（Zoom）<strong>将原本占有一个区元的生物群系扩散到 2 x 2 的四个区元。注意这个放大化和</strong>放大化</strong>世界类型没有关系，反倒是和<strong>巨型生物群系</strong>世界类型有关系，后面会提到。有的时候翻译总是那么捉弄人，就像上文提到的区域和区元一样，不是吗？</p>
+<p><img src="../resources/zoom.png" alt="" /></p>
+<p>如图所示（m ≥ 0, n ≥ 0，负半轴与此图水平、垂直镜像），方格外的坐标表示的是放大化之后的区元坐标，方格里面标有坐标的表示的是放大化之前对应的区元坐标，表示与原该坐标对应生物群系一致。接下来游戏会分别生成 A、B、C 三个区元的生物群系。我们不妨把<code>n, m</code>、<code>n, m + 1</code>、<code>n + 1, m</code>、<code>n + 1, m + 1</code>的生物群系分别记为 a、b、c、d。A 的生物群系即在 a 和 b 中随机选择一个，B的生物群系即在 a 和 c 的生物群系中随机选择一个。对于 C 的处理，两种放大化各有不同。如果是锯齿放大化，则直接随机选择四个其中的一个。如果是普通的放大化，则按照少数服从多数的原则进行挑选，具体规则如下：</p>
+<ul>
+<li>如果存在三个相同的（如 a = b = c），那么就选择这一种（a）。</li>
+<li>否则如果存在两个相同的，且另外两个各自不同（如 a = b 且 c ≠ d），那么就选择这一种（a）。</li>
+<li>否则就不存在“多数”了，所以只能直接随机选择四个其中的一个。</li>
+</ul>
+<p>[TODO：动态放大化]</p>
+<p><img src="../resources/layers/main/2.png" alt="" /></p>
+<h3 id="扩张"><a class="header" href="#扩张">扩张</a></h3>
+<p>实际上扩张不总是陆地在扩张，如果有有兴趣的朋友可以去细致对比一下：有的时候是海洋扩张了。不过总体来看陆地扩张较多。</p>
+<p>这种层在第二阶段也被使用，与第一阶段的混合表示法不同，第二阶段的幻数直接表示生物群系。</p>
+<ul>
+<li>如果自己不是海，四周（象）其中一个是海，那自己就会变成海（除非自己是寒冷，就还是寒冷）。</li>
+<li>否则如果四周（象）也是海，那自己就还是海。</li>
+<li>否则变为炎热，有一定概率变为四周（象）的生物群系。</li>
+</ul>
+<p>最后这一分支计算比较复杂，不便于口述，干脆直接代码奉上（其中<code>context.nextInt(n)</code>生成一个位于<code>[0, n)</code>的随机数，<code>ceneter</code> 为原区元）。</p>
+<pre><code class="language-java">int i = 1;
+int ret = HOT;
+if (!isShallowOcean(northeast) &amp;&amp; context.nextInt(i++) == 0) ret = northeast;
+if (!isShallowOcean(northwest) &amp;&amp; context.nextInt(i++) == 0) ret = northwest;
+if (!isShallowOcean(southwest) &amp;&amp; context.nextInt(i++) == 0) ret = southwest;
+if (!isShallowOcean(southeast) &amp;&amp; context.nextInt(i++) == 0) ret = southeast;
+
+return context.nextInt(3) == 0 ? ret : ret == COLD ? COLD : center;
+</code></pre>
+<p><img src="../resources/layers/main/3.png" alt="" /></p>
+<p>放大化。</p>
+<p><img src="../resources/layers/main/4.png" alt="" /> <img src="../resources/layers/main/5.png" alt="" /> <img src="../resources/layers/main/6.png" alt="" /></p>
+<p>三次扩张。如果看过 1.6 生物群系图的朋友应该能看出这其实就是整个世界的雏形了。从图可看出，所有海洋都是联通的，海洋总面积过半。</p>
+<p><img src="../resources/layers/main/7.png" alt="" /></p>
+<h3 id="抽干海洋"><a class="header" href="#抽干海洋">抽干海洋</a></h3>
+<p>这一层_可以认为_是在 1.7 加入的。不难看出，前面扩大陆地这么多次，不如这一次来的效率高。图可看出，与之前恰恰相反：几乎所有陆地都是联通的，陆地总面积过半</p>
+<p><img src="../resources/layers/main/8.png" alt="" /></p>
+<h3 id="降温"><a class="header" href="#降温">降温</a></h3>
+<p>将原本有的炎热大陆群系变为冰冷和凉爽，各有 1/6 的概率。剩下的 2/3 陆地还是炎热。</p>
+<p><img src="../resources/layers/main/9.png" alt="" /></p>
+<p>扩张</p>
+<p><img src="../resources/layers/main/10.png" alt="" /></p>
+<p>转化：凉爽化。</p>
+<p><img src="../resources/layers/main/11.png" alt="" /></p>
+<p>转化：温暖化。</p>
+<p><img src="../resources/layers/main/12.png" alt="" /></p>
+<p>转化：稀有化。</p>
+<h3 id="转化"><a class="header" href="#转化">转化</a></h3>
+<p>这个名字非常平庸，我胡乱起的。主要原因是第三个和前两个几乎毫无联系。</p>
+<p>凉爽化：如果自己是炎热，且周围（車）是凉爽或寒冷，就变成温暖。</p>
+<p>温暖化：如果自己是寒冷，且周围（車）是炎热或温暖，就变成凉爽。</p>
+<p>稀有化：如果自己不是海，就有 1/13 的几率进行不可描述之事：</p>
+<pre><code class="language-java">value |= 1 + context.nextInt(15) &lt;&lt; 8 &amp; 0xF00;
+</code></pre>
+<p>其中 value 就是这个区元的生物群系 id。注意运算符优先级哦。可以看出，这个数字的高位被标记了一下。后面这个标记的数字会派上用场。我用另一种颜色的像素来表示这样的区元。</p>
+<p><img src="../resources/layers/main/13.png" alt="" /> <img src="../resources/layers/main/14.png" alt="" /></p>
+<p>两次放大化</p>
+<p><img src="../resources/layers/main/15.png" alt="" /></p>
+<p>扩张</p>
+<p><img src="../resources/layers/main/16.png" alt="" /></p>
+<h3 id="蘑菇岛"><a class="header" href="#蘑菇岛">蘑菇岛</a></h3>
+<p>把 1% 的四周（象）也是海洋的海洋区元变为蘑菇岛区元。</p>
+<p><img src="../resources/layers/main/17.png" alt="" /></p>
+<h3 id="加入深海"><a class="header" href="#加入深海">加入深海</a></h3>
+<p>将四周（車）也是海洋的海洋区元变为深海区元。</p>
+<p>河流支线：<a href="2.3-river-layer.html#%E6%B0%B4%E6%BA%90">水源</a></p>
+<h2 id="第二阶段"><a class="header" href="#第二阶段">第二阶段</a></h2>
+<p><img src="../resources/layers/main/18.png" alt="" /></p>
+<h3 id="生物群系层"><a class="header" href="#生物群系层">生物群系层</a></h3>
+<p>**生物群系层（BiomeLayer）**是最为关键的一层之一。这一次实际上选择了具体的生物群系。前面的海洋、深海、蘑菇岛不变，其余区元按下列规则选择生物群系：</p>
+<ul>
+<li>先选择行：如果之前区元的低位不属于下表第一列中任何一个，即为蘑菇岛。</li>
+<li>除寒冷之外，若之前区元高位有（转化：稀有化中提到的）数字，则取稀有列，否则取普通列。寒冷只有普通列。</li>
+<li>行和列都确定了，选中格子后随机选择格子中的一个生物群系。后面括号里的数字代表权值，没有数字默认为 1</li>
+</ul>
+<table><thead><tr><th align="left">之前区元</th><th align="left">普通</th><th align="left">稀有</th></tr></thead><tbody>
+<tr><td align="left">炎热</td><td align="left">沙漠（3） 热带草原（2） 平原</td><td align="left">恶地高原 繁茂的恶地高原（2）</td></tr>
+<tr><td align="left">温暖</td><td align="left">森林、黑森林、山地、平原、桦木森林、沼泽</td><td align="left">丛林</td></tr>
+<tr><td align="left">凉爽</td><td align="left">森林、山地、针叶林、平原</td><td align="left">巨型针叶林</td></tr>
+<tr><td align="left">寒冷</td><td align="left">积雪的冻原（3） 积雪的针叶林</td><td align="left">-</td></tr>
+</tbody></table>
+<p>如果前面的区元图只是一块干巴巴的面包片，这一层浇上去的便是五彩的酱汁。</p>
+<p><img src="../resources/layers/main/19.png" alt="" /></p>
+<h3 id="竹林"><a class="header" href="#竹林">竹林</a></h3>
+<p>把 10% 的丛林变成竹林</p>
+<p><img src="../resources/layers/main/20.png" alt="" /> <img src="../resources/layers/main/21.png" alt="" /></p>
+<p>两次放大化</p>
+<p><img src="../resources/layers/main/22.png" alt="" /></p>
+<p>加入边缘</p>
+<p><img src="../resources/layers/main/23.png" alt="" /></p>
+<p>加入丘陵</p>
+<p><strong>边缘（Edge）</strong>、<strong>丘陵（Hills）</strong>、**海滩（Shore）**是 MC 插入在两种不同生物群系中间用于过渡的生物群系，海滩会在后文中提到，下面讲解的是边缘和丘陵。</p>
+<hr />
+<p>在介绍他们之前，需要先介绍两个概念</p>
+<h3 id="相似生物群系"><a class="header" href="#相似生物群系">相似生物群系</a></h3>
+<p>在 1.15 之前，相似生物群系的概念还比较复杂。1.16 对此作出了简化。</p>
+<p>Mojang 把生物群系分为了若干个<strong>相似组</strong>，一个生物群系只属于一个相似组，相似组里的所有生物群系互相<strong>相似</strong>。</p>
+<p>相似组的划分基本上与生物群系类别的划分一致（后者参见<a href="../appendices/tables-of-data.html">附录</a>）。但是有几点不同：</p>
+<ul>
+<li>参与相似比较的生物群系均为主世界生物群系，故无 <code>THEEND</code> 和 <code>NETHER</code> 相似组</li>
+<li>类别 <code>MESA</code> 中的生物群系被进一步细分为两个相似组：</li>
+</ul>
+<table><thead><tr><th>生物群系</th><th>类别</th><th>相似组</th></tr></thead><tbody>
+<tr><td>badlands</td><td>MESA</td><td>MESA</td></tr>
+<tr><td>wooded_badlands_plateau</td><td>MESA</td><td>BADLANDS_PLATEAU</td></tr>
+<tr><td>badlands_plateau</td><td>MESA</td><td>BADLANDS_PLATEAU</td></tr>
+<tr><td>eroded_badlands</td><td>MESA</td><td>MESA</td></tr>
+<tr><td>modified_wooded_badlands_plateau</td><td>MESA</td><td>MESA</td></tr>
+<tr><td>modified_badlands_plateau</td><td>MESA</td><td>MESA</td></tr>
+</tbody></table>
+<p>注：1.16.5 offical 使用 <code>isSame</code> 描述相似属实欠妥。本文译作“相似”而不是相同。</p>
+<h3 id="变种生物群系"><a class="header" href="#变种生物群系">变种生物群系</a></h3>
+<p>曾几何时，某些生物群系之间存在特殊的从属关系，被作为主世界生物群系生成时的参考之一。我们说：从属生物群系是被从属生物群系的<strong>变种（Mutation）</strong>，被从属生物群系是从属生物群系的<strong>亲本（Parent）</strong>。例如向日葵草原是草原的变种，草原是向日葵草原的亲本。</p>
+<p>这个 1.7 就加入的特性在 1.13 时被弱化，1.16 则几乎完全移除，只留下一个简单的对应关系（参见<a href="../appendices/mutations-of-biomes.html">附录</a>）。</p>
+<p>一般来说，变种生物群系要比亲本更少见，更有特色，因而更能吸引冒险家的青睐。其中最著名莫过于变种丛林边缘（Modified Jungle Edge，MJE）——它苛刻的生成条件，使其成为 MC 中自然生成的最稀有的生物群系。结合本文内容，尤其是接下来的两节，你能分析一下原因吗？</p>
+<hr />
+<h3 id="边缘"><a class="header" href="#边缘">边缘</a></h3>
+<p>边缘层有一个奇妙的传奇往事，是关于那个神秘的山地边缘的。1.16 之后相关内容被删的七七八八，故不再在正文里面赘述。详见废稿 TODO</p>
+<p>现在的逻辑是：如果与山地相似，就维持现状，否则：</p>
+<table><thead><tr><th>如果自己是...</th><th align="center">且四周（車）任意一个不相似于...</th><th align="right">自己就变为...</th></tr></thead><tbody>
+<tr><td>繁茂恶地高原</td><td align="center">自己</td><td align="right">恶地</td></tr>
+<tr><td>恶地高原</td><td align="center">自己</td><td align="right">恶地</td></tr>
+<tr><td>巨型针叶林</td><td align="center">自己</td><td align="right">针叶林</td></tr>
+</tbody></table>
+<table><thead><tr><th>如果自己是...</th><th align="center">且四周（車）任意一个是...</th><th align="right">自己就变为...</th></tr></thead><tbody>
+<tr><td>沙漠</td><td align="center">积雪的冻原</td><td align="right">繁茂的山地</td></tr>
+<tr><td>沼泽</td><td align="center">沙漠、积雪的针叶林或积雪的冻原</td><td align="right">平原</td></tr>
+<tr><td>沼泽</td><td align="center">丛林或竹林</td><td align="right">丛林边缘</td></tr>
+</tbody></table>
+<p>如果都这些尝试都失败了，就维持现状。</p>
+<h3 id="丘陵"><a class="header" href="#丘陵">丘陵</a></h3>
+<p>丘陵层一个二元层，一个参数是主线层，另一个是河流层。主线层的生物群系记为<code>a</code>。前文提到，河流层生成的是<code>[0+2, 299999+2)</code>之间的一个随机噪声，而丘陵层使用的数据是该层减 2，即<code>[0, 299999)</code>，并对 29 取模记为<code>r</code>。</p>
+<p>第一次尝试成功的条件是：如果<code>a</code>不是浅海且不是变种生物群系，同时<code>r</code>为 1 （概率约为1/29）。</p>
+<p>如果成功：</p>
+<ul>
+<li>如果<code>a</code>有变种就变为<code>a</code>的变种</li>
+<li>如果<code>a</code>没有变种就保持<code>a</code>不变</li>
+</ul>
+<p>如果失败，则进入第二次尝试：</p>
+<ul>
+<li>当<code>r</code>不为 0 时，就有 1 / 3 的概率进入第二次尝试，并根据<code>a</code>选择对应的丘陵生物群系记为<code>h</code>。如果没有对应的<code>h</code>，这次尝试也会失败。把<code>h</code>记为<code>ret</code>。</li>
+<li>当<code>r</code>为 0 时，直接进入第二次尝试，并根据<code>a</code>选择对应的丘陵生物群系及其变种记为<code>h</code>和<code>mh</code>。如果没有对应的<code>h</code>，或者<code>h</code>没有变种，这次尝试也会失败。把<code>mh</code>记为<code>ret</code>。</li>
+</ul>
+<p>如果四周（車）至少有 3 个区元的生物群系相似于<code>a</code>，尝试成功，该区元变为<code>ret</code>。如果上述尝试都失败，就保持<code>a</code>不变。</p>
+<p>下表是经过我整理后得出，在这里可能出现的原生物群系与对应丘陵生物群系的对照表。和上文相同，后面括号里的数字代表权值，没有数字默认为 1。</p>
+<table><thead><tr><th align="left">原生物群系</th><th align="left">丘陵生物群系</th></tr></thead><tbody>
+<tr><td align="left">沙漠</td><td align="left">沙漠丘陵</td></tr>
+<tr><td align="left">森林</td><td align="left">繁茂丘陵</td></tr>
+<tr><td align="left">桦木森林</td><td align="left">桦木森林丘陵</td></tr>
+<tr><td align="left">黑森林</td><td align="left">平原</td></tr>
+<tr><td align="left">针叶林</td><td align="left">针叶林丘陵</td></tr>
+<tr><td align="left">巨型针叶林</td><td align="left">巨型针叶林丘陵</td></tr>
+<tr><td align="left">积雪的针叶林</td><td align="left">积雪的针叶林丘陵</td></tr>
+<tr><td align="left">平原</td><td align="left">繁茂山地、森林（2）</td></tr>
+<tr><td align="left">积雪的冻原</td><td align="left">积雪的冻原丘陵</td></tr>
+<tr><td align="left">丛林</td><td align="left">丛林丘陵</td></tr>
+<tr><td align="left">竹林</td><td align="left">竹林丘陵</td></tr>
+<tr><td align="left">海洋</td><td align="left">深海</td></tr>
+<tr><td align="left">山地</td><td align="left">繁茂山地</td></tr>
+<tr><td align="left">热带草原</td><td align="left">热带高原</td></tr>
+<tr><td align="left">与恶地高原相似</td><td align="left">恶地</td></tr>
+<tr><td align="left">1 / 3 的深海</td><td align="left">平原、森林</td></tr>
+</tbody></table>
+<p><img src="../resources/layers/main/24.png" alt="" /></p>
+<h3 id="向日葵平原"><a class="header" href="#向日葵平原">向日葵平原</a></h3>
+<p>把 1/57 的平原变为向日葵平原</p>
+<p><a href="2.3-river-layer.html#%E6%B2%B3%E6%B5%81%E8%B7%9D%E7%A6%BB">支链链接</a></p>
+<p><img src="../resources/layers/main/25.png" alt="" /> <img src="../resources/layers/main/26.png" alt="" /> <img src="../resources/layers/main/27.png" alt="" /> <img src="../resources/layers/main/28.png" alt="" /></p>
+<h3 id="生物群系大小"><a class="header" href="#生物群系大小">生物群系大小</a></h3>
+<p>上图连续放大了四次，其中前两次还夹带了私活，这一阶段实际上是根据世界生成的一个重要参数——**生物群系大小（BiomeSize）<strong>进行的。原版的</strong>默认（Default）<strong>世界类型这个数字是 4，而</strong>巨型生物生物群系（LargeBiomes）**世界类型这个数字是6。根据前面对放大化的解释可以知道，巨型生物群系的生物群系的面积将会是默认的 16 倍，即 x 和 z 方向各 4 倍。</p>
+<p>在第一次放大化完成之后，将会再进行最后一次扩张。详解见上文扩张一节。</p>
+<p>在第二次放大化完成之后（如果生物群系大小仅为 1，则在扩张完成后），添加海滩生物群系。</p>
+<h3 id="海滩"><a class="header" href="#海滩">海滩</a></h3>
+<p>生成海滩的前提是自己不是海、不是沼泽。原则是：现在第一列找到自己的类别，判断周围的条件，如果失败就不再尝试、维持现状。唯一的例外是丛林有两次机会。</p>
+<table><thead><tr><th align="left">自己</th><th align="left">周围（車）</th><th align="left">海岸</th></tr></thead><tbody>
+<tr><td align="left">蘑菇岛</td><td align="left">任意一个是浅海</td><td align="left">蘑菇岛海岸</td></tr>
+<tr><td align="left">类别为丛林</td><td align="left">任意一个不兼容丛林1</td><td align="left">丛林边缘</td></tr>
+<tr><td align="left">类别为丛林</td><td align="left">任意一个是海洋</td><td align="left">沙滩</td></tr>
+<tr><td align="left">山地或繁茂山地</td><td align="left">任意一个是海洋</td><td align="left">石滩</td></tr>
+<tr><td align="left">降水类型为雪</td><td align="left">任意一个是海洋</td><td align="left">积雪的沙滩</td></tr>
+<tr><td align="left">恶地或 繁茂的恶地高原</td><td align="left">任意一个类别不是恶地 且全都不是海洋</td><td align="left">沙漠</td></tr>
+<tr><td align="left">其它</td><td align="left">任意一个是海洋</td><td align="left">沙滩</td></tr>
+</tbody></table>
+<p>1兼容丛林的生物群系有：类别为丛林的生物群系、森林、针叶林、海洋</p>
+<p><img src="../resources/layers/main/29.png" alt="" /></p>
+<h3 id="平滑"><a class="header" href="#平滑">平滑</a></h3>
+<p>平滑层会根据四周（車）的生物群系改变自己的生物群系，规则如下：</p>
+<ul>
+<li>若东等于西且南等于北，则随机选择西或北</li>
+<li>若仅东等于西，则选择西</li>
+<li>若仅南等于北，则选择北</li>
+<li>上述尝试都失败，维持现状。</li>
+</ul>
+<p><img src="../resources/layers/main/30.png" alt="" /></p>
+<h3 id="混合河流"><a class="header" href="#混合河流">混合河流</a></h3>
+<p><a href="2.3-river-layer.html#%E5%90%88%E5%B9%B6%E6%B2%B3%E6%B5%81">支线链接</a></p>
+<p>如果主线是海洋，或河流支线不是河流（7），就维持原状，否则根据下表选择一个河流。</p>
+<table><thead><tr><th align="left">原生物群系</th><th align="left">河流生物群系</th></tr></thead><tbody>
+<tr><td align="left">积雪的冻原</td><td align="left">冻河</td></tr>
+<tr><td align="left">蘑菇岛或蘑菇岛海滩</td><td align="left">蘑菇岛海滩</td></tr>
+<tr><td align="left">其他</td><td align="left">河流</td></tr>
+</tbody></table>
+<p><img src="../resources/layers/main/31.png" alt="" /></p>
+<h3 id="混合海洋"><a class="header" href="#混合海洋">混合海洋</a></h3>
+<p><a href="2.4-ocean-layer.html#%E6%B5%B7%E6%B4%8B%E6%94%AF%E7%BA%BF">支线链接</a></p>
+<p>创建、合并了海洋支线，使主线层的海水有了温度。可惜这幅图中无法体现，因为刚好没出现其他温度的海洋。</p>
+<p><img src="../resources/mixOcean.png" alt="" /></p>
+<p>混合规则：如果周围特定区元（如上图所示，紫色为自己，紫色和红色为检测区元，相邻两个非黑区元间隔了三个区元，即步长为4）有非海洋区元，暖水海洋变为温水，冻洋变为冷水海洋。否则，如果主线层是深海，还会对海洋支线层传来的浅海转变为对应的<strong>深海</strong>生物群系。</p>
+<p>注意：暖水海洋<strong>不会</strong>进行这样的转换，这也就是原版有暖水深海却不会生成的原因。</p>
+<p>至此，所有层的工作都完成了。所得的便是每一个区元的生物群系。这些生物群系会被缓存到每个区块中，稍后会提到这样的缓存。</p>
+<h2 id="完成动态放大化"><a class="header" href="#完成动态放大化">完成：动态放大化</a></h2>
+<p><img src="../resources/layers/main/32.png" alt="" /></p>
+<p>TODO</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="../2-the-overworld/2.1-layers.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+                                                    <a rel="next" href="../2-the-overworld/2.3-river-layer.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="../2-the-overworld/2.1-layers.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+                                    <a rel="next" href="../2-the-overworld/2.3-river-layer.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        
+    </body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Fixed - Biome</title>
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="../favicon.svg">
+                        <link rel="shortcut icon" href="../favicon.png">
+                <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+                <link rel="stylesheet" href="../css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="../fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">再析世界生成：生物群系</a></li><li class="chapter-item expanded affix "><a href="../preface.html">绪言</a></li><li class="chapter-item expanded affix "><a href="../notes.html">凡例</a></li><li class="chapter-item expanded "><a href="../1-introduction/1.0-introduction.html"><strong aria-hidden="true">1.</strong> 引入 Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../1-introduction/1.1-biome.html"><strong aria-hidden="true">1.1.</strong> 生物群系</a></li><li class="chapter-item expanded "><a href="../1-introduction/1.2-the-world.html"><strong aria-hidden="true">1.2.</strong> The World</a></li><li class="chapter-item expanded "><a href="../1-introduction/1.3-chunk.html"><strong aria-hidden="true">1.3.</strong> 区块</a></li><li class="chapter-item expanded "><a href="../1-introduction/1.4-dimension.html"><strong aria-hidden="true">1.4.</strong> 维度</a></li></ol></li><li class="chapter-item expanded "><a href="../2-the-overworld/2.0-the-overworld.html"><strong aria-hidden="true">2.</strong> 主世界 the Overworld</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../2-the-overworld/2.1-layers.html"><strong aria-hidden="true">2.1.</strong> 层</a></li><li class="chapter-item expanded "><a href="../2-the-overworld/2.2-main-layer.html"><strong aria-hidden="true">2.2.</strong> 主线</a></li><li class="chapter-item expanded "><a href="../2-the-overworld/2.3-river-layer.html"><strong aria-hidden="true">2.3.</strong> 河流支线</a></li><li class="chapter-item expanded "><a href="../2-the-overworld/2.4-ocean-layer.html"><strong aria-hidden="true">2.4.</strong> 海洋支线</a></li><li class="chapter-item expanded "><a href="../2-the-overworld/2.5-altogether.html"><strong aria-hidden="true">2.5.</strong> 三线合一</a></li></ol></li><li class="chapter-item expanded "><a href="../3-the-otherworlds/3.0-the-otherworlds.html"><strong aria-hidden="true">3.</strong> 异世界 the Otherworlds</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../3-the-otherworlds/3.1-fixed.html" class="active"><strong aria-hidden="true">3.1.</strong> Fixed</a></li><li class="chapter-item expanded "><a href="../3-the-otherworlds/3.2-the-nether.html"><strong aria-hidden="true">3.2.</strong> The Nether</a></li><li class="chapter-item expanded "><a href="../3-the-otherworlds/3.3-the-end.html"><strong aria-hidden="true">3.3.</strong> The End</a></li><li class="chapter-item expanded "><a href="../3-the-otherworlds/3.4-checkerboard.html"><strong aria-hidden="true">3.4.</strong> Checkerboard</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> TODO</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 附录 Appendices</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../appendices/tables-of-data.html"><strong aria-hidden="true">5.1.</strong> 数据表</a></li><li class="chapter-item expanded "><a href="../appendices/mutations-of-biomes.html"><strong aria-hidden="true">5.2.</strong> 变种生物群系表</a></li></ol></li><li class="chapter-item expanded "><a href="../finale.html">终章</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">Biome</h1>
+
+                    <div class="right-buttons">
+                                                <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        <a href="https://github.com/Yaossg/biome" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                                                
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="fixed"><a class="header" href="#fixed">Fixed</a></h1>
+<blockquote>
+<p>目前这里只介绍主世界正常情况下的生成，下界和末界或者超平坦什么的再说（可能我会回来填坑呢）。</p>
+<p>——ustc-zzzz《答知乎提问：Minecraft 的地形生成算法是什么？》</p>
+</blockquote>
+<p><strong>固定（Fixed）<strong>生物群系，说白了，就是全世界都是一种生物群系。最经典的例子便是</strong>超平坦</strong>世界类型。旧版本的<strong>自定义</strong>、新版本的<strong>自选</strong>和<strong>调试</strong>世界类型也可以实现。超平坦的默认和调试世界类型的生物群系都是平原。</p>
+<h2 id="超平坦"><a class="header" href="#超平坦">超平坦</a></h2>
+<p><strong>超平坦（Superflat）</strong> 创建速度惊人，得益于它固定的生物群系来源，和简单的区块生成器。在超平坦的预设界面，我们可以自定义世界各层方块——这对整个世界都是有效的。注意这个层和我们第二章讲述的层截然不同，超平坦定义的是方块层，而不是生物群系层；生物群系层也不是像方块层一样叠起来，而是相互作用得到一层的。</p>
+<p>超平坦世界还有额外的史莱姆生成。</p>
+<h3 id="虚空"><a class="header" href="#虚空">虚空</a></h3>
+<p><strong>虚空（The Void）</strong> 生物群系只会生成一个 33 x 1 x 33 的石头平台以及最中间的一个圆石的生物群系，最简单的方式就是通过超平坦预设来创建。这个生物群系不会生成生物，因此不适合测试刷怪的特性；但正因为如此，没有烦人的史莱姆，这里成了测试其他特性的好地方。</p>
+<p>超平坦的其中其中一个预设名字便是“虚空”，使用的就是这个生物群系。出生的石头平台并非依靠超平坦的生成机制，而是由生物群系产生的。</p>
+<h2 id="调试世界"><a class="header" href="#调试世界">调试世界</a></h2>
+<p><strong>调试模式（Debug Mode）</strong> 是一种较为特殊的世界类型。运用特殊的区块生成器，所有的方块状态（BlockState）都被展示在了空中。</p>
+<p>调试世界的生物群系都是平原。</p>
+<h2 id="自选世界"><a class="header" href="#自选世界">自选世界</a></h2>
+<p><strong>自选（Buffet）</strong> 曾是作为自定义的替代品加入的，后独立为三种世界类型：<strong>单一生物群系（Single Biome）</strong>、<strong>洞穴（Caves）</strong>、<strong>空岛（Floating Islands）</strong>。</p>
+<p>TODO</p>
+<h2 id="曾今的异界"><a class="header" href="#曾今的异界">曾今的异界</a></h2>
+<p>在旧版本，下界和末地的生物群系在维度内都是完全一样的。因此也使用了这种来源。这也是上面的引用中土球将它们并列的原因。在后面的更新中：</p>
+<ul>
+<li>末地在 1.9 在 x 和 z 上有了不同的生物群系</li>
+<li>末地在 1.15 在 y 上有不同的生物群系</li>
+<li>下界在 1.16 在 x y z 上有不同的生物群系</li>
+</ul>
+<p>下面两节详细介绍这两个维度的生物群系。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="../3-the-otherworlds/3.0-the-otherworlds.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+                                                    <a rel="next" href="../3-the-otherworlds/3.2-the-nether.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="../3-the-otherworlds/3.0-the-otherworlds.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+                                    <a rel="next" href="../3-the-otherworlds/3.2-the-nether.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        
+    </body>
+</html>
