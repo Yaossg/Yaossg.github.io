@@ -155,8 +155,8 @@
 <div style="break-before: page; page-break-before: always;"></div><h1 id="绪言"><a class="header" href="#绪言">绪言</a></h1>
 <p><img src="resources/icon.png" alt="" /></p>
 <blockquote>
-<p>潭西南而望，斗折蛇行，明灭可见。</p>
-<p>——柳宗元《小石潭记》</p>
+<p>公无渡河，公竟渡河！堕河而死，其奈公何！</p>
+<p>——《公无渡河》</p>
 </blockquote>
 <h2 id="前作"><a class="header" href="#前作">前作</a></h2>
 <p>写前作我我完全是一时兴起——我当时毫无这方面的经验。我一直以来对世界生成有着敬畏之心，因为世界生成总是给人一种宏大、复杂、难以研究的感觉。我试过寻找一些世界生成的文章，Switefaster 给我推荐了土球的那一篇知乎回答。</p>
@@ -208,6 +208,8 @@
 <p>让我感慨的是，当年 1.13 由技术更新和海洋更新合并而来，而我在这之后创作的我的第一篇教程；</p>
 <p>如今 1.17 被拆分为两个部分，让我，和大多数模组作者得以在 1.16 上驻足观望。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="凡例"><a class="header" href="#凡例">凡例</a></h1>
+<h2 id="体例"><a class="header" href="#体例">体例</a></h2>
+<p>文章分为多个章，每章有多个节，一节即为一个文件。</p>
 <h2 id="引言"><a class="header" href="#引言">引言</a></h2>
 <p>可以看到，本文的引言非常丰富。这里特别说明一下</p>
 <blockquote>
@@ -227,9 +229,11 @@
 <p>大多数名字都是可以直接找到，或者间接猜到其对应的 mcp name 和 yarn name，对于少数疑难名字，可以参考附录。</p>
 <hr />
 <p>1.16 后，官方映射表逐渐走入寻常百姓家，因此本教程也在向官方靠拢，但仍不能完全一致。</p>
+<h2 id="消歧义"><a class="header" href="#消歧义">消歧义</a></h2>
+<p>关于部分可能存在歧义的章节的名字，会在开头用斜体进行消歧义。</p>
 <h2 id="颜色代码"><a class="header" href="#颜色代码">颜色代码</a></h2>
 <p>本文的所有颜色代码使用十进制数表示。不包含 alpha 通道。</p>
-<h2 id="前置知识"><a class="header" href="#前置知识">前置知识</a></h2>
+<h2 id="部分前置知识"><a class="header" href="#部分前置知识">部分前置知识</a></h2>
 <p>本文涉及少量 Java 代码阅读——我尽可能诠释，但是并不能完全做到。</p>
 <p>文章中提到了少量的位运算。</p>
 <p>包含一些随机数、噪声的知识。</p>
@@ -239,8 +243,14 @@
 <p>权重（weight），简称<strong>权</strong>。</p>
 <p>如盒子里面装了4个红球，1个黄球，2个蓝球，随机抽取其中一个，抽到的概率分别为 4/7、1/7、2/7。则 4、1、2 就是他们的权，计算抽到某个球的概率公式为该球的权除以所有球权的和。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="引入"><a class="header" href="#引入">引入</a></h1>
+<p><img src="1-introduction/../resources/icon.png" alt="" /></p>
+<blockquote>
+<p>潭西南而望，斗折蛇行，明灭可见。</p>
+<p>——柳宗元《小石潭记》</p>
+</blockquote>
+<p>那让我们开始吧。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-world"><a class="header" href="#the-world">The World</a></h1>
-<p><em>本节标题和内容与 JOJO 无关。</em></p>
+<p><em>本节标题和内容与《JOJO的奇妙冒险》无关。</em></p>
 <h2 id="引子我的世界"><a class="header" href="#引子我的世界">引子：我的世界</a></h2>
 <p>早年的 Minecraft 中文圈子，最常见的一个译名就是<strong>我的世界</strong>。当然也有老玩家认为，“我的世界”在之前从未被官方承认，不应该作为“真正的 mc 粉丝”所用之语。但我认为既然是粉丝行为，能够被广泛接受，也不存在什么原则问题，是否被官方承认并不重要。</p>
 <p>后来随着网易代理，这个名字终于得到了正式承认。不幸的是，网易的所作所为彻底搞臭了这个名字，以至于很多人把“我的世界”和“Minecraft”对立起来，认为是中国版和国际版的象征。作为多年的老玩家，这样的做法我无法认同，但也无可奈何。</p>
@@ -249,6 +259,8 @@
 <blockquote>
 <p>四方上下曰宇，往古来今曰宙</p>
 <p>——尸佼《尸子》</p>
+</blockquote>
+<blockquote>
 <p>古往今来曰世，上下四方曰界</p>
 <p>——佚名，网络</p>
 </blockquote>
@@ -299,14 +311,14 @@
 <div style="break-before: page; page-break-before: always;"></div><h1 id="生物群系与世界生成"><a class="header" href="#生物群系与世界生成">生物群系与世界生成</a></h1>
 <h2 id="世界生成"><a class="header" href="#世界生成">世界生成</a></h2>
 <blockquote>
-<p><strong>世界生成（World Generation</strong>，or <strong>WorldGen</strong> for short **）**是我的世界的一个重要内容。Minecraft 在发展，世界生成的代码却在很长的一段时间里没有发生太大的变化，而 1.13 正是对这一切进行变革的一个版本。那么为什么我们需要推翻一个使用这么长时间的、看似并没有太大问题的世界生成机制呢？我们为什么要这样变？这样变又有什么好处呢？</p>
+<p><strong>世界生成</strong>（<strong>World Generation</strong>, or <strong>WorldGen</strong> for short）是我的世界的一个重要内容。Minecraft 在发展，世界生成的代码却在很长的一段时间里没有发生太大的变化，而 1.13 正是对这一切进行变革的一个版本。那么为什么我们需要推翻一个使用这么长时间的、看似并没有太大问题的世界生成机制呢？我们为什么要这样变？这样变又有什么好处呢？</p>
 <p>——Yaossg《浅析1.13世界生成》</p>
 </blockquote>
 <blockquote>
 <p><strong>世界生成</strong>是我的世界的一个重要内容。Minecraft 在发展，世界生成的代码却在很长的一段时间里没有发生太大的变化，而 1.13 正是对这一切进行变革的一个版本。在之后各个版本的世界生成中，1.13 版本的核心价值一直在不断地体现。这就是为什么会有这篇文章：因为这是一次<strong>划时代</strong>的更新。本文从世界生成的各个方面，逐一探讨其中的奥秘，揭开新版世界生成神秘复杂的面纱。</p>
 <p>——Yaossg《浅析1.13世界生成》摘要</p>
 </blockquote>
-<p><strong>世界生成（World Generation</strong>，or <strong>WorldGen</strong> for short **）**是我的世界的一个重要内容。1.13 重构以来，世界生成的代码在不断地发生变化。尽管如此，仍然有完全不同于其它版本的大改出现——作为分水岭，<strong>划时代</strong>的 1.17-1.18 更新让我们驻足 1.16。本文就主要围绕这个版本展开。</p>
+<p><strong>世界生成</strong>（<strong>World Generation</strong>, or <strong>WorldGen</strong> for short）是我的世界的一个重要内容。1.13 重构以来，世界生成的代码在不断地发生变化。尽管如此，仍然有完全不同于其它版本的大改出现——作为分水岭，<strong>划时代</strong>的 1.17-1.18 更新让我们驻足 1.16。本文就主要围绕这个版本展开。</p>
 <p>实际上，世界生成的奥秘无穷，神秘而复杂。要想深入分析世界生成，就必须从它架构说起。</p>
 <h2 id="世界生成的基本架构"><a class="header" href="#世界生成的基本架构">世界生成的基本架构</a></h2>
 <blockquote>
@@ -332,6 +344,8 @@
 <blockquote>
 <p>如果你不知道什么叫作“生物群系”，我可以告诉你，它是游戏中用于设置何种地表（沙子？还是草？），是下雨还是下雪，长什么树，以及允许何种动物生成的气候区。</p>
 <p>——Jens &quot;Jeb&quot; Bergensten</p>
+</blockquote>
+<blockquote>
 <p>曾几何时，混沌初开 方块大陆上的生物们还在试图理解「为啥周围都变方了」 很快他们注意到了这个大陆上的奇妙的气候 特定的区域的气候是常年不变的，但降水却是随机的 相邻的两块区域的气候基本上是相近的，但有时候也会有雪地连着沙漠的情况 这些生物们开始慢慢适应这奇妙的环境，并最终与这奇妙的环境融为一体</p>
 <p>——3TUSK 关于生物群系的诠释</p>
 </blockquote>
@@ -340,6 +354,8 @@
 <blockquote>
 <p>Minecraft会首先获取当前区块下所有的生物群系。</p>
 <p>——ustc-zzzz《答知乎提问：Minecraft 的地形生成算法是什么？》</p>
+</blockquote>
+<blockquote>
 <p>在 1.13 以后，不再这样笼统的区分，每个区块都拥有一个状态，每个状态都表示他<strong>已经完成</strong>的某一个任务，并提供下一个任务，以此实现<strong>异步</strong>的区块生成。</p>
 <p><sub>（第一个状态）</sub>基础（base）状态的第一步：生物群系将会被选定</p>
 <p>——Yaossg《浅析1.13世界生成》</p>
@@ -426,6 +442,8 @@
 <blockquote>
 <p>真的 1.17 来了，更加劲爆！</p>
 <p>——Yaossg，1.17 快照更新前期</p>
+</blockquote>
+<blockquote>
 <p>Mojang 删除了 1.17</p>
 <p>——Yaossg，1.17 快照更新后期</p>
 </blockquote>
@@ -963,6 +981,8 @@ return context.nextInt(3) == 0 ? ret : ret == COLD ? COLD : center;
 <img src="2-the-overworld/../resources/the-movie/32.png" alt="" />
 <img src="2-the-overworld/../resources/the-movie/33.png" alt="" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="异界"><a class="header" href="#异界">异界</a></h1>
+<p><em>本章标题和内容与《Re：从零开始的异世界生活》无关。</em></p>
+<p><em>本章标题和内容与《Terraria: Otherworld》无关。</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fixed"><a class="header" href="#fixed">Fixed</a></h1>
 <blockquote>
 <p>目前这里只介绍主世界正常情况下的生成，下界和末界或者超平坦什么的再说（可能我会回来填坑呢）。</p>
@@ -1109,13 +1129,10 @@ return context.nextInt(3) == 0 ? ret : ret == COLD ? COLD : center;
 </blockquote>
 <p>Part B</p>
 <blockquote>
-<p>——《梗体中文·终末之诗》</p>
+<p>！！一段话，忘记去找了！！——《梗体中文·终末之诗》</p>
 </blockquote>
 <blockquote>
 <p>才闻欢笑，又见泪光——《大明宫》</p>
-</blockquote>
-<blockquote>
-<p>公无渡河，公竟渡河！堕河而死，其奈公何！——《公无渡河》</p>
 </blockquote>
 <p>Part C
 TODO</p>
