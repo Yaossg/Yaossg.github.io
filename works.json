@@ -54,39 +54,15 @@
         "status": "active",
         "desc": ""
     }, {
-        "title": "fast_prime",
-        "link": ".",
-        "time": "?-2021",
-        "status": "inactive",
-        "desc": ""
-    }, {
         "title": "tuple_ops",
         "link": ".",
         "time": "?-",
         "status": "active",
         "desc": ""
     }, {
-        "title": "DAL4",
-        "link": ".",
-        "time": "?",
-        "status": "inactive",
-        "desc": ""
-    }, {
         "title": "cppStream",
         "link": "https://github.com/Yaossg/cppStream",
         "time": "2018",
-        "status": "inactive",
-        "desc": ""
-    }, {
-        "title": "Expr",
-        "link": ".",
-        "time": "?",
-        "status": "inactive",
-        "desc": ""
-    }, {
-        "title": "Integer",
-        "link": ".",
-        "time": "?",
         "status": "inactive",
         "desc": ""
     }

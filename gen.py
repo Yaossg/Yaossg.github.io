@@ -30,7 +30,7 @@ with open("index.html", mode="w", encoding="utf-8") as out:
                 raise Exception(f"unknow status: {status}")
             status = status_table[status]
             ws.append(tmp
-            .replace("$1", f'"{link}"')
+            .replace("$1", link)
             .replace("$2", title)
             .replace("$3", time)
             .replace("$4", status[1])
