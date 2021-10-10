@@ -23,19 +23,17 @@ with open("index.html", mode="w", encoding="utf-8") as out:
         for work in works:
             title = work["title"]
             link = work["link"]
-            time = work["time"]
             status = work["status"]
             desc = work["desc"]
             if status not in status_table.keys():
                 raise Exception(f"unknow status: {status}")
             status = status_table[status]
             ws.append(tmp
-            .replace("$1", link)
-            .replace("$2", title)
-            .replace("$3", time)
+            .replace("$link", link)
+            .replace("$title", title)
             .replace("$4", status[1])
             .replace("$5", status[0])
-            .replace("$6", desc)
+            .replace("$desc", desc)
             )
     out.write(doc[0])
     out.write('<div class="row">')
