@@ -3,7 +3,7 @@ import json
 
 status_table = {
     "archived": ("Archived", "dark"),
-    "wip": ("Work in Progress", "primary"),
+    "progressing": ("Progressing", "primary"),
     "active": ("Active", "success"),
     "inactive": ("Inactive", "secondary"),
     "deprecated": ("Deprecated", "warning"),
