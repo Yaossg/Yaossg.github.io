@@ -2,68 +2,62 @@
     {
         "title": "浅析 1.13 世界生成",
         "link": "https://yaossg.com/blog/1-13-worldgen/",
-        "time": "2019",
         "status": "archived",
         "desc": ""
     }, {
         "title": "再析世界生成：生物群系",
         "link": "https://yaossg.com/biome/",
-        "time": "2020-2022",
         "status": "wip",
-        "desc": ""
-    }, {
-        "title": "SausageCore",
-        "link": "https://github.com/Yaossg/SausageCore",
-        "time": "2018-2019",
-        "status": "archived",
-        "desc": ""
-    }, {
-        "title": "ManaCraft",
-        "link": "https://github.com/Yaossg/ManaCraft",
-        "time": "2018-2019",
-        "status": "archived",
         "desc": ""
     }, {
         "title": "SGS",
-        "link": ".",
-        "time": "2013-",
+        "link": "https://yaossg.com/sgs/",
         "status": "active",
-        "desc": ""
+        "desc": "香肠游戏服务器"
+    }, {
+        "title": "SausageCore",
+        "link": "https://github.com/Yaossg/SausageCore",
+        "status": "archived",
+        "desc": "香肠 1.12.2 模组的核心库"
+    }, {
+        "title": "ManaCraft",
+        "link": "https://github.com/Yaossg/ManaCraft",
+        "status": "archived",
+        "desc": "香肠模组开发试水之作"
     }, {
         "title": "ProjectGene",
         "link": "https://github.com/Yaossg/ProjectGene",
-        "time": "2020",
         "status": "archived",
-        "desc": ""
+        "desc": "生物中基因藏"
     }, {
         "title": "Sausage's Factory",
         "link": ".",
-        "time": "2018-",
         "status": "deprecated",
-        "desc": ""
+        "desc": "香肠的工厂"
     }, {
         "title": "HamTech",
         "link": ".",
-        "time": "2021-",
         "status": "wip",
-        "desc": ""
+        "desc": "火腿科技"
     }, {
         "title": "Tetris",
         "link": ".",
-        "time": "2014-2021",
         "status": "active",
-        "desc": ""
+        "desc": "C++初学者 的 俄罗斯方块"
     }, {
         "title": "tuple_ops",
         "link": ".",
-        "time": "?-",
         "status": "active",
-        "desc": ""
+        "desc": "元组操作，元编程之光"
     }, {
         "title": "cppStream",
         "link": "https://github.com/Yaossg/cppStream",
-        "time": "2018",
         "status": "inactive",
-        "desc": ""
-    }
+        "desc": "C++ 里面 Stream 的简单实现"
+    }, {
+		"title": "MathToy",
+        "link": "https://github.com/Yaossg/MathToy",
+        "status": "active",
+        "desc": "香肠的 C++ 数学玩具"
+	}
 ]
