@@ -1,0 +1,15 @@
+
+@font-face{
+     font-family: 'Minecraft'; 
+     src: url('font.otf');
+}
+
+p.blue {
+	font-family: "Minecraft";
+	color: #007878;
+}
+
+p.green {
+	font-family: "Minecraft";
+	color: #007800;
+}
