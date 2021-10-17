@@ -14,16 +14,17 @@ img {
 }
 
 p {
+	font-size: 2em;
 	font-family: "Minecraft";
 	margin-left: 20%;
 	margin-right: 20%;
 }
 p.blue {
 	color: #007878;
-	text-shadow: 1.6px 1.6px #002929;
+	text-shadow: 0.1em 0.1em #002929;
 }
 
 p.green {
 	color: #007800;
-	text-shadow: 1.6px 1.6px #002900;
+	text-shadow: 0.1em 0.1em #002900;
 }
