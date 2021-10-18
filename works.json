@@ -15,6 +15,11 @@
         "status": "active",
         "desc": "香肠游戏服务器"
     }, {
+        "title": "EndPoem",
+        "link": "https://yaossg.com/end-poem/",
+        "status": "active",
+        "desc": "终末之诗"
+    }, {
         "title": "SausageCore",
         "link": "https://github.com/Yaossg/SausageCore",
         "status": "archived",
@@ -46,7 +51,7 @@
         "desc": "C++初学者 的 俄罗斯方块"
     }, {
         "title": "tuple_ops",
-        "link": ".",
+        "link": "https://github.com/Yaossg/misc",
         "status": "active",
         "desc": "元组操作，元编程之光"
     }, {
