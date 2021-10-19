@@ -1,7 +1,7 @@
 
 @font-face{
      font-family: 'Minecraft'; 
-     src: url('font.otf');
+     src: url('minecraft.ttf');
 }
 
 h1 {
@@ -14,17 +14,28 @@ img {
 }
 
 p {
-	font-size: 2em;
+	font-size: 1em;
 	font-family: "Minecraft";
 	margin-left: 20%;
 	margin-right: 20%;
 }
-p.blue {
-	color: #007878;
-	text-shadow: 0.1em 0.1em #002929;
+
+.blue {
+	color: #00AAAA;
+	text-shadow: 0.1em 0.1em #002A2A;
 }
 
-p.green {
-	color: #007800;
-	text-shadow: 0.1em 0.1em #002900;
+.green {
+	color: #00AA00;
+	text-shadow: 0.1em 0.1em #002A00;
+}
+
+.white {
+	color: #FFFFFF;
+	text-shadow: 0.1em 0.1em #3F3F3F;
+}
+
+.gray {
+	color: #AAAAAA;
+	text-shadow: 0.1em 0.1em #2A2A2A;
 }
