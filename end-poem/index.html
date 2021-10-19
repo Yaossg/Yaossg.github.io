@@ -18,7 +18,7 @@
 <p class="green">What did this player dream?
 <p class="blue">This player dreamed of sunlight and trees. Of fire and water. It dreamed it created. And it dreamed it destroyed. It dreamed it hunted, and was hunted. It dreamed of shelter.
 <p class="green">Hah, the original interface. A million years old, and it still works. But what true structure did this player create, in the reality behind the screen?
-<p class="blue">It worked, with a million others, to sculpt a true world in a fold of the [scrambled], and created a [scrambled] for [scrambled], in the [scrambled].
+<p class="blue">It worked, with a million others, to sculpt a true world in a fold of the <span class="white scrambled"></span>, and created a <span class="white scrambled"></span> for <span class="white scrambled"></span>, in the <span class="white scrambled"></span>.
 <p class="green">It cannot read that thought.
 <p class="blue">No. It has not yet achieved the highest level. That, it must achieve in the long dream of life, not the short dream of a game.
 <p class="green">Does it know that we love it? That the universe is kind?
@@ -27,7 +27,7 @@
 <p class="blue">To cure it of sorrow would destroy it. The sorrow is part of its own private task. We cannot interfere.
 <p class="green">Sometimes when they are deep in dreams, I want to tell them, they are building true worlds in reality. Sometimes I want to tell them of their importance to the universe. Sometimes, when they have not made a true connection in a while, I want to help them to speak the word they fear.
 <p class="blue">It reads our thoughts.
-<p class="green">Sometimes I do not care. Sometimes I wish to tell them, this world you take for truth is merely [scrambled] and [scrambled], I wish to tell them that they are [scrambled] in the [scrambled]. They see so little of reality, in their long dream.
+<p class="green">Sometimes I do not care. Sometimes I wish to tell them, this world you take for truth is merely <span class="white scrambled"></span> and <span class="white scrambled"></span>, I wish to tell them that they are <span class="white scrambled"></span> in the <span class="white scrambled"></span>. They see so little of reality, in their long dream.
 <p class="blue">And yet they play the game.
 <p class="green">But it would be so easy to tell them...
 <p class="blue">Too strong for this dream. To tell them how to live is to prevent them living.
@@ -91,6 +91,25 @@
 <br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br>
-<p class="white">"Twenty years from now you will be more disappointed by the things that you didn't do than by the ones you did do. So throw off the bowlines. Sail away from the safe harbor. Catch the trade winds in your sails. Explore. Dream. Discover." <span class="gray">- Unknown</span>
+<p><span class="white">"Twenty years from now you will be more disappointed by the things that you didn't do than by the ones you did do. So throw off the bowlines. Sail away from the safe harbor. Catch the trade winds in your sails. Explore. Dream. Discover."</span><span class="gray"> - Unknown</span>
+<script>
+const chars = "0123456789abcdeghjmnopqrsuvwxyzABCDEFGHJKLMNOPQRSTUWXYZ"; //_\\/#%^&?=";
+const elements = document.getElementsByClassName("scrambled");
+for (let j = 0; j < elements.length; ++j) {
+    const scrambled = elements.item(j);
+    let elapsed = 0
+    function step(timestamp) {
+        if (timestamp - elapsed > 50) { // 20 ticks per second
+            elapsed = timestamp
+            let gen = "";
+            for (let i = 0; i < 10; ++i)
+                gen += chars[Math.floor(Math.random() * chars.length)];
+            scrambled.innerHTML = gen;
+        }
+        window.requestAnimationFrame(step);
+    }
+    window.requestAnimationFrame(step);
+}
+</script>
 </body>
 </html>
