@@ -24,20 +24,24 @@ p {
 
 .blue {
 	color: #00AAAA;
-	text-shadow: 0.15em 0.15em #002A2A;
+	text-shadow: 0.13em 0.13em #002A2A;
 }
 
 .green {
 	color: #00AA00;
-	text-shadow: 0.15em 0.15em #002A00;
+	text-shadow: 0.13em 0.13em #002A00;
 }
 
 .white {
 	color: #FFFFFF;
-	text-shadow: 0.15em 0.15em #3F3F3F;
+	text-shadow: 0.13em 0.13em #3F3F3F;
 }
 
 .gray {
 	color: #AAAAAA;
-	text-shadow: 0.15em 0.15em #2A2A2A;
+	text-shadow: 0.13em 0.13em #2A2A2A;
+}
+
+.margin-top {
+	margin-top: 64em;
 }
