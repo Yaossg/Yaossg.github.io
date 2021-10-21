@@ -4,6 +4,10 @@
      src: url('minecraft.ttf');
 }
 
+body {
+	background-image: url('background.png');
+}
+
 h1 {
 	text-align: center;
 }
