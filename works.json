@@ -46,7 +46,7 @@
         "desc": "火腿科技"
     }, {
         "title": "Tetris",
-        "link": ".",
+        "link": "https://github.com/Yaossg/Tetris",
         "status": "active",
         "desc": "C++初学者 的 俄罗斯方块"
     }, {
@@ -64,5 +64,5 @@
         "link": "https://github.com/Yaossg/MathToy",
         "status": "active",
         "desc": "香肠的 C++ 数学玩具"
-	}
+    }
 ]
