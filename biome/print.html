@@ -534,7 +534,7 @@
 <li><strong>特性（Feature）</strong> 花草树木，矿石矿井等都是特性。
 <ul>
 <li><strong>结构（Structure）</strong> 特别的，如村庄、要塞、废弃矿井等都属于结构。</li>
-<li><strong>花（Flower）</strong> 花。</li>
+<li><strong>花（Flower）</strong> 花。TODO</li>
 </ul>
 </li>
 </ul>
@@ -547,7 +547,7 @@
 <p><strong>区块（Chunk）</strong> 作为一个符号，不得不承认，虽然并不总是如此，但它的的确确成为了世界生成乃至世界的象征。无论是否与世界生成有关，在各种场合，区块这个概念总是被经常提及——好像世界就应该这么分一样。确实，世界生成确实也应该从它讲起。</p>
 <h2 id="区块生成器"><a class="header" href="#区块生成器">区块生成器</a></h2>
 <p><strong>区块生成器（ChunkGenerator）</strong>，是之前已经提到的，两大非常重要的世界生成提供者之一。</p>
-<p>区块生成器分为三种：<strong>噪声</strong>区块生成器（<strong>Noise</strong>-）、<strong>平坦</strong>区块生成器（<strong>Flat</strong>-）、<strong>调试</strong>区块生成器（<strong>Debug</strong>-）。在这里，我们主要介绍噪声区块生成器。另外两个区块生成器参见第三章。</p>
+<p>区块生成器分为三种：<strong>噪声</strong>区块生成器（<strong>Noise</strong>ChunkGenerator）、<strong>平坦</strong>区块生成器（<strong>Flat</strong>ChunkGenerator）、<strong>调试</strong>区块生成器（<strong>Debug</strong>ChunkGenerator）。在这里，我们主要介绍噪声区块生成器。另外两个区块生成器参见第三章。</p>
 <p>噪声区块生成器主要负责：</p>
 <ul>
 <li>要塞的选址</li>
@@ -588,10 +588,17 @@
 <p>（图中的橙色青色为助于识别的辅助线、辅助点和长度标记，实际界面中并不存在）</p>
 <p>触发区块 level 改变的不仅仅只有创建世界。实际上，Mojang 引入了<strong>票（Ticket）</strong> 的概念来管理区块加载。</p>
 <p>按Range算，最大.... 按Level算，却是....那是因为结构....</p>
+<p>// TODO 我已经完全忘记这里要说什么了，要不直接 redirect 海螺摆大烂得了</p>
 <p>欲知更多相关内容，可以转阅海螺的文章（链接见附录）</p>
 <h2 id="区段"><a class="header" href="#区段">区段</a></h2>
-<p><strong>区段（Section）</strong> 是区块沿 y 轴切割得到的 16 等分之一。</p>
-<p><strong>调色盘（Palette）</strong> </p>
+<p><strong>区段（Section）</strong> 是区块沿 y 轴切割得到的 16 等分之一。区段是区块文件中存储方块状态、亮度的最小单位。</p>
+<p>**调色盘（Palette）**是方块状态储存中用到的一种压缩方式。如何理解调色盘呢，我们可以从字面意思来类比说明。</p>
+<p>对于一幅不透明的像素画，我们当然可以选择用一个二维数组来储存每个像素的颜色值。以 RGB 为例，这需要至少 24 bits 才能储存一个像素。对于一幅稍大点的画作，这样的储存方式将会大的惊人（例如一幅 1920 x 1080 的高清图片，至少需要 47 MB 的空间）。</p>
+<p>类似的，我们也可以用一个三维数组来存每个位置的方块状态，但是储存一个方块所需要的空间可远远不止 24 bits。移除方块的数字 id 之后，需要使用完整的名字（例如<code>&quot;minecraft:stone&quot;</code>）和表示状态的字符串到字符串的哈希表（例如<code>{&quot;facing&quot;: &quot;north&quot;, &quot;waterlogged&quot;: &quot;false&quot;}</code>）来表示一个方块状态，这样的话表示一个方块状态所需的内存将非常的大！更别提世界中不可胜数的方块！</p>
+<p>如何压缩呢？不难想到一幅画里的不少像素的颜色其实是一样的，既然如此，我们可以设立一个调色盘，用给图片里所有使用的颜色编号，然后在二维数组中使用这个编号来代替这个颜色。储存编号所需要的空间取决于这幅画有多少种颜色，而这几乎肯定是少于 24 bits 的（例如一幅 1920 x 1080 的高清图片，里面用了 60 种颜色，那么储存一个编号就需要 6 bits，加上一个字典，大约需要 12 MB 的空间）。</p>
+<p>类似的，在储存方块的时候，我们也可以这么做。用一个调色盘，或者说字典，给所有区段里的方块编号，然后在三维数组中用这个编号来代替这个方块。实际上，换成整数之后，Mojang 采用了一种比三维数组更紧凑的方法来存储编号。因此，虽然压缩图片的效果不算明显，但是对于方块状态的情形就完全不一样了。这样的压缩算法可以高效使所需空间大大减少。</p>
+<p>值得注意的是，在调色盘的例子里面，当颜色数量非常大（以至于非常接近 2<sup>24</sup>）的时候，储存编号和储存颜色所需空间相仿，导致调色盘压缩失灵——你甚至额外还存了一个巨大的调色盘。但是对于区段来说，这几乎不会成为问题——调色盘所占用的额外空间，在储存方块所需空间面前几乎可以忽略不计。何况在一个小小的区段里塞下数千个不同的方块状态，这本身就非常困难。</p>
+<p>空的区段（即，全是空气的区段）不会被储存，因此你不需要担心每个区块上空那些区段会不会占用很多空间，同时你也能够找到某些服务器会限高的部分原因了。</p>
 <h2 id="区元"><a class="header" href="#区元">区元</a></h2>
 <p><img src="1-introduction/../resources/quotes/SF&#x27;s%20Question.png" alt="" /></p>
 <p>然而，除了区块，其实还有很多有关世界生成的大小分块。Sebrarin 的说法并不严格，因为：<strong>区元（Area）</strong> 是 MC 生成生物群系的最小单位。</p>
@@ -602,23 +609,24 @@
 <p>在接下来的叙述中，本文用<code>x, z</code>这样的二元组来表示 x 和 z 相同的 16 个区元的坐标，其他（如方块、区块等）的坐标会另做说明。</p>
 <hr />
 <h3 id="区元命名杂谈"><a class="header" href="#区元命名杂谈">区元命名杂谈</a></h3>
-<p>这是可能曾一个从未被公开提出的概念，可以说是这篇文章的首创了。当时在翻译 Area 时，我不假思索的用了“区域”一词。这本来无可厚非，Area 最常见的翻译就是这个。然而当我意识到它与已有的一个概念——<strong>区域（Region）</strong>，撞车的时候，已经有一段时间了。为此，我当时不得不在文章里写到</p>
+<p>在最初翻译 Area 时，我不假思索的用了“区域”一词。这本来无可厚非，Area 最常见的翻译就是这个。然而当我意识到它与已有的一个概念——<strong>区域（Region）</strong>，撞车的时候，已经有一段时间了。为此，我当时不得不在文章里写到</p>
 <blockquote>
 <p><strong>注意：Region（32 x 32 区块）的翻译也是“区域”。本文无特别说明区域均指 Area，请勿混淆。</strong></p>
 </blockquote>
 <p>后来觉得这样欠妥，决定还是换个名字。作为生物群系生成的最小单位，作为世界生成中用到的最小的方块集合，也就是最小的一个“区”的概念，“元”一字它当之无愧。</p>
 <hr />
-<p>不过此名字一处，便遭各路嘲讽——这分明就是“屈原”嘛。是这样的，对此屈原也很恼火。我最喜欢屈原的一句话是</p>
+<p>不过此名字一出，便遭各路嘲讽——这分明就是“屈原”嘛。是这样的，对此屈原也很恼火。我最喜欢屈原的一句话是</p>
 <blockquote>
 <p>路漫漫其修远兮，吾将上下而求索</p>
 <p>——屈原《离骚》</p>
 </blockquote>
-<p>说实话，写这个教程，何尝不是一个“上下求索”的过程呢？</p>
+<p>被嘲讽的可不仅是名字：说实话，写这个教程，何尝不是一个“上下求索”的过程呢？</p>
 <blockquote>
 <p>举目见日，不见长安</p>
 <p>——晋明帝语，《世说新语》</p>
 </blockquote>
-<p>梦想遥不可及，现实却触手可得，然而有时候现实的残酷反而把人推向梦想那一边。可梦是做不完的，无尽的梦终究会成为无谓的梦。有时候香肠是一位理想主义者，幻想着心中的长安。但有时候又是一位现实主义者，因为永远也到不了长安。香肠正陷于这无尽的矛盾之中。香肠的梦是什么？也许我应该找个机会单独谈谈，囿于篇幅限制就不在此过多展开了。</p>
+<p>梦想遥不可及，现实却触手可得，然而有时候现实的残酷反而把人推向梦想那一边。可梦是做不完的，无尽的梦终究会成为无谓的梦。有时候香肠是一位理想主义者，幻想着心中的长安。但有时候又是一位现实主义者，因为永远也到不了长安。香肠正陷于这无尽的矛盾之中。</p>
+<p>香肠的梦是什么？<em>本节内容结束</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="维度"><a class="header" href="#维度">维度</a></h1>
 <h2 id="维度-1"><a class="header" href="#维度-1">维度</a></h2>
 <p>原版有三个维度，他们是<strong>主世界（Overworld）</strong>、<strong>下界（The Nether）</strong>、<strong>末地（The End）</strong>。</p>
@@ -635,10 +643,11 @@
 <tr><td align="left">multi_noise</td><td align="left">多重噪声</td><td align="left">生物群系（池、属性、参数）、种子</td><td align="left">用于下界的生物群系生成</td></tr>
 </tbody></table>
 <h2 id="生物群系缓存"><a class="header" href="#生物群系缓存">生物群系缓存</a></h2>
-<p>每个区元生物群系只生成一次。在生成之后，每个区元的生物群系将会被缓存。</p>
+<p>每个区元生物群系只生成一次。在生成之后，每个区元的生物群系将会被缓存在区块的一个数组中。一个区块有多少个区元，就有多少个整数。注意这里仍然使用整数，而不是生物群系名字，在 1.18 之后才终于采用了与方块类似的调色盘来储存。</p>
+<p>这样的缓存可以避免生物群系不断地生成，节省了不少的时间。但同时，又不得不向空间妥协——这样的缓存单位是区元而不是方块。</p>
 <h2 id="生物群系访问"><a class="header" href="#生物群系访问">生物群系访问</a></h2>
-<p>方块与区元显然不是一一对应的。</p>
-<p>同一个区元里的不同方块的生物群系是什么？</p>
+<p>那么，同一个区元里的不同方块的生物群系是什么？</p>
+<p>TODO</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="主世界"><a class="header" href="#主世界">主世界</a></h1>
 <p><strong>主世界（Overworld）</strong> 是玩家出生、长期生存的维度，也是生物群系资源最为丰富的维度。主世界的生物群系究竟是怎么生成的呢？</p>
 <h2 id="世界类型"><a class="header" href="#世界类型">世界类型</a></h2>
@@ -653,11 +662,10 @@
 <tr><td>空岛</td><td>Floating Islands</td><td>噪声</td><td>fixed</td></tr>
 <tr><td>调试模式</td><td>Debug Mode</td><td>调试</td><td>fixed</td></tr>
 </tbody></table>
-<p>TODO: 自选世界更多解释</p>
-<p>fixed 即固定生物群系，将会在下一章详细介绍。</p>
+<p>fixed 的经典代表是超平坦。1.13 删除自定义世界时，就加入了自选世界，而后被拆分为了单一生物群系、洞穴、空岛三种不同的世界类型，但都提供了选择一个全世界共同生物群系的选项。而调试模式中生物群系毫无意义。我会下一章详细介绍这种生物群系来源。</p>
 <h2 id="用层生成的主世界"><a class="header" href="#用层生成的主世界">用层生成的主世界</a></h2>
-<p>vanilla_layered，顾名思义就是~~层叠香草~~原版分层。这里译作“原版”或许有些奇怪，原版还会称自己原版？我想这应该是时间上的原版、体验上的原版。理由很简单，fixed 明显是用来整活的，生成主世界还是要看它。</p>
-<p>本章将对此作详细介绍。</p>
+<p>vanilla_layered，顾名思义就是~~层叠香草~~原版分层。这里译作“原版”或许有些奇怪，原版还会称自己原版？我想这应该是时间上的原版、体验上的原版。理由很简单：fixed 的世界类型明显都是用来整活的。而默认是最经典的世界生成，曾经是唯一的世界类型。放大化、巨型生物群系可以认为是它的变种，他们才是经典 mc 世界生成的主力。</p>
+<p>本章将主要围绕它来展开。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="层"><a class="header" href="#层">层</a></h1>
 <blockquote>
 <p>对于<sub>（主世界）</sub>生物群系的获取，Minecraft代码是使用一种类似于Decorator模式的方式提供生物群系的信息的。换句话说，它就像流水线一样，每个环节都对当前生物群系进行一次处理。</p>
@@ -956,7 +964,7 @@ return context.nextInt(3) == 0 ? ret : ret == COLD ? COLD : center;
 <p>紧接着：最后海洋支线被合并</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="三线合一"><a class="header" href="#三线合一">三线合一</a></h1>
 <p>这个页面没什么内容，只是像放电影一样给出了三条线的变化过程</p>
-<p>如果你更喜欢看视频，可以点这里[]观看</p>
+<p>如果你更喜欢看视频，可以点<a href="2-the-overworld/">这里</a>观看</p>
 <p><img src="2-the-overworld/../resources/the-movie/0.png" alt="" />
 <img src="2-the-overworld/../resources/the-movie/1.png" alt="" />
 <img src="2-the-overworld/../resources/the-movie/2.png" alt="" />
@@ -1011,6 +1019,7 @@ return context.nextInt(3) == 0 ? ret : ret == COLD ? COLD : center;
 <p>调试世界的生物群系都是平原。</p>
 <h2 id="自选世界"><a class="header" href="#自选世界">自选世界</a></h2>
 <p><strong>自选（Buffet）</strong> 曾是作为自定义的替代品加入的，后独立为三种世界类型：<strong>单一生物群系（Single Biome）</strong>、<strong>洞穴（Caves）</strong>、<strong>空岛（Floating Islands）</strong>。</p>
+<p>... 默认世界在主世界、下界、末地使用的区块生成器 ...</p>
 <p>TODO</p>
 <h2 id="曾今的异界"><a class="header" href="#曾今的异界">曾今的异界</a></h2>
 <p>在旧版本，下界和末地的生物群系在维度内都是完全一样的。因此也使用了这种来源。这也是上面的引用中土球将它们并列的原因。在后面的更新中：</p>
@@ -1038,17 +1047,25 @@ return context.nextInt(3) == 0 ? ret : ret == COLD ? COLD : center;
 <tr><td align="left">warped_forest</td><td align="left">0.0</td><td align="left">0.5</td><td align="left">0.0</td><td align="left">0.0</td><td align="left">0.375</td></tr>
 <tr><td align="left">basalt_deltas</td><td align="left">-0.5</td><td align="left">0.0</td><td align="left">0.0</td><td align="left">0.0</td><td align="left">0.17</td></tr>
 </tbody></table>
+<p>TODO</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-end"><a class="header" href="#the-end">The End</a></h1>
 <h2 id="末地"><a class="header" href="#末地">末地</a></h2>
 <p><img src="3-the-otherworlds/../resources/the-end/0.png" alt="" /></p>
+<p>TODO</p>
 <h2 id="动态放大化"><a class="header" href="#动态放大化">动态放大化</a></h2>
 <p><img src="3-the-otherworlds/../resources/the-end/1.png" alt="" /></p>
 <p>y = 0</p>
 <p><img src="3-the-otherworlds/../resources/the-end/2.png" alt="" /></p>
 <p>y = 64</p>
+<p>TODO</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="checkerboard"><a class="header" href="#checkerboard">Checkerboard</a></h1>
 <p>玩过国际象棋吗？即使没玩过，也会对它黑白相间的棋盘有印象。</p>
+<p>**棋盘（Checkerboard）**生物群系来源就是以此为灵感设计的。</p>
+<p>这种生物群系来源有两个参数，size 和 biomes。size 是棋盘每个格子的边长，单位是区块。biomes 是候选的生物群系。</p>
+<p>生物群系会按照 biomes 中的顺序，在世界中呈对角线条带生成。对于<code>x / size + z / size</code>相同的区块来说，生物群系是相同的。</p>
+<p>这是一个隐藏的游戏特性，不能直接开启，需要修改存档的 nbt 或者利用模组才能实现。具体方法可以参考 wiki。</p>
 <p><img src="3-the-otherworlds/../resources/checkerboard.png" alt="" /></p>
+<p><em>你知道吗：本文的 logo就是取自于这张图，你能找到在哪里吗</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="数据表"><a class="header" href="#数据表">数据表</a></h1>
 <p>版本：1.16.5，命名：offical</p>
 <h2 id="通用数据表"><a class="header" href="#通用数据表">通用数据表</a></h2>
