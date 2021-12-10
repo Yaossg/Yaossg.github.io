@@ -233,14 +233,14 @@
 </tbody></table>
 <p>有的时候，定语修饰的，也不是同一个“世界”。_斜体_表示它实际上修饰的对象。</p>
 <table><thead><tr><th align="left">语境</th><th align="left">含义</th><th align="left">英文</th></tr></thead><tbody>
-<tr><td align="left">世界类型：<br> 超平坦世界</td><td align="left"><em>存档的_类型，决定了<br> 一个_维度</em>（主世界）的生物群系来源</td><td align="left">WorldType<br>BiomeSource</td></tr>
-<tr><td align="left">沙漠世界</td><td align="left">一个_维度_（主世界）（世界性的）的生物群系</td><td align="left">Biome</td></tr>
-<tr><td align="left">创造世界</td><td align="left"><em>玩家的_游戏模式 或（尤指_服务器的</em>）_存档的_默认游戏模式</td><td align="left">Gamemode</td></tr>
-<tr><td align="left">极限世界</td><td align="left">_存档的_一个属性</td><td align="left">Hardcore</td></tr>
-<tr><td align="left">和平世界</td><td align="left">_存档的_一个属性</td><td align="left">Difficulty</td></tr>
-<tr><td align="left">死亡不掉落的世界</td><td align="left">_存档的_一个游戏规则</td><td align="left">Gamerule</td></tr>
-<tr><td align="left">世界边界</td><td align="left">_存档（决定）的_每个_维度的_边界</td><td align="left">WorldBorder</td></tr>
-<tr><td align="left">世界生成</td><td align="left">_存档（决定）的_每个_维度的_生成</td><td align="left">WorldGen</td></tr>
+<tr><td align="left">世界类型：<br> 超平坦世界</td><td align="left"><em>存档的</em> 类型，决定了<br> 一个 <em>维度</em> （主世界）的生物群系来源</td><td align="left">WorldType<br>BiomeSource</td></tr>
+<tr><td align="left">沙漠世界</td><td align="left">一个 <em>维度</em> （主世界）（世界性的）的生物群系</td><td align="left">Biome</td></tr>
+<tr><td align="left">创造世界</td><td align="left"><em>玩家的</em> 游戏模式 或（尤指_服务器的_）_存档的_默认游戏模式</td><td align="left">Gamemode</td></tr>
+<tr><td align="left">极限世界</td><td align="left"><em>存档的</em> 一个属性</td><td align="left">Hardcore</td></tr>
+<tr><td align="left">和平世界</td><td align="left"><em>存档的</em> 一个属性</td><td align="left">Difficulty</td></tr>
+<tr><td align="left">死亡不掉落的世界</td><td align="left"><em>存档的</em> 一个游戏规则</td><td align="left">Gamerule</td></tr>
+<tr><td align="left">世界边界</td><td align="left"><em>存档（决定）的</em> 每个_维度的_边界</td><td align="left">WorldBorder</td></tr>
+<tr><td align="left">世界生成</td><td align="left"><em>存档（决定）的</em> 每个_维度的_生成</td><td align="left">WorldGen</td></tr>
 </tbody></table>
 <p>一个世界可以同时是极限、和平、创造、死亡不掉落的吗？当然可以！但是他们的含义实际上各不相同，因此用“世界”一词可能歧义很大。</p>
 <p>在接下来的文章里面，如果是特指，我会避免使用“世界”一词；但是如果是用它来概括这方面的内容，正是因为它的多义性，反而再合适不过。</p>
@@ -987,7 +987,7 @@ return context.nextInt(3) == 0 ? ret : ret == COLD ? COLD : center;
 <p>TODO</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="checkerboard"><a class="header" href="#checkerboard">Checkerboard</a></h1>
 <p>玩过国际象棋吗？即使没玩过，也会对它黑白相间的棋盘有印象。</p>
-<p>**棋盘（Checkerboard）**生物群系来源就是以此为灵感设计的。</p>
+<p><strong>棋盘（Checkerboard）</strong> 生物群系来源就是以此为灵感设计的。</p>
 <p>这种生物群系来源有两个参数，size 和 biomes。size 是棋盘每个格子的边长，单位是区块。biomes 是候选的生物群系。</p>
 <p>生物群系会按照 biomes 中的顺序，在世界中呈对角线条带生成。对于<code>x / size + z / size</code>相同的区块来说，生物群系是相同的。</p>
 <p>这是一个隐藏的游戏特性，不能直接开启，需要修改存档的 nbt 或者利用模组才能实现。具体方法可以参考 wiki。</p>
@@ -1009,23 +1009,31 @@ return context.nextInt(3) == 0 ? ret : ret == COLD ? COLD : center;
 </tbody></table>
 <h2 id="下界特有属性"><a class="header" href="#下界特有属性">下界特有属性</a></h2>
 <p>下面这些属性为下界生物群系特有。</p>
+<table><thead><tr><th>下界生物群系</th></tr></thead><tbody>
+<tr><td>nether_wastes</td></tr>
+<tr><td>soul_sand_valley</td></tr>
+<tr><td>crimson_forest</td></tr>
+<tr><td>warped_forest</td></tr>
+<tr><td>basalt_deltas</td></tr>
+</tbody></table>
 <h3 id="相同的属性-1"><a class="header" href="#相同的属性-1">相同的属性</a></h3>
 <p>下面这些属性对于所有下界生物群系都有相同的值。</p>
 <table><thead><tr><th>属性</th><th>值</th></tr></thead><tbody>
 <tr><td>SE.ambientAdditionsSettings.tickChance</td><td>0.0111</td></tr>
-<tr><td>SE.ambientMoodSettings.tickDelay</td><td>6000</td></tr>
 <tr><td>SE.backgroundMusic.minDelay</td><td>12000</td></tr>
 <tr><td>SE.backgroundMusic.maxDelay</td><td>24000</td></tr>
 <tr><td>SE.backgroundMusic.replaceCurrentMusic</td><td>false</td></tr>
 </tbody></table>
-<h3 id="其它"><a class="header" href="#其它">其它</a></h3>
-<table><thead><tr><th>生物群系</th><th>SE.ambientAdditionsSettings.soundEvent</th><th>SE.ambientLoopSoundEvent</th><th>SE.backgroundMusic.event</th></tr></thead><tbody>
-<tr><td>nether_wastes</td><td>ambient.nether_wastes.additions</td><td>ambient.nether_wastes.loop</td><td>music.nether.nether_wastes</td></tr>
-<tr><td>soul_sand_valley</td><td>ambient.soul_sand_valley.additions</td><td>ambient.soul_sand_valley.loop</td><td>music.nether.soul_sand_valley</td></tr>
-<tr><td>crimson_forest</td><td>ambient.crimson_forest.additions</td><td>ambient.crimson_forest.loop</td><td>music.nether.crimson_forest</td></tr>
-<tr><td>warped_forest</td><td>ambient.warped_forest.additions</td><td>ambient.warped_forest.loop</td><td>music.nether.warped_forest</td></tr>
-<tr><td>basalt_deltas</td><td>ambient.basalt_deltas.additions</td><td>ambient.basalt_deltas.loop</td><td>music.nether.basalt_deltas</td></tr>
+<h3 id="相似的属性"><a class="header" href="#相似的属性">相似的属性</a></h3>
+<p>下面这些属性对于所有下界生物群系都有相似的值。</p>
+<p>将表中[biome]替换成下界生物群系的名字即为该下界生物群系该属性的值。</p>
+<table><thead><tr><th>属性</th><th>值</th></tr></thead><tbody>
+<tr><td>SE.ambientAdditionsSettings.soundEvent</td><td>ambient.[biome].additions</td></tr>
+<tr><td>SE.ambientLoopSoundEvent</td><td>ambient.[biome].loop</td></tr>
+<tr><td>SE.backgroundMusic.event</td><td>music.nether.[biome]</td></tr>
 </tbody></table>
+<h3 id="其他属性"><a class="header" href="#其他属性">其他属性</a></h3>
+<p>这些属性为部分下界生物群系特有。</p>
 <table><thead><tr><th>生物群系</th><th>SE.ambientParticleSettings.probability</th><th>SE.ambientParticleSettings.options</th></tr></thead><tbody>
 <tr><td>soul_sand_valley</td><td>0.00625</td><td>minecraft:ash</td></tr>
 <tr><td>crimson_forest</td><td>0.025</td><td>minecraft:crimson_spore</td></tr>

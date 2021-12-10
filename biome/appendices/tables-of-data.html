@@ -162,23 +162,31 @@
 </tbody></table>
 <h2 id="下界特有属性"><a class="header" href="#下界特有属性">下界特有属性</a></h2>
 <p>下面这些属性为下界生物群系特有。</p>
+<table><thead><tr><th>下界生物群系</th></tr></thead><tbody>
+<tr><td>nether_wastes</td></tr>
+<tr><td>soul_sand_valley</td></tr>
+<tr><td>crimson_forest</td></tr>
+<tr><td>warped_forest</td></tr>
+<tr><td>basalt_deltas</td></tr>
+</tbody></table>
 <h3 id="相同的属性-1"><a class="header" href="#相同的属性-1">相同的属性</a></h3>
 <p>下面这些属性对于所有下界生物群系都有相同的值。</p>
 <table><thead><tr><th>属性</th><th>值</th></tr></thead><tbody>
 <tr><td>SE.ambientAdditionsSettings.tickChance</td><td>0.0111</td></tr>
-<tr><td>SE.ambientMoodSettings.tickDelay</td><td>6000</td></tr>
 <tr><td>SE.backgroundMusic.minDelay</td><td>12000</td></tr>
 <tr><td>SE.backgroundMusic.maxDelay</td><td>24000</td></tr>
 <tr><td>SE.backgroundMusic.replaceCurrentMusic</td><td>false</td></tr>
 </tbody></table>
-<h3 id="其它"><a class="header" href="#其它">其它</a></h3>
-<table><thead><tr><th>生物群系</th><th>SE.ambientAdditionsSettings.soundEvent</th><th>SE.ambientLoopSoundEvent</th><th>SE.backgroundMusic.event</th></tr></thead><tbody>
-<tr><td>nether_wastes</td><td>ambient.nether_wastes.additions</td><td>ambient.nether_wastes.loop</td><td>music.nether.nether_wastes</td></tr>
-<tr><td>soul_sand_valley</td><td>ambient.soul_sand_valley.additions</td><td>ambient.soul_sand_valley.loop</td><td>music.nether.soul_sand_valley</td></tr>
-<tr><td>crimson_forest</td><td>ambient.crimson_forest.additions</td><td>ambient.crimson_forest.loop</td><td>music.nether.crimson_forest</td></tr>
-<tr><td>warped_forest</td><td>ambient.warped_forest.additions</td><td>ambient.warped_forest.loop</td><td>music.nether.warped_forest</td></tr>
-<tr><td>basalt_deltas</td><td>ambient.basalt_deltas.additions</td><td>ambient.basalt_deltas.loop</td><td>music.nether.basalt_deltas</td></tr>
+<h3 id="相似的属性"><a class="header" href="#相似的属性">相似的属性</a></h3>
+<p>下面这些属性对于所有下界生物群系都有相似的值。</p>
+<p>将表中[biome]替换成下界生物群系的名字即为该下界生物群系该属性的值。</p>
+<table><thead><tr><th>属性</th><th>值</th></tr></thead><tbody>
+<tr><td>SE.ambientAdditionsSettings.soundEvent</td><td>ambient.[biome].additions</td></tr>
+<tr><td>SE.ambientLoopSoundEvent</td><td>ambient.[biome].loop</td></tr>
+<tr><td>SE.backgroundMusic.event</td><td>music.nether.[biome]</td></tr>
 </tbody></table>
+<h3 id="其他属性"><a class="header" href="#其他属性">其他属性</a></h3>
+<p>这些属性为部分下界生物群系特有。</p>
 <table><thead><tr><th>生物群系</th><th>SE.ambientParticleSettings.probability</th><th>SE.ambientParticleSettings.options</th></tr></thead><tbody>
 <tr><td>soul_sand_valley</td><td>0.00625</td><td>minecraft:ash</td></tr>
 <tr><td>crimson_forest</td><td>0.025</td><td>minecraft:crimson_spore</td></tr>
