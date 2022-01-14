@@ -188,23 +188,22 @@
 <tr><td align="left">极限世界</td><td align="left"><em>存档的</em> 一个属性</td><td align="left">Hardcore</td></tr>
 <tr><td align="left">和平世界</td><td align="left"><em>存档的</em> 一个属性</td><td align="left">Difficulty</td></tr>
 <tr><td align="left">死亡不掉落的世界</td><td align="left"><em>存档的</em> 一个游戏规则</td><td align="left">Gamerule</td></tr>
-<tr><td align="left">世界边界</td><td align="left"><em>存档（决定）的</em> 每个_维度的_边界</td><td align="left">WorldBorder</td></tr>
-<tr><td align="left">世界生成</td><td align="left"><em>存档（决定）的</em> 每个_维度的_生成</td><td align="left">WorldGen</td></tr>
+<tr><td align="left">世界边界</td><td align="left"><em>存档（决定）的</em> 每个_维度的_ 边界</td><td align="left">WorldBorder</td></tr>
+<tr><td align="left">世界生成</td><td align="left"><em>存档（决定）的</em> 每个_维度的_ 生成</td><td align="left">WorldGen</td></tr>
 </tbody></table>
-<p>一个世界可以同时是极限、和平、创造、死亡不掉落的吗？当然可以！但是他们的含义实际上各不相同，因此用“世界”一词可能歧义很大。</p>
-<p>在接下来的文章里面，如果是特指，我会避免使用“世界”一词；但是如果是用它来概括这方面的内容，正是因为它的多义性，反而再合适不过。</p>
-<h2 id="世界的构成"><a class="header" href="#世界的构成">世界的构成</a></h2>
-<p>MC 的世界构成可以描述为下表：</p>
-<table><thead><tr><th>中文</th><th>英文</th><th>包含...</th></tr></thead><tbody>
-<tr><td>存档</td><td>Level</td><td>（原版的）三个维度</td></tr>
-<tr><td>维度</td><td>Dimension</td><td>约 3,750,000 x 3,750,000 个区块<br/>即约 60 M x 256 x 60 M 个方块*</td></tr>
-<tr><td>区域</td><td>Region</td><td>32 x 32 个区块</td></tr>
-<tr><td>区块</td><td>Chunk</td><td>16 个区段，即 16 x 256 x 16 个方块</td></tr>
-<tr><td>区段</td><td>Section</td><td>4 x 4 x 4 个区元，即 16 x 16 x 16 个方块</td></tr>
-<tr><td>区元</td><td>Area</td><td>4 x 4 x 4 个方块</td></tr>
-<tr><td>方块</td><td>Block</td><td></td></tr>
+<p>一个世界可以同时是极限、和平、创造、死亡不掉落的吗？当然可以！但是他们的含义实际上各不相同，因此用“世界”一词可能歧义很大。本文中，如果是对某个概念的特指，我会避免使用“世界”一词；但是如果是用它来概括这方面的内容，正是因为它的多义性，反而再合适不过。</p>
+<h2 id="世界的结构"><a class="header" href="#世界的结构">世界的结构</a></h2>
+<p>MC 的世界是很大的，因此绝不可能一言以蔽之，分层讨论势在必行。从顶层到底层，MC 的世界结构可以描述为下面这些层次：</p>
+<table><thead><tr><th>中文</th><th>英文</th><th>包含...</th><th>意义（仅举一例）</th></tr></thead><tbody>
+<tr><td>存档</td><td>Level</td><td>（原版的）三个维度</td><td>整个存档</td></tr>
+<tr><td>维度</td><td>Dimension</td><td>大约 60 M x 256 x 60 M 个方块</td><td>文件夹级存储的单位</td></tr>
+<tr><td>区域</td><td>Region</td><td>32 x 32 个区块</td><td>文件级存储的最小单位</td></tr>
+<tr><td>区块</td><td>Chunk</td><td>16 个区段，即 16 x 256 x 16 个方块</td><td>文件内部存储的最小单位</td></tr>
+<tr><td>区段</td><td>Section</td><td>4 x 4 x 4 个区元，即 16 x 16 x 16 个方块</td><td>调色盘和光照储存的最小单位</td></tr>
+<tr><td>区元</td><td>Area</td><td>4 x 4 x 4 个方块</td><td>生物群系生成的最小单位</td></tr>
+<tr><td>方块</td><td>Block</td><td></td><td>世界构成的最小单位</td></tr>
 </tbody></table>
-<p>*：准确值参见世界边界的知识，此处作简单处理。</p>
+<p>接下来我会对这些结构进行详细的阐述。</p>
 
                     </main>
 
