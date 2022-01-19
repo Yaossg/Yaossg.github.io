@@ -169,19 +169,19 @@
 <h3 id="区块状态"><a class="header" href="#区块状态">区块状态</a></h3>
 <p>这些功能在区块生成的不同状态时被调用，前作已经有过介绍。1.16 中这些状态被细化成了下面 13 个状态：</p>
 <table><thead><tr><th>状态</th><th>颜色</th><th>高度图类别</th><th>范围</th><th>等级</th></tr></thead><tbody>
-<tr><td>empty</td><td>2213376</td><td>甲类</td><td>-1</td><td>44+</td></tr>
-<tr><td>structure_starts</td><td>15884384</td><td>甲类</td><td>0</td><td>36-43</td></tr>
-<tr><td>structure_references</td><td>16777215</td><td>甲类</td><td>8</td><td></td></tr>
-<tr><td>biomes</td><td>5526612</td><td>甲类</td><td>0</td><td></td></tr>
-<tr><td>noise</td><td>7169628</td><td>甲类</td><td>8</td><td></td></tr>
-<tr><td>surface</td><td>15658734</td><td>甲类</td><td>0</td><td></td></tr>
-<tr><td>carvers</td><td>13421772</td><td>甲类</td><td>0</td><td></td></tr>
+<tr><td>empty</td><td>5526612</td><td>甲类</td><td>-1</td><td>44+</td></tr>
+<tr><td>structure_starts</td><td>10066329</td><td>甲类</td><td>0</td><td>36-43</td></tr>
+<tr><td>structure_references</td><td>6250897</td><td>甲类</td><td>8</td><td></td></tr>
+<tr><td>biomes</td><td>8434258</td><td>甲类</td><td>0</td><td></td></tr>
+<tr><td>noise</td><td>13750737</td><td>甲类</td><td>8</td><td></td></tr>
+<tr><td>surface</td><td>7497737</td><td>甲类</td><td>0</td><td></td></tr>
+<tr><td>carvers</td><td>7169628</td><td>甲类</td><td>0</td><td></td></tr>
 <tr><td>liquid_carvers</td><td>3159410</td><td>乙类</td><td>0</td><td>35</td></tr>
-<tr><td>features</td><td>13750737</td><td>乙类</td><td>8</td><td>34</td></tr>
-<tr><td>light</td><td>6250897</td><td>乙类</td><td>1</td><td></td></tr>
-<tr><td>spawn</td><td>10066329</td><td>乙类</td><td>0</td><td></td></tr>
-<tr><td>heightmaps</td><td>7497737</td><td>乙类</td><td>0</td><td></td></tr>
-<tr><td>full</td><td>8434258</td><td>乙类</td><td>0</td><td>33-</td></tr>
+<tr><td>features</td><td>2213376</td><td>乙类</td><td>8</td><td>34</td></tr>
+<tr><td>light</td><td>13421772</td><td>乙类</td><td>1</td><td></td></tr>
+<tr><td>spawn</td><td>15884384</td><td>乙类</td><td>0</td><td></td></tr>
+<tr><td>heightmaps</td><td>15658734</td><td>乙类</td><td>0</td><td></td></tr>
+<tr><td>full</td><td>16777215</td><td>乙类</td><td>0</td><td>33-</td></tr>
 </tbody></table>
 <p>区块状态仍然分为两类，只有最后一个状态是<strong>存档区级（Level Chunk）</strong> 用于正常的游戏逻辑，而前面的状态都是<strong>原型区块（Proto Chunk）</strong> 专用于世界生成。</p>
 <p>高度图类型分为两种，决定了出于当前状态下需要更新的高度图有哪些。可以看出，甲类的均为世界生成专用的高度图，乙类均为正常游戏逻辑使用的高度图。</p>

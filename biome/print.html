@@ -524,19 +524,19 @@
 <h3 id="区块状态"><a class="header" href="#区块状态">区块状态</a></h3>
 <p>这些功能在区块生成的不同状态时被调用，前作已经有过介绍。1.16 中这些状态被细化成了下面 13 个状态：</p>
 <table><thead><tr><th>状态</th><th>颜色</th><th>高度图类别</th><th>范围</th><th>等级</th></tr></thead><tbody>
-<tr><td>empty</td><td>2213376</td><td>甲类</td><td>-1</td><td>44+</td></tr>
-<tr><td>structure_starts</td><td>15884384</td><td>甲类</td><td>0</td><td>36-43</td></tr>
-<tr><td>structure_references</td><td>16777215</td><td>甲类</td><td>8</td><td></td></tr>
-<tr><td>biomes</td><td>5526612</td><td>甲类</td><td>0</td><td></td></tr>
-<tr><td>noise</td><td>7169628</td><td>甲类</td><td>8</td><td></td></tr>
-<tr><td>surface</td><td>15658734</td><td>甲类</td><td>0</td><td></td></tr>
-<tr><td>carvers</td><td>13421772</td><td>甲类</td><td>0</td><td></td></tr>
+<tr><td>empty</td><td>5526612</td><td>甲类</td><td>-1</td><td>44+</td></tr>
+<tr><td>structure_starts</td><td>10066329</td><td>甲类</td><td>0</td><td>36-43</td></tr>
+<tr><td>structure_references</td><td>6250897</td><td>甲类</td><td>8</td><td></td></tr>
+<tr><td>biomes</td><td>8434258</td><td>甲类</td><td>0</td><td></td></tr>
+<tr><td>noise</td><td>13750737</td><td>甲类</td><td>8</td><td></td></tr>
+<tr><td>surface</td><td>7497737</td><td>甲类</td><td>0</td><td></td></tr>
+<tr><td>carvers</td><td>7169628</td><td>甲类</td><td>0</td><td></td></tr>
 <tr><td>liquid_carvers</td><td>3159410</td><td>乙类</td><td>0</td><td>35</td></tr>
-<tr><td>features</td><td>13750737</td><td>乙类</td><td>8</td><td>34</td></tr>
-<tr><td>light</td><td>6250897</td><td>乙类</td><td>1</td><td></td></tr>
-<tr><td>spawn</td><td>10066329</td><td>乙类</td><td>0</td><td></td></tr>
-<tr><td>heightmaps</td><td>7497737</td><td>乙类</td><td>0</td><td></td></tr>
-<tr><td>full</td><td>8434258</td><td>乙类</td><td>0</td><td>33-</td></tr>
+<tr><td>features</td><td>2213376</td><td>乙类</td><td>8</td><td>34</td></tr>
+<tr><td>light</td><td>13421772</td><td>乙类</td><td>1</td><td></td></tr>
+<tr><td>spawn</td><td>15884384</td><td>乙类</td><td>0</td><td></td></tr>
+<tr><td>heightmaps</td><td>15658734</td><td>乙类</td><td>0</td><td></td></tr>
+<tr><td>full</td><td>16777215</td><td>乙类</td><td>0</td><td>33-</td></tr>
 </tbody></table>
 <p>区块状态仍然分为两类，只有最后一个状态是<strong>存档区级（Level Chunk）</strong> 用于正常的游戏逻辑，而前面的状态都是<strong>原型区块（Proto Chunk）</strong> 专用于世界生成。</p>
 <p>高度图类型分为两种，决定了出于当前状态下需要更新的高度图有哪些。可以看出，甲类的均为世界生成专用的高度图，乙类均为正常游戏逻辑使用的高度图。</p>
@@ -889,7 +889,7 @@ return context.nextInt(3) == 0 ? ret : ret == COLD ? COLD : center;
 <p><a href="2-the-overworld/2.3-river-layer.html#%E6%B2%B3%E6%B5%81%E8%B7%9D%E7%A6%BB">支链链接</a></p>
 <p><img src="2-the-overworld/../resources/layers/main/25.png" alt="" /> <img src="2-the-overworld/../resources/layers/main/26.png" alt="" /> <img src="2-the-overworld/../resources/layers/main/27.png" alt="" /> <img src="2-the-overworld/../resources/layers/main/28.png" alt="" /></p>
 <h3 id="生物群系大小"><a class="header" href="#生物群系大小">生物群系大小</a></h3>
-<p>上图连续放大了四次，其中前两次还夹带了私活，这一阶段实际上是根据世界生成的一个重要参数——**生物群系大小（BiomeSize）<strong>进行的。原版的</strong>默认（Default）<strong>世界类型这个数字是 4，而</strong>巨型生物生物群系（LargeBiomes）**世界类型这个数字是6。根据前面对放大化的解释可以知道，巨型生物群系的生物群系的面积将会是默认的 16 倍，即 x 和 z 方向各 4 倍。</p>
+<p>上图连续放大了四次，其中前两次还夹带了私活，这一阶段实际上是根据世界生成的一个重要参数——<strong>生物群系大小（BiomeSize）</strong> 进行的。原版的<strong>默认（Default）</strong> 世界类型这个数字是 4，而<strong>巨型生物生物群系（LargeBiomes）</strong> 世界类型这个数字是6。根据前面对放大化的解释可以知道，巨型生物群系的生物群系的面积将会是默认的 16 倍，即 x 和 z 方向各 4 倍。</p>
 <p>在第一次放大化完成之后，将会再进行最后一次扩张。详解见上文扩张一节。</p>
 <p>在第二次放大化完成之后（如果生物群系大小仅为 1，则在扩张完成后），添加海滩生物群系。</p>
 <h3 id="海滩"><a class="header" href="#海滩">海滩</a></h3>
@@ -1015,7 +1015,6 @@ return context.nextInt(3) == 0 ? ret : ret == COLD ? COLD : center;
 <p><strong>固定（Fixed）<strong>生物群系，说白了，就是全世界都是一种生物群系。最经典的例子便是</strong>超平坦</strong>世界类型。旧版本的<strong>自定义</strong>、新版本的<strong>自选</strong>和<strong>调试</strong>世界类型也可以实现。超平坦的默认和调试世界类型的生物群系都是平原。</p>
 <h2 id="超平坦"><a class="header" href="#超平坦">超平坦</a></h2>
 <p><strong>超平坦（Superflat）</strong> 创建速度惊人，得益于它固定的生物群系来源，和简单的区块生成器。在超平坦的预设界面，我们可以自定义世界各层方块——这对整个世界都是有效的。注意这个层和我们第二章讲述的层截然不同，超平坦定义的是方块层，而不是生物群系层；生物群系层也不是像方块层一样叠起来，而是相互作用得到一层的。这样的层不仅由区块生成器提供支持，甚至特性也提供了支持。尚不清楚 Mojang 重复提供支持的意图。</p>
-<p>超平坦世界还有额外的史莱姆生成。</p>
 <h3 id="虚空"><a class="header" href="#虚空">虚空</a></h3>
 <p><strong>虚空（The Void）</strong> 生物群系只会生成一个 33 x 1 x 33 的石头平台以及最中间的一个圆石的生物群系，最简单的方式就是通过超平坦预设来创建。这个生物群系不会生成生物，因此不适合测试刷怪的特性；但正因为如此，没有烦人的史莱姆，这里成了测试其他特性的好地方。</p>
 <p>超平坦的其中其中一个预设名字便是“虚空”，使用的就是这个生物群系。出生的石头平台并非依靠超平坦的生成机制，而是由生物群系产生的。</p>
