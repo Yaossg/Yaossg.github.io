@@ -148,7 +148,7 @@
                     <main>
                         <h1 id="the-nether"><a class="header" href="#the-nether">The Nether</a></h1>
 <h2 id="气候参数"><a class="header" href="#气候参数">气候参数</a></h2>
-<p>**气候参数（ClimateParameter）**包含下面这些分量。</p>
+<p><strong>气候参数（ClimateParameter）</strong> 包含下面这些分量。</p>
 <table><thead><tr><th>参数</th><th>英文</th><th>最小值</th><th>最大值</th></tr></thead><tbody>
 <tr><td>温度</td><td>temperature</td><td>-2</td><td>2</td></tr>
 <tr><td>湿度</td><td>humidity</td><td>-2</td><td>2</td></tr>
@@ -180,19 +180,9 @@
 <p>说起噪声，不由得让你回忆起 <a href="../1-introduction/1.4-properties-of-biome.html#%E8%8A%B1">1.4 节#花</a> 和 <a href="../2-the-overworld/2.4-ocean-layer.html">2.4 节 海洋</a>。如果只有一个噪声，这很好想象。我们只要划定好阈值，就能得到边缘平滑的，层次分明的生物群系。</p>
 <p>那如果噪声变为多个呢？在多个噪声上分别划定阈值？你可以自己动手试一下，你应该不难发现：这个过程非常痛苦和机械，你需要标定的量成倍增长且标定的区域很不直观，参数直接互相关联，牵一发而动全身，灵活性很差。</p>
 <p>因此我们采用了另一种方法，给每个生物群系赋予一个标准的气候参数，以此为基准点，选择与当地气候参数选择相似度最高生物群系。这里我们采用的衡量相似度的方法是：把一个参数看做是五维空间中的一个点，两个点之间的（欧式）距离越小，两个参数之间的相似度就越大。</p>
-<p>例如某点的参数为 <code>(t: 0.0, h: -0.2, a: 0.0, w: 0.2, o: 0.0)</code>那么它</p>
-<ul>
-<li>与 nether_wastes<code>(t: 0.0, h: 0.0, a: 0.0, w: 0.0, o: 0.0)</code> 的距离就是</li>
-</ul>
-<p>$$
-d_{\text{nether_wastes}}=\sqrt{(0.0-0.0)^2+(0.0+0.2)^2+(0.0-0.0)^2+(0.0-0.2)^2+(0.0-0.0)^2}=0.28
-$$</p>
-<ul>
-<li>与 soul_sand_valley<code>(t: 0.0, h: -0.5, a: 0.0, w: 0.0, o: 0.0)</code> 的距离就是</li>
-</ul>
-<p>$$
-d_{\text{soul_sand_valley}}=\sqrt{(0.0-0.0)^2+(-0.5+0.2)^2+(0.0-0.0)^2+(0.0-0.2)^2+(0.0-0.0)^2}=0.36
-$$</p>
+<p>例如由上表得 nether_wastes<code>(t: 0.0, h: 0.0, a: 0.0, w: 0.0, o: 0.0)</code> soul_sand_valley<code>(t: 0.0, h: -0.5, a: 0.0, w: 0.0, o: 0.0)</code></p>
+<p>则参数 <code>(t: 0.0, h: -0.2, a: 0.0, w: 0.2, o: 0.0)</code> 与它们的距离分别为</p>
+<p><img src="../resources/distance.png" alt="" /></p>
 <p>显然与 nether_wastes 距离更近，即更加相似。如果只有这两个生物群系可选，那么一定是选前者。</p>
 <p>由于原版中有两个参数恒为 0，我们可以讲剩下三个参数作为 x y z 坐标，在一个三维空间中画出这五个点。联系几何知识，不难想到，两个点中垂面上的任意一个点到两点的距离是相等的。以 P<sub>1</sub>（nether_wastes）为例，做出其与另外四个点之间的四个中垂面，然后绘制出交线，如图所示，可以大致看出在哪些范围内的参数会成为 nether_wastes。同样的工作对于另外四个生物群系来说也是类似的。更进一步的，也可以推广到五个参数的五维空间。</p>
 <p><img src="../resources/nether.png" alt="" /></p>
