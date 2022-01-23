@@ -56,7 +56,7 @@
 	  <hr>
       <h2>作品</h2>
       <hr>
-      <span id="works">$$$$</span>
+      <span id="works">作品列表加载需要 JavaScript，如果无法正常显示，可以查看本页面的源代码（第 100 行起）。</span>
       <hr>
       <footer class="text-center">
         <div class="container">
@@ -90,7 +90,7 @@ const template =
 	  <h4><a href="$link">$title</a></h4>
 	</div>
 	<div class="col-4">
-	  <h5 class="text-right"><span aria-hidden="true"></span><span class="badge badge-$4">$5</span></h5>
+	  <h5 class="text-right"><span aria-hidden="true"></span><span class="badge badge-$badge-color">$badge-text</span></h5>
 	</div>
   </div>
   <p>$desc</p>
@@ -149,15 +149,10 @@ let json = [
         "status": "deprecated",
         "desc": "香肠的工厂"
     }, {
-        "title": "HamTech",
-        "link": ".",
-        "status": "progressing",
-        "desc": "火腿科技"
-    }, {
-        "title": "tuple_ops",
+        "title": "misc",
         "link": "https://github.com/Yaossg/misc",
-        "status": "inactive",
-        "desc": "元组操作，元编程之光"
+        "status": "active",
+        "desc": "C++ 的小玩意"
     }, {
         "title": "cppStream",
         "link": "https://github.com/Yaossg/cppStream",
@@ -168,6 +163,11 @@ let json = [
         "link": "https://github.com/Yaossg/MathToy",
         "status": "active",
         "desc": "香肠的 C++ 数学玩具"
+    }, {
+		"title": "SauScript",
+        "link": "https://github.com/Yaossg/SauScript",
+        "status": "active",
+        "desc": "香肠自制脚本语言"
     }
 ]
 
@@ -181,8 +181,8 @@ let ws = json.map(work => {
   return template
       .replace("$link", link)
       .replace("$title", title)
-      .replace("$4", status[1])
-      .replace("$5", status[0])
+      .replace("$badge-color", status[1])
+      .replace("$badge-text", status[0])
       .replace("$desc", desc)
 });
 
