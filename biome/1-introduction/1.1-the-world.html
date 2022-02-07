@@ -176,10 +176,12 @@
 </blockquote>
 <p>世界在不同语境有不同的含义：</p>
 <table><thead><tr><th align="left">语境</th><th align="left">含义</th><th align="left">英文</th></tr></thead><tbody>
-<tr><td align="left">主世界</td><td align="left"><strong>维度</strong></td><td align="left"><strong>Dimension</strong></td></tr>
-<tr><td align="left">创建新的世界</td><td align="left"><strong>存档</strong></td><td align="left"><strong>Level</strong>/Save</td></tr>
+<tr><td align="left">创建新的世界</td><td align="left">存档</td><td align="left">Save</td></tr>
+<tr><td align="left">下界真可怕</td><td align="left">（享元的）维度</td><td align="left">Dimension</td></tr>
+<tr><td align="left">这个世界的下界</td><td align="left">（存档的某个）维度</td><td align="left">Level</td></tr>
 <tr><td align="left">局域网世界</td><td align="left">服务器</td><td align="left">Server</td></tr>
 </tbody></table>
+<p>需要注意到，Dimension 是指的某个维度的概念，而 Level 是存档中的一部分，换句话说就是：不同 Save 的同一个 Dimension 的 Level 可能会有所不同。</p>
 <p>有的时候，定语修饰的，也不是同一个“世界”。_斜体_表示它实际上修饰的对象。</p>
 <table><thead><tr><th align="left">语境</th><th align="left">含义</th><th align="left">英文</th></tr></thead><tbody>
 <tr><td align="left">世界类型：<br> 超平坦世界</td><td align="left"><em>存档的</em> 类型，决定了<br> 一个 <em>维度</em> （主世界）的生物群系来源</td><td align="left">WorldType<br>BiomeSource</td></tr>
@@ -195,8 +197,8 @@
 <h2 id="世界的结构"><a class="header" href="#世界的结构">世界的结构</a></h2>
 <p>MC 的世界是很大的，因此绝不可能一言以蔽之，分层讨论势在必行。从顶层到底层，MC 的世界结构可以描述为下面这些层次：</p>
 <table><thead><tr><th>中文</th><th>英文</th><th>包含...</th><th>意义（仅举一例）</th></tr></thead><tbody>
-<tr><td>存档</td><td>Level</td><td>（原版的）三个维度</td><td>整个存档</td></tr>
-<tr><td>维度</td><td>Dimension</td><td>大约 60 M x 256 x 60 M 个方块</td><td>文件夹级存储的单位</td></tr>
+<tr><td>存档</td><td>Save</td><td>（原版的）三个维度</td><td>整个存档</td></tr>
+<tr><td>维度</td><td>Level</td><td>大约 60 M x 256 x 60 M 个方块</td><td>文件夹级存储的单位</td></tr>
 <tr><td>区域</td><td>Region</td><td>32 x 32 个区块</td><td>文件级存储的最小单位</td></tr>
 <tr><td>区块</td><td>Chunk</td><td>16 个区段，即 16 x 256 x 16 个方块</td><td>文件内部存储的最小单位</td></tr>
 <tr><td>区段</td><td>Section</td><td>4 x 4 x 4 个区元，即 16 x 16 x 16 个方块</td><td>调色盘和光照储存的最小单位</td></tr>
