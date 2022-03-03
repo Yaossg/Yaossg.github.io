@@ -40,19 +40,27 @@
 	  <h2>链接</h2>
       <hr>
 	  <div class="row">
-        <div class="col-sm-3">
-		    <h3><a href="https://yaossg.com/blog">博客</a></h3>
-        </div>
-        <div class="col-sm-3">
-		    <h3><a href="https://github.com/Yaossg">Github</a></h3>
-        </div>
-		<div class="col-sm-3">
-		    <h3><a href="https://space.bilibili.com/282144386">Bilibili</a></h3>
-        </div>
-		<div class="col-sm-3">
-		    <h3><a href="https://www.mcbbs.net/?378563">MCBBS</a></h3>
+      <div class="card" style="width: 25%;">
+        <div class="card-body">
+          <h3 class="card-title"><a href="https://yaossg.com/blog">Blog</a></h3>
         </div>
       </div>
+      <div class="card" style="width: 25%;">
+        <div class="card-body">
+          <h3 class="card-title"><a href="https://github.com/Yaossg">Github</a></h3>
+        </div>
+      </div>
+      <div class="card" style="width: 25%;">
+        <div class="card-body">
+          <h3 class="card-title"><a href="https://space.bilibili.com/282144386">Bilibili</a></h3>
+        </div>
+      </div>
+      <div class="card" style="width: 25%;">
+        <div class="card-body">
+          <h3 class="card-title"><a href="https://www.mcbbs.net/?378563">MCBBS</a></h3>
+        </div>
+      </div>
+    </div>
 	  <hr>
       <h2>作品</h2>
       <hr>
@@ -84,16 +92,13 @@ const status_table = {
 }
 const template = 
 `
-<div class="col-md-6 col-sm-12">
-  <div class="row">
-	<div class="col-7">
-	  <h4><a href="$link">$title</a></h4>
-	</div>
-	<div class="col-4">
-	  <h5 class="text-right"><span aria-hidden="true"></span><span class="badge badge-$badge-color">$badge-text</span></h5>
-	</div>
+<div class="card" style="width: 33.3%;">
+  <div class="card-body">
+    <h5 class="card-title">$title</h5>
+    <h5 class="text-right"><span aria-hidden="true"></span><span class="badge badge-$badge-color">$badge-text</span></h5>
+    <p class="card-text">$desc</p>
+    <a href="$link" class="btn btn-primary">View Details</a>
   </div>
-  <p>$desc</p>
 </div>
 `
 
@@ -102,12 +107,12 @@ let json = [
         "title": "浅析 1.13 世界生成",
         "link": "https://yaossg.com/blog/1-13-worldgen/",
         "status": "archived",
-        "desc": ""
+        "desc": "香肠的世界生成文章"
     }, {
         "title": "再析世界生成：生物群系",
         "link": "https://yaossg.com/biome/",
-        "status": "progressing",
-        "desc": ""
+        "status": "active",
+        "desc": "香肠的世界生成文章"
     }, {
         "title": "SGS",
         "link": "https://yaossg.com/sgs/",
@@ -127,7 +132,7 @@ let json = [
         "title": "MCLink",
         "link": "https://github.com/Yaossg/MCLink",
         "status": "archived",
-        "desc": "MC 连连看"
+        "desc": "MC 风格连连看"
     }, {
         "title": "SausageCore",
         "link": "https://github.com/Yaossg/SausageCore",
@@ -189,14 +194,14 @@ let ws = json.map(work => {
 let out = '<div class="row">'
 for (let i = 0; i < ws.length; ++i) {
   out += ws[i]
-  if(i & 1) {
+  if(i % 3 == 2) {
     out += '</div>'
     if(i + 1 < ws.length)
       out += '<div class="row">'
   }
 }
         
-if (ws.length & 1) {
+if (ws.length % 3 == 2) {
   out += '</div>'
 }
 document.getElementById("works").innerHTML = out
