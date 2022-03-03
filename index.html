@@ -40,26 +40,10 @@
 	  <h2>链接</h2>
       <hr>
 	  <div class="row">
-      <div class="card" style="width: 25%;">
-        <div class="card-body">
-          <h3 class="card-title"><a href="https://yaossg.com/blog">Blog</a></h3>
-        </div>
-      </div>
-      <div class="card" style="width: 25%;">
-        <div class="card-body">
-          <h3 class="card-title"><a href="https://github.com/Yaossg">Github</a></h3>
-        </div>
-      </div>
-      <div class="card" style="width: 25%;">
-        <div class="card-body">
-          <h3 class="card-title"><a href="https://space.bilibili.com/282144386">Bilibili</a></h3>
-        </div>
-      </div>
-      <div class="card" style="width: 25%;">
-        <div class="card-body">
-          <h3 class="card-title"><a href="https://www.mcbbs.net/?378563">MCBBS</a></h3>
-        </div>
-      </div>
+      <button type="button" class="btn btn-link"><h3><a href="https://yaossg.com/blog">Blog</a></h3></button>
+      <button type="button" class="btn btn-link"><h3><a href="https://github.com/Yaossg">Github</a></h3></button>
+      <button type="button" class="btn btn-link"><h3><a href="https://space.bilibili.com/282144386">Bilibili</a></h3></button>
+      <button type="button" class="btn btn-link"><h3><a href="https://www.mcbbs.net/?378563">MCBBS</a></h3></button>
     </div>
 	  <hr>
       <h2>作品</h2>
@@ -92,12 +76,14 @@ const status_table = {
 }
 const template = 
 `
-<div class="card" style="width: 33.3%;">
-  <div class="card-body">
-    <h5 class="card-title">$title</h5>
-    <h5 class="text-right"><span aria-hidden="true"></span><span class="badge badge-$badge-color">$badge-text</span></h5>
-    <p class="card-text">$desc</p>
-    <a href="$link" class="btn btn-primary">View Details</a>
+<div class="col">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">$title</h5>
+      <h5 class="text-right"><span aria-hidden="true"></span><span class="badge badge-$badge-color">$badge-text</span></h5>
+      <p class="card-text">$desc</p>
+      <a href="$link" class="btn btn-info">View Details</a>
+    </div>
   </div>
 </div>
 `
@@ -190,20 +176,11 @@ let ws = json.map(work => {
       .replace("$badge-text", status[0])
       .replace("$desc", desc)
 });
-
-let out = '<div class="row">'
+let out = "<div class=\"row row-cols-3\">"
 for (let i = 0; i < ws.length; ++i) {
   out += ws[i]
-  if(i % 3 == 2) {
-    out += '</div>'
-    if(i + 1 < ws.length)
-      out += '<div class="row">'
-  }
 }
-        
-if (ws.length % 3 == 2) {
-  out += '</div>'
-}
+out += "</div>"
 document.getElementById("works").innerHTML = out
 
     </script>
