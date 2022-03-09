@@ -1257,7 +1257,7 @@ return context.nextInt(3) == 0 ? ret : ret == COLD ? COLD : center;
 <li>温度类别相同，或其中一个是中</li>
 </ul>
 <p>如果表面上观察，一切似乎很合理。不过，山地生物群系的温度类别是什么？相信读者读到这里，答案呼之欲出了：中。没错，无论另一个生物群系的温度类别是什么，最后一个语句都相当于一个<code>return true</code>。进而得到这个函数相当于<code>areSimilar(biome1, biome2) ? true : true</code>：这两个生物群系相似也是 true，不相似也是 true，说白了永远是 true——因此直接排除了所有的区域！山地边缘自此成了笑话：后文其实仍有关于山地边缘的判断、尝试，我于是一并忽略、删去。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="5-终章"><a class="header" href="#5-终章">5 终章</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="终章"><a class="header" href="#终章">终章</a></h1>
 <p>这一部分原本是绪言，经过再三考虑被改成了后记...</p>
 <hr />
 <blockquote>
