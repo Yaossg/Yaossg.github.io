@@ -67,26 +67,13 @@
     <script src="js/bootstrap-4.4.1.js"></script>
     <!-- Yaossg's Home Page Generator -->
     <script>
-const status_table = {
+const statuses = {
     "archived": ["Archived", "dark"],
     "progressing": ["Progressing", "primary"],
     "active": ["Active", "success"],
     "inactive": ["Inactive", "secondary"],
     "deprecated": ["Deprecated", "warning"]
 }
-const template = 
-`
-<div class="col">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">$title</h5>
-      <h5 class="text-right"><span aria-hidden="true"></span><span class="badge badge-$badge-color">$badge-text</span></h5>
-      <p class="card-text">$desc</p>
-      <a href="$link" class="btn btn-info">View Details</a>
-    </div>
-  </div>
-</div>
-`
 
 let json = [
     {
@@ -162,21 +149,19 @@ let json = [
     }
 ]
 
-let ws = json.map(work => {
-  let title = work.title
-  let link = work.link
-  let status = work.status
-  let desc = work.desc
-  status = status_table[status]
-  if (status === undefined) { throw new Error("unknown status") }
-  return template
-      .replace("$link", link)
-      .replace("$title", title)
-      .replace("$badge-color", status[1])
-      .replace("$badge-text", status[0])
-      .replace("$desc", desc)
-});
-let out = "<div class=\"row row-cols-3\">"
+let ws = json.map(work => String.raw`
+<div class="col">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">${work.title}</h5>
+      <h5 class="text-right"><span class="badge badge-${statuses[work.status][1]}">${statuses[work.status][0]}</span></h5>
+      <p class="card-text">${work.desc}</p>
+      <a href="${work.link}" class="btn btn-info">View Details</a>
+    </div>
+  </div>
+</div>
+`);
+let out = '<div class="row row-cols-3">'
 for (let i = 0; i < ws.length; ++i) {
   out += ws[i]
 }
