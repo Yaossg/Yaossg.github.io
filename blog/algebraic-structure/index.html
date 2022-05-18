@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yaossg.com","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="高中圆锥曲线结论 若椭圆（\(b^2&gt;0\)）或双曲线（\(b^2&lt;0\)） \[ \frac{x^2}{a^2}+\frac{y^2}{b^2}&#x3D;1 \] 与直线 \[ y&#x3D;kx+m \] 交于\(A(x_1,y_1),B(x_2,y_2)\)，联立消 \(y\) \[ (b^2+a^2k^2)x^2+2kma^2x+a^2(m^2-b^2)&#x3D;0 \] 得 \[ \Delta &#x3D; 4">
+  <meta name="description" content="代数结构 群 半群 \(G\neq\varnothing\) 且对于二元运算符 \(\cdot\) 满足：  \(\forall a,b \in G, a \cdot b\in G\) \(\forall a,b,c\in G, (a \cdot b)\cdot c&#x3D;a\cdot(b\cdot c)\)  则 \(G\) 是半群，记作 \((G,\cdot)\) 单位元 \(\forall a\i">
 <meta property="og:type" content="article">
-<meta property="og:title" content="analytic-geometry">
-<meta property="og:url" content="http://yaossg.com/blog/analytic-geometry/index.html">
+<meta property="og:title" content="algebraic-structure">
+<meta property="og:url" content="http://yaossg.com/blog/algebraic-structure/index.html">
 <meta property="og:site_name" content="Yaossg&#39;s Blog">
-<meta property="og:description" content="高中圆锥曲线结论 若椭圆（\(b^2&gt;0\)）或双曲线（\(b^2&lt;0\)） \[ \frac{x^2}{a^2}+\frac{y^2}{b^2}&#x3D;1 \] 与直线 \[ y&#x3D;kx+m \] 交于\(A(x_1,y_1),B(x_2,y_2)\)，联立消 \(y\) \[ (b^2+a^2k^2)x^2+2kma^2x+a^2(m^2-b^2)&#x3D;0 \] 得 \[ \Delta &#x3D; 4">
+<meta property="og:description" content="代数结构 群 半群 \(G\neq\varnothing\) 且对于二元运算符 \(\cdot\) 满足：  \(\forall a,b \in G, a \cdot b\in G\) \(\forall a,b,c\in G, (a \cdot b)\cdot c&#x3D;a\cdot(b\cdot c)\)  则 \(G\) 是半群，记作 \((G,\cdot)\) 单位元 \(\forall a\i">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-18T08:25:45.000Z">
+<meta property="article:published_time" content="2022-05-18T12:12:12.000Z">
 <meta property="article:modified_time" content="2022-05-18T15:40:50.551Z">
 <meta property="article:author" content="Yaossg">
 <meta property="article:tag" content="math">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yaossg.com/blog/analytic-geometry/">
+<link rel="canonical" href="http://yaossg.com/blog/algebraic-structure/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>analytic-geometry | Yaossg's Blog</title>
+  <title>algebraic-structure | Yaossg's Blog</title>
   
 
 
@@ -155,7 +155,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yaossg.com/blog/analytic-geometry/">
+    <link itemprop="mainEntityOfPage" href="http://yaossg.com/blog/algebraic-structure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/avatar.gif">
@@ -168,7 +168,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          analytic-geometry
+          algebraic-structure
         </h1>
 
         <div class="post-meta">
@@ -179,7 +179,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-05-18 16:25:45 / 修改时间：23:40:50" itemprop="dateCreated datePublished" datetime="2022-05-18T16:25:45+08:00">2022-05-18</time>
+              <time title="创建时间：2022-05-18 20:12:12 / 修改时间：23:40:50" itemprop="dateCreated datePublished" datetime="2022-05-18T20:12:12+08:00">2022-05-18</time>
             </span>
 
           
@@ -193,32 +193,88 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="高中圆锥曲线结论">高中圆锥曲线结论</h1>
-<p>若椭圆（<span
-class="math inline">\(b^2&gt;0\)</span>）或双曲线（<span
-class="math inline">\(b^2&lt;0\)</span>） <span class="math display">\[
-\frac{x^2}{a^2}+\frac{y^2}{b^2}=1
-\]</span> 与直线 <span class="math display">\[
-y=kx+m
-\]</span> 交于<span
-class="math inline">\(A(x_1,y_1),B(x_2,y_2)\)</span>，联立消 <span
-class="math inline">\(y\)</span> <span class="math display">\[
-(b^2+a^2k^2)x^2+2kma^2x+a^2(m^2-b^2)=0
-\]</span> 得 <span class="math display">\[
-\Delta = 4a^2b^2(b^2+a^2k^2 - m^2) \geq 0
-\]</span> <span class="math display">\[
-x_1+x_2=\frac{-2kma^2}{b^2+a^2k^2},
-x_1x_2=\frac{a^2(m^2-b^2)}{b^2+a^2k^2}
-\]</span> <span class="math display">\[
-y_1+y_2=\frac{2mb^2}{b^2+a^2k^2},
-y_1y_2=\frac{b^2(m^2-a^2k^2)}{b^2+a^2k^2}
-\]</span> <span class="math display">\[
-x_1y_2+x_2y_1=\frac{-2ka^2b^2}{b^2+a^2k^2}
-\]</span> <span class="math display">\[
-|x_1y_2-x_2y_1|=|m|\frac{\sqrt{\Delta}}{b^2+a^2k^2}
-\]</span> <span class="math display">\[
-|AB|=\sqrt{1+k^2}\frac{\sqrt{\Delta}}{b^2+a^2k^2}
-\]</span></p>
+        <h1 id="代数结构">代数结构</h1>
+<h2 id="群">群</h2>
+<h3 id="半群">半群</h3>
+<p><span class="math inline">\(G\neq\varnothing\)</span>
+且对于二元运算符 <span class="math inline">\(\cdot\)</span> 满足：</p>
+<ul>
+<li><span class="math inline">\(\forall a,b \in G, a \cdot b\in
+G\)</span></li>
+<li><span class="math inline">\(\forall a,b,c\in G, (a \cdot b)\cdot
+c=a\cdot(b\cdot c)\)</span></li>
+</ul>
+<p>则 <span class="math inline">\(G\)</span> 是半群，记作 <span
+class="math inline">\((G,\cdot)\)</span></p>
+<h3 id="单位元">单位元</h3>
+<p><span class="math inline">\(\forall a\in G, a\cdot e=e\cdot
+a=a\)</span></p>
+<p>则 <span class="math inline">\(e\)</span> 是单位元或幺元</p>
+<h3 id="幺半群">幺半群</h3>
+<p><span class="math inline">\(G\)</span> 是群且 <span
+class="math inline">\(e\in G\)</span>，则 <span
+class="math inline">\(G\)</span> 是幺半群</p>
+<h3 id="逆元">逆元</h3>
+<p><span class="math inline">\(a\in G, \exists b\in G\text{ s.t. }
+a\cdot b=b\cdot a=e\)</span> 则 <span class="math inline">\(a\)</span>
+<span class="math inline">\(b\)</span> 互为逆元</p>
+<h3 id="群-1">群</h3>
+<p><span class="math inline">\(G\)</span> 是幺半群，<span
+class="math inline">\(\forall a \in G, \exists b\in G \text{ s.t. }
+a\cdot b=e\)</span>，则 <span class="math inline">\(G\)</span> 是群</p>
+<h3 id="abel-群">Abel 群</h3>
+<p><span class="math inline">\(G\)</span> 是群，<span
+class="math inline">\(\forall a,b \in G, a \cdot b = b \cdot
+a\)</span>，则 <span class="math inline">\(G\)</span> 是 Abel
+群或交换群</p>
+<h2 id="环">环</h2>
+<h3 id="环-1">环</h3>
+<p>对于集合和运算 <span class="math inline">\(R=(G, +,
+\cdot)\)</span>，满足：</p>
+<ul>
+<li><span class="math inline">\((G, +)\)</span> 是 Abel 群</li>
+<li><span class="math inline">\((G, \cdot)\)</span> 是半群</li>
+<li><span class="math inline">\(\forall a,b,c\in G, (a + b)\cdot
+c=a\cdot c + b\cdot c\)</span></li>
+<li><span class="math inline">\(\forall a,b,c\in G, c\cdot(a + b)=c\cdot
+a + c\cdot b\)</span></li>
+</ul>
+<p>则 <span class="math inline">\(R\)</span> 是环</p>
+<h3 id="零元">零元</h3>
+<p><span class="math inline">\((R,+)\)</span> 称为 <span
+class="math inline">\(R\)</span> 的加法群，加法群的单位元记作 <span
+class="math inline">\(0\)</span>，称为 <span
+class="math inline">\(R\)</span> 的零元</p>
+<h3 id="零因子">零因子</h3>
+<p><span class="math inline">\(a\in R,\exists b \in R\land b \neq0\text{
+s.t. } a\cdot b=0(b\cdot a=0)\)</span>，则称 <span
+class="math inline">\(a\)</span> 是左（右）零因子</p>
+<h3 id="整环">整环</h3>
+<p><span class="math inline">\(R\)</span>
+至少有两个元素，且不含非零零因子，则称 <span
+class="math inline">\(R\)</span> 是整环</p>
+<h3 id="单位元-1">单位元</h3>
+<p><span class="math inline">\(R\)</span> 是环，<span
+class="math inline">\(1 \in R, \forall a\in R \text{ s.t. } 1\cdot
+a=a\cdot 1=a\)</span>，则称 <span class="math inline">\(1\)</span> 是
+<span class="math inline">\(R\)</span> 的单位元或幺元，则称 <span
+class="math inline">\(R\)</span> 为由单位元的环</p>
+<h3 id="逆元-1">逆元</h3>
+<p><span class="math inline">\(a\in R, \exists b\in R\text{ s.t. }
+a\cdot b=b\cdot a=1\)</span> 则 <span class="math inline">\(a\)</span>
+<span class="math inline">\(b\)</span> 互为逆元</p>
+<h3 id="除环">除环</h3>
+<p><span class="math inline">\(R\)</span> 是整环，<span
+class="math inline">\(\forall a \in R\land a \neq0, \exists b\in R\text{
+s.t. } a\cdot b=1\)</span>，则 <span class="math inline">\(R\)</span>
+是除环</p>
+<h3 id="交换环">交换环</h3>
+<p><span class="math inline">\(R\)</span> 是环，<span
+class="math inline">\(\forall a,b \in G, a \cdot b = b \cdot
+a\)</span>，则 <span class="math inline">\(R\)</span> 是交换环</p>
+<h2 id="域">域</h2>
+<p><span class="math inline">\(F\)</span> 是交换除环，则 <span
+class="math inline">\(F\)</span> 是域</p>
 
     </div>
 
@@ -237,13 +293,10 @@ x_1y_2+x_2y_1=\frac{-2ka^2b^2}{b^2+a^2k^2}
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/blog/biome/" rel="prev" title="biome">
-      <i class="fa fa-chevron-left"></i> biome
+    <a href="/blog/analytic-geometry/" rel="prev" title="analytic-geometry">
+      <i class="fa fa-chevron-left"></i> analytic-geometry
     </a></div>
-      <div class="post-nav-item">
-    <a href="/blog/algebraic-structure/" rel="next" title="algebraic-structure">
-      algebraic-structure <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -302,7 +355,7 @@ x_1y_2+x_2y_1=\frac{-2ka^2b^2}{b^2+a^2k^2}
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%AB%98%E4%B8%AD%E5%9C%86%E9%94%A5%E6%9B%B2%E7%BA%BF%E7%BB%93%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">高中圆锥曲线结论</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">代数结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BE%A4"><span class="nav-number">1.1.</span> <span class="nav-text">群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E7%BE%A4"><span class="nav-number">1.1.1.</span> <span class="nav-text">半群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BD%8D%E5%85%83"><span class="nav-number">1.1.2.</span> <span class="nav-text">单位元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BA%E5%8D%8A%E7%BE%A4"><span class="nav-number">1.1.3.</span> <span class="nav-text">幺半群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E5%85%83"><span class="nav-number">1.1.4.</span> <span class="nav-text">逆元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BE%A4-1"><span class="nav-number">1.1.5.</span> <span class="nav-text">群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#abel-%E7%BE%A4"><span class="nav-number">1.1.6.</span> <span class="nav-text">Abel 群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF"><span class="nav-number">1.2.</span> <span class="nav-text">环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B6%E5%85%83"><span class="nav-number">1.2.2.</span> <span class="nav-text">零元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B6%E5%9B%A0%E5%AD%90"><span class="nav-number">1.2.3.</span> <span class="nav-text">零因子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E7%8E%AF"><span class="nav-number">1.2.4.</span> <span class="nav-text">整环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BD%8D%E5%85%83-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">单位元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E5%85%83-1"><span class="nav-number">1.2.6.</span> <span class="nav-text">逆元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%A4%E7%8E%AF"><span class="nav-number">1.2.7.</span> <span class="nav-text">除环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E7%8E%AF"><span class="nav-number">1.2.8.</span> <span class="nav-text">交换环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%9F"><span class="nav-number">1.3.</span> <span class="nav-text">域</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

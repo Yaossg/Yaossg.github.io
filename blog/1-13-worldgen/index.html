@@ -1,382 +1,534 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  
-  <title>1.13-worldgen | Yaossg&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="浅析 1.13 世界生成再版说明经过一年多时间的洗练，这篇教程也是时候走进历史的棺材里了。但是 1.13 作为一次划时代的更新，它，和这篇教程，仍有许多研究价值。故我进行了我再次修订。 有一些大的修改，目的是更好的引入我的新教程，删去了老教程与新教程重叠的内容。此外还特别对文章的格式和排版进行了调整，内容进行了打磨。 特别声明：任何合理的（而不是断章取义的或是为商业利益的）引用都是可以接受的，无需">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yaossg.com","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="浅析 1.13 世界生成 再版说明 经过一年多时间的洗练，这篇教程也是时候走进历史的棺材里了。但是 1.13 作为一次划时代的更新，它，和这篇教程，仍有许多研究价值。故我进行了我再次修订。 有一些大的修改，目的是更好的引入我的新教程，删去了老教程与新教程重叠的内容。此外还特别对文章的格式和排版进行了调整，内容进行了打磨。 特别声明：任何合理的（而不是断章取义的或是为商业利益的）引用都是可以接受的，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1.13-worldgen">
 <meta property="og:url" content="http://yaossg.com/blog/1-13-worldgen/index.html">
 <meta property="og:site_name" content="Yaossg&#39;s Blog">
-<meta property="og:description" content="浅析 1.13 世界生成再版说明经过一年多时间的洗练，这篇教程也是时候走进历史的棺材里了。但是 1.13 作为一次划时代的更新，它，和这篇教程，仍有许多研究价值。故我进行了我再次修订。 有一些大的修改，目的是更好的引入我的新教程，删去了老教程与新教程重叠的内容。此外还特别对文章的格式和排版进行了调整，内容进行了打磨。 特别声明：任何合理的（而不是断章取义的或是为商业利益的）引用都是可以接受的，无需">
-<meta property="og:locale">
+<meta property="og:description" content="浅析 1.13 世界生成 再版说明 经过一年多时间的洗练，这篇教程也是时候走进历史的棺材里了。但是 1.13 作为一次划时代的更新，它，和这篇教程，仍有许多研究价值。故我进行了我再次修订。 有一些大的修改，目的是更好的引入我的新教程，删去了老教程与新教程重叠的内容。此外还特别对文章的格式和排版进行了调整，内容进行了打磨。 特别声明：任何合理的（而不是断章取义的或是为商业利益的）引用都是可以接受的，">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-02-18T13:27:00.000Z">
-<meta property="article:modified_time" content="2022-05-18T10:23:57.440Z">
+<meta property="article:modified_time" content="2022-05-18T15:40:50.551Z">
 <meta property="article:author" content="Yaossg">
+<meta property="article:tag" content="worldgen">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternative" href="/atom.xml" title="Yaossg&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-<link rel="stylesheet" href="/blog/css/style.css">
 
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
-<meta name="generator" content="Hexo 5.4.0"></head>
-<body>
-<div id="container">
-  <div id="wrap">
-    <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/blog/" id="logo">Yaossg&#39;s Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/blog/">Home</a>
-        
-          <a class="main-nav-link" href="/blog/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
-          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
-          <input type="submit" value="" class="search-form-submit">
-          <input name=tn type=hidden value="bds">
-          <input name=cl type=hidden value="3">
-          <input name=ct type=hidden value="2097152">
-          <input type="hidden" name="si" value="yaossg.com/blog">
-        </form>
-      </div>
-    </div>
-  </div>
-</header>
-    <div class="outer">
-      <section id="main"><article id="post-1-13-worldgen" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/1-13-worldgen/" class="article-date">
-  <time datetime="2019-02-18T13:27:00.000Z" itemprop="datePublished">2019-02-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      1.13-worldgen
-    </h1>
+<link rel="canonical" href="http://yaossg.com/blog/1-13-worldgen/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>1.13-worldgen | Yaossg's Blog</title>
   
 
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yaossg's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yaossg.com/blog/1-13-worldgen/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Yaossg">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yaossg's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          1.13-worldgen
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-18 21:27:00" itemprop="dateCreated datePublished" datetime="2019-02-18T21:27:00+08:00">2019-02-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-18 23:40:50" itemprop="dateModified" datetime="2022-05-18T23:40:50+08:00">2022-05-18</time>
+              </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h1 id="浅析-1-13-世界生成"><a href="#浅析-1-13-世界生成" class="headerlink" title="浅析 1.13 世界生成"></a>浅析 1.13 世界生成</h1><h2 id="再版说明"><a href="#再版说明" class="headerlink" title="再版说明"></a>再版说明</h2><p>经过一年多时间的洗练，这篇教程也是时候走进历史的棺材里了。但是 1.13 作为一次划时代的更新，它，和这篇教程，仍有许多研究价值。故我进行了我再次修订。</p>
+        <h1 id="浅析-1.13-世界生成">浅析 1.13 世界生成</h1>
+<h2 id="再版说明">再版说明</h2>
+<p>经过一年多时间的洗练，这篇教程也是时候走进历史的棺材里了。但是 1.13
+作为一次划时代的更新，它，和这篇教程，仍有许多研究价值。故我进行了我再次修订。</p>
 <p>有一些大的修改，目的是更好的引入我的新教程，删去了老教程与新教程重叠的内容。此外还特别对文章的格式和排版进行了调整，内容进行了打磨。</p>
 <p>特别声明：任何合理的（而不是断章取义的或是为商业利益的）引用都是可以接受的，无需通知我的。但任何形式的转载都是不被允许的。</p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><strong>浅析 1.13 世界生成</strong></p>
+<h2 id="目录">目录</h2>
+<p><strong>浅析 1.13 世界生成</strong></p>
 <ul>
 <li><a href="#再版说明">再版说明</a></li>
 <li><a href="#目录">目录</a></li>
 <li><a href="#引子：为什么？">引子：为什么？</a></li>
 <li><a href="#区块生成概述">区块生成概述</a></li>
-<li><a href="#区块生成任务">区块生成任务</a><ul>
-<li><a href="#基础">基础</a><ul>
+<li><a href="#区块生成任务">区块生成任务</a>
+<ul>
+<li><a href="#基础">基础</a>
+<ul>
 <li><a href="#选定生物群系">选定生物群系</a></li>
 <li><a href="#高度图">高度图</a></li>
 <li><a href="#地表构造器">地表构造器</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#镂空、流体镂空">镂空、流体镂空</a></li>
 <li><a href="#装饰">装饰</a></li>
 <li><a href="#光照">光照</a></li>
 <li><a href="#生物生成">生物生成</a></li>
 <li><a href="#收尾">收尾</a></li>
 <li><a href="#完整区块、处理后">完整区块、处理后</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#结束了？结束了。">结束了？结束了。</a></li>
 <li><a href="#生物群系">生物群系</a></li>
-<li><a href="#结构生成">结构生成</a><ul>
-<li><a href="#`buildComponent`"><code>buildComponent</code></a></li>
-<li><a href="#`addComponentParts`"><code>addComponentParts</code></a></li>
-</ul>
-</li>
-<li><a href="#模板">模板</a><ul>
+<li><a href="#结构生成">结构生成</a>
+<ul>
+<li><a href="#%60buildComponent%60"><code>buildComponent</code></a></li>
+<li><a
+href="#%60addComponentParts%60"><code>addComponentParts</code></a></li>
+</ul></li>
+<li><a href="#模板">模板</a>
+<ul>
 <li><a href="#调色盘">调色盘</a></li>
-<li><a href="#`TemplateStructurePiece`"><code>TemplateStructurePiece</code></a></li>
-</ul>
-</li>
+<li><a
+href="#%60TemplateStructurePiece%60"><code>TemplateStructurePiece</code></a></li>
+</ul></li>
 <li><a href="#维度与世界类型">维度与世界类型</a></li>
-<li><a href="#应用：自定义">应用：自定义</a><ul>
+<li><a href="#应用：自定义">应用：自定义</a>
+<ul>
 <li><a href="#自定义矿物生成">自定义矿物生成</a></li>
 <li><a href="#自定义结构">自定义结构</a></li>
 <li><a href="#自定义生物群系">自定义生物群系</a></li>
-</ul>
-</li>
-<li><a href="#附录">附录</a><ul>
+</ul></li>
+<li><a href="#附录">附录</a>
+<ul>
 <li><a href="#事件">事件</a></li>
 <li><a href="#钩子">钩子</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#后记">后记</a></li>
 <li><a href="#鸣谢">鸣谢</a></li>
 <li><a href="#参考">参考</a></li>
 <li><a href="#相关链接">相关链接</a></li>
 </ul>
-<h2 id="引子：为什么？"><a href="#引子：为什么？" class="headerlink" title="引子：为什么？"></a>引子：为什么？</h2><p><strong>世界生成</strong>（<strong>World Generation</strong>, or <strong>WorldGen</strong> for short）是我的世界的一个重要内容。Minecraft 在发展，世界生成的代码却在很长的一段时间里没有发生太大的变化，而 1.13 正是对这一切进行变革的一个版本。那么为什么我们需要推翻一个使用这么长时间的、看似并没有太大问题的世界生成机制呢？我们为什么要这样变？这样变又有什么好处呢？</p>
-<p>要解答这些问题，就要从旧版的世界生成说起，在这里，我不能把 1.12 及以前的地形生成解析一遍，在文末的相关链接我给出了土球的一个简要解析，供读者参考。也许在实际的游戏中，我们很难看出什么区别，但潜移默化间，Mojang 已经向前迈出了一大步。</p>
-<p>这次 Mojang 代码的重构采用了全新的设计模式，增加了代码的可扩展性，主要体现在：</p>
+<h2 id="引子为什么">引子：为什么？</h2>
+<p><strong>世界生成</strong>（<strong>World Generation</strong>, or
+<strong>WorldGen</strong> for short）是我的世界的一个重要内容。Minecraft
+在发展，世界生成的代码却在很长的一段时间里没有发生太大的变化，而 1.13
+正是对这一切进行变革的一个版本。那么为什么我们需要推翻一个使用这么长时间的、看似并没有太大问题的世界生成机制呢？我们为什么要这样变？这样变又有什么好处呢？</p>
+<p>要解答这些问题，就要从旧版的世界生成说起，在这里，我不能把 1.12
+及以前的地形生成解析一遍，在文末的相关链接我给出了土球的一个简要解析，供读者参考。也许在实际的游戏中，我们很难看出什么区别，但潜移默化间，Mojang
+已经向前迈出了一大步。</p>
+<p>这次 Mojang
+代码的重构采用了全新的设计模式，增加了代码的可扩展性，主要体现在：</p>
 <ul>
 <li>将世界生成的功能被集中在了区块生成器和生物群系两部分上面，而不是离散在方方面面，更便于对代码之间的关系进行分析。</li>
-<li>细化了分类和世界生成的步骤，将不同的功能分离开，实现逻辑分层和模块化，代码更加清晰，复用性更高。<ul>
+<li>细化了分类和世界生成的步骤，将不同的功能分离开，实现逻辑分层和模块化，代码更加清晰，复用性更高。
+<ul>
 <li>比如把定位和生成分离，灵活组合，告别了过去一写特性就花半天写定位代码或复制定位代码的冗余。</li>
 <li>因为步骤被细化了，更加利于分配任务，所以世界生成可以异步了。</li>
-</ul>
-</li>
+</ul></li>
 <li>采用大量函数式接口，助力函数式大潮，让传递代码成为一种时尚。</li>
-<li>采用了全新的设计模式，告别了过去Mojang一贯的代码风格，打破了我们的刻板印象。<ul>
+<li>采用了全新的设计模式，告别了过去Mojang一贯的代码风格，打破了我们的刻板印象。
+<ul>
 <li>如<code>(X-XType)</code>模式，即用<code>X</code>表示对象本身，实现它的功能，而<code>XType</code>描述这类对象性质，提供对象的工厂方法。</li>
 <li>如<code>(X-XConfig)</code>模式，即用<code>X</code>实现功能，而用<code>XConfig</code>来传递实现此功能的参数，通过泛型避免不同行为的参数不同和大量无意义的类型转换。</li>
 <li>如有限状态机，用以表示区块生成的不同阶段和更加灵活地方式区分生物群系，删除了过去的硬编码。</li>
-</ul>
-</li>
+</ul></li>
 <li>统一化的世界生成接口，让所有生成的装饰都归于一个概念——特性。避免了以往的混乱不堪、互相踩脚的弊端。</li>
 <li>开放了生物群系的接口，提供了生物群系的<code>Builder</code>，让你体验搭积木式的快感，让你不用Forge也能加特性。</li>
 </ul>
-<p>在之后各个版本的世界生成中，1.13 版本的核心价值一直在不断地体现。这就是为什么会有这篇文章：因为这是一次<strong>划时代</strong>的更新。下面我们将从世界生成的各个方面，逐一探讨其中的奥秘，揭开新版世界生成神秘复杂的面纱。</p>
-<h2 id="区块生成概述"><a href="#区块生成概述" class="headerlink" title="区块生成概述"></a>区块生成概述</h2><blockquote>
-<p>区块（Chunk）是Minecraft世界里一个大小为 16×256×16 的部分 ——Minecraft 中文维基</p>
+<p>在之后各个版本的世界生成中，1.13
+版本的核心价值一直在不断地体现。这就是为什么会有这篇文章：因为这是一次<strong>划时代</strong>的更新。下面我们将从世界生成的各个方面，逐一探讨其中的奥秘，揭开新版世界生成神秘复杂的面纱。</p>
+<h2 id="区块生成概述">区块生成概述</h2>
+<blockquote>
+<p>区块（Chunk）是Minecraft世界里一个大小为 16×256×16 的部分 ——Minecraft
+中文维基</p>
 </blockquote>
 <p>一个存档有多个维度，每个维度都有一个世界，世界是由一个个区块组成的，所以生成世界的实质就是生成区块。</p>
-<p>在过去，区块生成分为 Generation 和 Population 两个阶段，而在 1.13 以后，不再这样笼统的区分，每个区块都拥有一个状态，每个状态都表示他<strong>已经完成</strong>的某一个任务，并提供下一个任务，以此实现<strong>异步</strong>的区块生成。</p>
+<p>在过去，区块生成分为 Generation 和 Population 两个阶段，而在 1.13
+以后，不再这样笼统的区分，每个区块都拥有一个状态，每个状态都表示他<strong>已经完成</strong>的某一个任务，并提供下一个任务，以此实现<strong>异步</strong>的区块生成。</p>
 <p>按顺序，它们分别是：</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>状态</th>
 <th>翻译</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>empty</td>
 <td>空</td>
 </tr>
-<tr>
+<tr class="even">
 <td>base</td>
 <td>基础</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>carved</td>
 <td>镂空</td>
 </tr>
-<tr>
+<tr class="even">
 <td>liquid_carved</td>
 <td>流体镂空</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>decorated</td>
 <td>装饰</td>
 </tr>
-<tr>
+<tr class="even">
 <td>lighted</td>
 <td>光照</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>mobs_spawned</td>
 <td>生物生成</td>
 </tr>
-<tr>
+<tr class="even">
 <td>finalized</td>
 <td>收尾</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>fullchunk</td>
 <td>完整区块</td>
 </tr>
-<tr>
+<tr class="even">
 <td>postprocessed</td>
 <td>处理后</td>
 </tr>
 </tbody>
 </table>
-</div>
-<p>前面的阶段属于样板（proto）区块，而最后两个属于存档（level）区块，后者已经可以序列化为 NBT 了。这个两种类型定义在<code>ChunkStatus.Type</code>枚举中。</p>
-<p><strong>[提示]</strong> 为了更加直观的观看区块生成时所处的不同状态，可以观看 1.14 世界加载时的动画，其中不同的颜色代表不同的状态，可以说没有 1.13 的变革也不会有 1.14 的进步。</p>
-<h2 id="区块生成任务"><a href="#区块生成任务" class="headerlink" title="区块生成任务"></a>区块生成任务</h2><p>接下来详细讲解每一个各个<strong>任务</strong>的内容。</p>
-<p><strong>[注意]</strong> 再说一遍是对应的<strong>任务</strong>的内容，其他内容不再此列。</p>
-<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="选定生物群系"><a href="#选定生物群系" class="headerlink" title="选定生物群系"></a>选定生物群系</h4><p>生物群系选定是区块生成的第一步，所以也是世界生成的第一步。因此重要程度不言而喻。随着版本更迭，这一部分变化也很大。有关这一部分的内容，请参考我的新作。</p>
-<h4 id="高度图"><a href="#高度图" class="headerlink" title="高度图"></a>高度图</h4><p>高度图记录每个<code>(x, z)</code>下最高的方块，用于描述地形的起伏升降，根据“最高方块”的标准不同，高度图分为以下几种，注意<strong>且</strong>的优先级是高于<strong>或</strong>的。其中有<code>_WG</code>后缀的都是为世界生成准备的。</p>
-<div class="table-container">
+<p>前面的阶段属于样板（proto）区块，而最后两个属于存档（level）区块，后者已经可以序列化为
+NBT 了。这个两种类型定义在<code>ChunkStatus.Type</code>枚举中。</p>
+<p><strong>[提示]</strong>
+为了更加直观的观看区块生成时所处的不同状态，可以观看 1.14
+世界加载时的动画，其中不同的颜色代表不同的状态，可以说没有 1.13
+的变革也不会有 1.14 的进步。</p>
+<h2 id="区块生成任务">区块生成任务</h2>
+<p>接下来详细讲解每一个各个<strong>任务</strong>的内容。</p>
+<p><strong>[注意]</strong>
+再说一遍是对应的<strong>任务</strong>的内容，其他内容不再此列。</p>
+<h3 id="基础">基础</h3>
+<h4 id="选定生物群系">选定生物群系</h4>
+<p>生物群系选定是区块生成的第一步，所以也是世界生成的第一步。因此重要程度不言而喻。随着版本更迭，这一部分变化也很大。有关这一部分的内容，请参考我的新作。</p>
+<h4 id="高度图">高度图</h4>
+<p>高度图记录每个<code>(x, z)</code>下最高的方块，用于描述地形的起伏升降，根据“最高方块”的标准不同，高度图分为以下几种，注意<strong>且</strong>的优先级是高于<strong>或</strong>的。其中有<code>_WG</code>后缀的都是为世界生成准备的。</p>
 <table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 67%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>枚举名</th>
-<th>含义：最高的 <em>非</em> (…) 的方块</th>
+<th>含义：最高的 <em>非</em> (...) 的方块</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>LIGHT_BLOCKING</code></td>
 <td>空气 <strong>或</strong> <em>透明</em></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>MOTION_BLOCKING</code></td>
-<td>空气 <strong>或</strong> <em>允许移动</em> <strong>且</strong> <em>不包含流体</em></td>
+<td>空气 <strong>或</strong> <em>允许移动</em> <strong>且</strong>
+<em>不包含流体</em></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>MOTION_BLOCKING_NO_LEAVES</code></td>
-<td>空气 <strong>或</strong> <em>树叶</em> <strong>或</strong> <em>允许移动</em> <strong>且</strong> <em>不包含流体</em></td>
+<td>空气 <strong>或</strong> <em>树叶</em> <strong>或</strong>
+<em>允许移动</em> <strong>且</strong> <em>不包含流体</em></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>OCEAN_FLOOR</code></td>
 <td>空气 <strong>或</strong> <em>允许移动</em></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>OCEAN_FLOOR_WG</code></td>
 <td>空气 <strong>或</strong> 流体</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>WORLD_SURFACE</code></td>
 <td>空气</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>WORLD_SURFACE_WG</code></td>
 <td>空气</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p><strong>[说明]</strong></p>
 <ul>
 <li>透明：即不透明度为0的方块，不透明度会影响光的传递</li>
 <li>树叶：即拥有<code>minecraft:leaves</code>标签（tag）的方块</li>
 <li>允许移动：允许实体进入方块并在其中移动，比如树苗、按钮、花盆、地毯</li>
-<li>不包含流体：即该方块里面没有流体浸入，比如正常的梯子，就属于 允许移动 且 不包含流体，但是如果梯子里面倒桶水，它就“包含流体”了</li>
+<li>不包含流体：即该方块里面没有流体浸入，比如正常的梯子，就属于
+允许移动 且 不包含流体，但是如果梯子里面倒桶水，它就“包含流体”了</li>
 </ul>
 <p>这些类型都可以在<code>Heightmap.Type</code>找到，这两种用途对应枚举<code>Heightmap.Usage</code>的值。</p>
 <p>为了构造地表，我们需要一些高度图，高度图怎么得来，生成随机数？那样生成的地形七上八下支离破碎，为了确保地形看上去更加平滑真实，就需要用到噪声算法，可以最大程度保证不出现极端的高度跳跃。</p>
 <p>上面说到的高度图，指的是世界生成专用的高度图，而其他的高度图，则是在每个区块生成的任务<strong>执行前</strong>进行更新。区块生成的前面四个阶段都不会更新高度图，而剩下的都会更新高度图。</p>
-<h4 id="地表构造器"><a href="#地表构造器" class="headerlink" title="地表构造器"></a>地表构造器</h4><p>有了高度图，我们就可以据此生成地表了。新版本生成地表的工具便是地表构造器。</p>
-<p><strong>[注意]</strong> 地表构造器（<code>ISurfaceBuilder</code>）的<code>Builder</code>跟通常的<code>Builder</code>不同，它本身就是功能性的一个类，这个<code>Build</code>指的是地形的构造，而不是对象的构造</p>
+<h4 id="地表构造器">地表构造器</h4>
+<p>有了高度图，我们就可以据此生成地表了。新版本生成地表的工具便是地表构造器。</p>
+<p><strong>[注意]</strong>
+地表构造器（<code>ISurfaceBuilder</code>）的<code>Builder</code>跟通常的<code>Builder</code>不同，它本身就是功能性的一个类，这个<code>Build</code>指的是地形的构造，而不是对象的构造</p>
 <p>地表构造器就是原来的<code>Biome#genTerrainBlocks</code>，独立出来之后，它变得更加灵活、复用性更强。</p>
 <p>而地表构造器配置提供至少两个信息，即顶层（top）方块和中层（middle）方块，比如在普通的平原生物群系，顶层（top）方块就是草方块，而中层方块则是泥土方块，此外还会有水底方块的信息（比如默认为砂砾）。</p>
 <p>基岩的生成代码独立出来，而不是像过去一样包含在<code>Biome#genTerrainBlocks</code>的代码里，这也就意味着你不会因为不谨慎的覆盖而导致基岩的生成被“取消”了。</p>
-<h3 id="镂空、流体镂空"><a href="#镂空、流体镂空" class="headerlink" title="镂空、流体镂空"></a>镂空、流体镂空</h3><p>所谓镂空就是钻洞注水，采用<code>IWorldCarver</code>。</p>
+<h3 id="镂空流体镂空">镂空、流体镂空</h3>
+<p>所谓镂空就是钻洞注水，采用<code>IWorldCarver</code>。</p>
 <p><code>GenerationStage.Carving</code>枚举的<code>AIR</code>表示镂空，<code>LIQUID</code>表示流体镂空。</p>
 <p>镂空是生物群系相关的，因为镂空器是从生物群系那里取得的。</p>
-<p><strong>[注意]</strong> GenerationStage 中的那个与旧版的 Generation 无关。</p>
-<h3 id="装饰"><a href="#装饰" class="headerlink" title="装饰"></a>装饰</h3><p>装饰可以说是整个地形生成中最为重要的一部分了，你不想看到光秃秃的世界吧，在这个阶段，所有可掉落掉落的方块都会立即掉落（但是镂空阶段却不会，这也就是为什么原版生成的地图有这么多浮沙）。</p>
+<p><strong>[注意]</strong> GenerationStage 中的那个与旧版的 Generation
+无关。</p>
+<h3 id="装饰">装饰</h3>
+<p>装饰可以说是整个地形生成中最为重要的一部分了，你不想看到光秃秃的世界吧，在这个阶段，所有可掉落掉落的方块都会立即掉落（但是镂空阶段却不会，这也就是为什么原版生成的地图有这么多浮沙）。</p>
 <p>装饰的载体是生物群系，它实际上就是从原来的<code>Biome#decorate</code>独立而成，独立出来之后，它变得更加灵活、复用性更强，不过在过去，有一个叫装饰器（decorator）的东西，被彻底移除了，现在用特性来统一管理所有生物群系特性，分为三类。</p>
-<div class="table-container">
 <table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 93%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>类别</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>特性</td>
 <td>无</td>
 </tr>
-<tr>
+<tr class="even">
 <td>花</td>
 <td>可以通过用骨粉催熟后天生成的特性<br><strong>特殊之处</strong>：有一个专门的列表以便骨粉迭代</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>结构</td>
 <td>它们的一些数据会被单独保存在世界里面，我们会在下面单独谈到<br><strong>特殊之处</strong>：有一个专门的映射以便保存相关配置<br>必须要调用两个方法来注册，分别加入特性列表和添加配置的映射</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p><code>GenerationStage.Decoration</code>枚举里面的值列出了装饰的所有阶段，依次是：</p>
-<div class="table-container">
 <table>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 8%" />
+<col style="width: 66%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>状态</th>
 <th>翻译</th>
 <th>例子</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>raw_generation</td>
 <td>原生生成</td>
 <td>目前只有末地岛</td>
 </tr>
-<tr>
+<tr class="even">
 <td>local_modifications</td>
 <td>本地修饰</td>
 <td>湖、岩浆湖、冰山、苔石堆</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>underground_structures</td>
 <td>地下结构</td>
 <td>略，<strong>特例</strong>：地牢（它只是特性而不是结构）</td>
 </tr>
-<tr>
+<tr class="even">
 <td>surface_structures</td>
 <td>地表结构</td>
 <td>略，<strong>特例</strong>：冰刺地区的冰刺和冰道</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>underground_ores</td>
 <td>地下矿石</td>
 <td>略</td>
 </tr>
-<tr>
+<tr class="even">
 <td>underground_decoration</td>
 <td>地下装饰</td>
 <td>化石、萤石、下界火、岩浆、蠹虫刷怪蛋<br>下界蘑菇（主世界蘑菇在下一个阶段生成）</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>vegetal_decoration</td>
 <td>植物装饰</td>
 <td>略，<strong>特例</strong>：<br>主世界蘑菇（因为<del>蘑菇不是植物</del>下界蘑菇在上一个阶段生成）<br>单格的水和岩浆（常在矿洞里面形成瀑布，<br>鬼知道Mojang为什么要把它放到这里面）</td>
 </tr>
-<tr>
+<tr class="even">
 <td>top_layer_modification</td>
 <td>顶层修饰</td>
 <td>在温度足够低的位置生成冰雪</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>生成装饰时，特性往往要借助定位器的协助，定位器可以根据周围的地形调整生成的位置，而复合特性就包含了定位器和特性，在生成时就自带定位了。</p>
-<p><strong>[提示]</strong> 定位器常常会用到前面说的高度图来确保特性在地表生成。</p>
-<h3 id="光照"><a href="#光照" class="headerlink" title="光照"></a>光照</h3><p>此时区块的方块已经生成完成，但是光照没有更新，所以根据目前区块中方块的光照，当然还有天空的光照来更新区块的光照。</p>
-<h3 id="生物生成"><a href="#生物生成" class="headerlink" title="生物生成"></a>生物生成</h3><p>为了让玩家在进入游戏后里面看到生物，这个阶段将会<strong>预先</strong>生成一些生物。</p>
+<p><strong>[提示]</strong>
+定位器常常会用到前面说的高度图来确保特性在地表生成。</p>
+<h3 id="光照">光照</h3>
+<p>此时区块的方块已经生成完成，但是光照没有更新，所以根据目前区块中方块的光照，当然还有天空的光照来更新区块的光照。</p>
+<h3 id="生物生成">生物生成</h3>
+<p>为了让玩家在进入游戏后里面看到生物，这个阶段将会<strong>预先</strong>生成一些生物。</p>
 <p>所以下界和末地在这个阶段什么都不做。因为就算是空的也没关系，过会就有了嘛，反正都是怪物。</p>
-<h3 id="收尾"><a href="#收尾" class="headerlink" title="收尾"></a>收尾</h3><p>确保更新高度图。</p>
-<h3 id="完整区块、处理后"><a href="#完整区块、处理后" class="headerlink" title="完整区块、处理后"></a>完整区块、处理后</h3><p>什么都不做，直接由相关代码设置为此状态。</p>
-<h2 id="结束了？结束了。"><a href="#结束了？结束了。" class="headerlink" title="结束了？结束了。"></a>结束了？结束了。</h2><p>当然了，最后两个阶段并不是真的什么都不做，而是由别人做，下面介绍一下相关代码：</p>
+<h3 id="收尾">收尾</h3>
+<p>确保更新高度图。</p>
+<h3 id="完整区块处理后">完整区块、处理后</h3>
+<p>什么都不做，直接由相关代码设置为此状态。</p>
+<h2 id="结束了结束了">结束了？结束了。</h2>
+<p>当然了，最后两个阶段并不是真的什么都不做，而是由别人做，下面介绍一下相关代码：</p>
 <p>当到完整区块的阶段时，表示一个<code>Chunk</code>对象已经完成了构造。</p>
 <p>而在玩家正式进入世界之前，还需要一些处理。</p>
 <p>当一个区块周围的 8 个区块都生成完毕，那么它会：</p>
@@ -386,15 +538,22 @@
 <li>检验区块里的<code>TileEntity</code>。</li>
 </ul>
 <p>在收尾完成之后，<code>Chunk#isPopulated</code>将会返回<code>true</code>。</p>
-<p><strong>[注意]</strong>  这个 Populate 和旧版也没多大联系，硬要说，就是都表示这个区块的生成已经完成。</p>
-<h2 id="生物群系"><a href="#生物群系" class="headerlink" title="生物群系"></a>生物群系</h2><p>有关这一部分的内容，请参考我的新作。</p>
-<h2 id="结构生成"><a href="#结构生成" class="headerlink" title="结构生成"></a>结构生成</h2><p><code>Structure -&gt; StructureStart -&gt; StructurePiece</code></p>
+<p><strong>[注意]</strong> 这个 Populate
+和旧版也没多大联系，硬要说，就是都表示这个区块的生成已经完成。</p>
+<h2 id="生物群系">生物群系</h2>
+<p>有关这一部分的内容，请参考我的新作。</p>
+<h2 id="结构生成">结构生成</h2>
+<p><code>Structure -&gt; StructureStart -&gt; StructurePiece</code></p>
 <p>如图，在生成结构（你已经知道结构也是特性的一种，对吧？）时，先判断是否为正确的生物群系，接着以中心区块（Feature本应生成于的区块）为正方形的中心，结构尺度（size，单位是区块，这也就是为什么不译作大小）的两倍加一为正方形的边长，在这些区块中寻找一个合适的区块作为整个结构的起点，这个起点本身的大小不能越过正方形的边界。</p>
 <p>结构起点储存这个这个结构的所有可能有的部分。而在确认此处要生成结构之后，会把任务交给结构起点，结构生成就正式开始了。</p>
 <p>在结构起点的构造器里面，第一个阶段将会被调用。</p>
-<h3 id="buildComponent"><a href="#buildComponent" class="headerlink" title="buildComponent"></a><code>buildComponent</code></h3><p>在这个阶段，从起点开始延伸，结构的各个组成环节产生，但是此时此刻，方块不会被放置，而是形成一个个 Component，为了便于讲解，我译作（结构生成）任务，把所有 Component 成为任务列表。</p>
+<h3 id="buildcomponent"><code>buildComponent</code></h3>
+<p>在这个阶段，从起点开始延伸，结构的各个组成环节产生，但是此时此刻，方块不会被放置，而是形成一个个
+Component，为了便于讲解，我译作（结构生成）任务，把所有 Component
+成为任务列表。</p>
 <p>为了更好地说明，我们用村庄做例子。</p>
-<p><strong>[说明]</strong> 村庄是一个易于理解的，常见的例子，但是 Mojang 的源代码确实太难看。我不原封不动的解析，而是把真正有意义的内容讲出。</p>
+<p><strong>[说明]</strong> 村庄是一个易于理解的，常见的例子，但是 Mojang
+的源代码确实太难看。我不原封不动的解析，而是把真正有意义的内容讲出。</p>
 <ul>
 <li>在最开始的时候，只有一个水井任务被加入任务列表。</li>
 <li>水井的<code>buildComponet</code>里面加入了朝向四个方面路的任务，我们有四条“开路”。</li>
@@ -404,358 +563,406 @@
 <li>如果生成屋子和岔路都生成失败了，那么还有一定几率拐弯。</li>
 <li>如果上面的尝试都失败了，那么这条路就成了死路。</li>
 </ul>
-<p><strong>[说明]</strong> 上面的原理揭示了为什么把村庄的size设置得非常大(比如正常=0，超平坦=1，我设置为65535)并不会让村庄真的变得非常大，因为村庄的生存实际上很大程度受到路的限制，一旦没路了，村庄就不会生成了。</p>
+<p><strong>[说明]</strong>
+上面的原理揭示了为什么把村庄的size设置得非常大(比如正常=0，超平坦=1，我设置为65535)并不会让村庄真的变得非常大，因为村庄的生存实际上很大程度受到路的限制，一旦没路了，村庄就不会生成了。</p>
 <p>同样的原理对于下界堡垒也适用，但是下界堡垒相对来说更加复杂多变。</p>
 <p>为了防止发生两个部分撞在一起的悲剧，所有的过程都是被监管的，只要这个部分太大，那么任务就无法被添加，但是这只对同一个结构有效，如果不巧有两个结构，那就无法避免地其中一个会被另外一个替换方块，这可能是我的世界极少数资源与区块加载顺序联系在一起的实例，而造成的影响也几乎是可以忽略不计的，<del>除非他把你的末地门弄坏了2333</del>。</p>
-<h3 id="addComponentParts"><a href="#addComponentParts" class="headerlink" title="addComponentParts"></a><code>addComponentParts</code></h3><p><del>真正破坏末地门是在这里（雾。</del></p>
+<h3 id="addcomponentparts"><code>addComponentParts</code></h3>
+<p><del>真正破坏末地门是在这里（雾。</del></p>
 <p>在这个阶段，所有结构的方块被放置，<strong>应</strong>始终确保方块不超出结构的边界，同时也要保证方向的正确，返回的<code>boolean</code>表示它的生成是否成功，此后，还会对这个结构的大小进行重算。</p>
-<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><blockquote>
-<p>模板是已经被证明C++最强大的功能之一，但却常常被人们忽视、误解或误用。<br> ——Nicolai M. Josuttis《C++Templates》</p>
+<h2 id="模板">模板</h2>
+<blockquote>
+<p>模板是已经被证明C++最强大的功能之一，但却常常被人们忽视、误解或误用。<br>
+——Nicolai M. Josuttis《C++Templates》</p>
 </blockquote>
 <p>咳咳，串味了，此模板非彼模板。</p>
-<p>在生成结构的时候，你是否对不断地调用方法放置方块地硬编码感到厌倦？模板可是说是你的大救星，“但却常常被人们<strong>忽视、误解</strong>或误用”。早在 1.9，Mojang 就引入了结构方块，随之而来的就是 template，可以说，结构从硬编码转为 template 可以说是大势所趋。那么，模板究竟是怎样存储结构数据，又是怎样呈现在世界上的呢？</p>
-<p>模板最重要的三个内容便是方块、实体、大小，其中方块和实体的位置都是相对于这个结构的原点—— xyz 都最小的那一个角表示的。这也就意味着模板易于在任意区域建造。同时，模板同样储存了方块和实体的朝向，这也就意味着模板本身具有方向性——好在模板还有一个特点，那就是易于旋转或者镜像。在模板建造在世界上的同时，当中的方块也会更新，来保证结构的功能性。</p>
-<h3 id="调色盘"><a href="#调色盘" class="headerlink" title="调色盘"></a>调色盘</h3><p>往往一个模板里面会有很多完全相同的方块，如果这些方块都一一存入NBT，实在是有些浪费空间。因此Mojang引入了调色盘这个概念，说白了就是一个字典——给<code>Blockstate</code>编号，按照读入的先后，从0开始依次编号，与以前的数字id不同，这只是一个临时编号，仅仅对于这个结构有效，此外，这个id是NBT无关的，即它不表示<code>IBlockstate</code>所在的<code>TileEntity</code>所携带的NBT。</p>
-<p><strong>[提示]</strong> 如果你对原版的区块格式有所了解，你就会知道，实际上区块也是有调色盘的。</p>
-<h3 id="TemplateStructurePiece"><a href="#TemplateStructurePiece" class="headerlink" title="TemplateStructurePiece"></a><code>TemplateStructurePiece</code></h3><p>为了更方便的使用模板生成结构，Mojang准备了这个类。</p>
+<p>在生成结构的时候，你是否对不断地调用方法放置方块地硬编码感到厌倦？模板可是说是你的大救星，“但却常常被人们<strong>忽视、误解</strong>或误用”。早在
+1.9，Mojang 就引入了结构方块，随之而来的就是
+template，可以说，结构从硬编码转为 template
+可以说是大势所趋。那么，模板究竟是怎样存储结构数据，又是怎样呈现在世界上的呢？</p>
+<p>模板最重要的三个内容便是方块、实体、大小，其中方块和实体的位置都是相对于这个结构的原点——
+xyz
+都最小的那一个角表示的。这也就意味着模板易于在任意区域建造。同时，模板同样储存了方块和实体的朝向，这也就意味着模板本身具有方向性——好在模板还有一个特点，那就是易于旋转或者镜像。在模板建造在世界上的同时，当中的方块也会更新，来保证结构的功能性。</p>
+<h3 id="调色盘">调色盘</h3>
+<p>往往一个模板里面会有很多完全相同的方块，如果这些方块都一一存入NBT，实在是有些浪费空间。因此Mojang引入了调色盘这个概念，说白了就是一个字典——给<code>Blockstate</code>编号，按照读入的先后，从0开始依次编号，与以前的数字id不同，这只是一个临时编号，仅仅对于这个结构有效，此外，这个id是NBT无关的，即它不表示<code>IBlockstate</code>所在的<code>TileEntity</code>所携带的NBT。</p>
+<p><strong>[提示]</strong>
+如果你对原版的区块格式有所了解，你就会知道，实际上区块也是有调色盘的。</p>
+<h3 id="templatestructurepiece"><code>TemplateStructurePiece</code></h3>
+<p>为了更方便的使用模板生成结构，Mojang准备了这个类。</p>
 <p>其他的不用说，我们把眼光投向<code>TemplateStructurePiece#handleDataMarker</code>。</p>
 <p>嘿，<code>DataMaker</code>是什么？</p>
 <p>不知道大家注意到没有，结构方块的四种模式里面，有一种叫做“数据”，这就是所谓的<code>DataMaker</code>，它填补了结构中无法携带特殊信息的不足，通过这个，我们能够吧代码和模板联系起来，让模板“调用”代码。</p>
 <p><code>Data</code>模式的结构方块在存入结构时会被自动替换为结构虚空。</p>
 <p>我们不妨以海底废墟为例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">handleDataMarker</span><span class="params">(String function, BlockPos pos, IWorld worldIn, Random rand, MutableBoundingBox sbb)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (<span class="string">&quot;chest&quot;</span>.equals(function)) &#123;</span><br><span class="line">        worldIn.setBlockState(pos, Blocks.CHEST.getDefaultState().with(BlockChest.WATERLOGGED, Boolean.valueOf(worldIn.getFluidState(pos).isTagged(FluidTags.WATER))), <span class="number">2</span>);</span><br><span class="line">        TileEntity tileentity = worldIn.getTileEntity(pos);</span><br><span class="line">        <span class="keyword">if</span> (tileentity <span class="keyword">instanceof</span> TileEntityChest) &#123;</span><br><span class="line">           ((TileEntityChest)tileentity).setLootTable(<span class="keyword">this</span>.field_204040_h ? LootTableList.CHESTS_UNDERWATER_RUIN_BIG : LootTableList.CHESTS_UNDERWATER_RUIN_SMALL, rand.nextLong());</span><br><span class="line">        &#125;</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">&quot;drowned&quot;</span>.equals(function)) &#123;</span><br><span class="line">        EntityDrowned entitydrowned = <span class="keyword">new</span> EntityDrowned(worldIn.getWorld());</span><br><span class="line">        entitydrowned.enablePersistence();</span><br><span class="line">        entitydrowned.moveToBlockPosAndAngles(pos, <span class="number">0.0F</span>, <span class="number">0.0F</span>);</span><br><span class="line">        entitydrowned.onInitialSpawn(worldIn.getDifficultyForLocation(pos), (IEntityLivingData)<span class="keyword">null</span>, (NBTTagCompound)<span class="keyword">null</span>);</span><br><span class="line">        worldIn.spawnEntity(entitydrowned);</span><br><span class="line">        <span class="keyword">if</span> (pos.getY() &gt; worldIn.getSeaLevel()) &#123;</span><br><span class="line">           worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), <span class="number">2</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           worldIn.setBlockState(pos, Blocks.WATER.getDefaultState(), <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>在这里，根据不同的函数（<code>function</code>），调用了不同的代码，比如生成箱子、生成溺尸。无一例外的，他们往往对附近环境进行的判断和适应，来达到更好的结构生成效果，这是单纯的 NBT 数据无法做到的。</p>
-<h2 id="维度与世界类型"><a href="#维度与世界类型" class="headerlink" title="维度与世界类型"></a>维度与世界类型</h2><p>这一部分看似已经超出了狭义的“世界生成”，但其实它们有与世界生成千丝万缕的联系。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">handleDataMarker</span><span class="params">(String function, BlockPos pos, IWorld worldIn, Random rand, MutableBoundingBox sbb)</span> &#123;</span><br><span class="line">     <span class="keyword">if</span> (<span class="string">&quot;chest&quot;</span>.equals(function)) &#123;</span><br><span class="line">        worldIn.setBlockState(pos, Blocks.CHEST.getDefaultState().with(BlockChest.WATERLOGGED, Boolean.valueOf(worldIn.getFluidState(pos).isTagged(FluidTags.WATER))), <span class="number">2</span>);</span><br><span class="line">        <span class="type">TileEntity</span> <span class="variable">tileentity</span> <span class="operator">=</span> worldIn.getTileEntity(pos);</span><br><span class="line">        <span class="keyword">if</span> (tileentity <span class="keyword">instanceof</span> TileEntityChest) &#123;</span><br><span class="line">           ((TileEntityChest)tileentity).setLootTable(<span class="built_in">this</span>.field_204040_h ? LootTableList.CHESTS_UNDERWATER_RUIN_BIG : LootTableList.CHESTS_UNDERWATER_RUIN_SMALL, rand.nextLong());</span><br><span class="line">        &#125;</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">&quot;drowned&quot;</span>.equals(function)) &#123;</span><br><span class="line">        <span class="type">EntityDrowned</span> <span class="variable">entitydrowned</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EntityDrowned</span>(worldIn.getWorld());</span><br><span class="line">        entitydrowned.enablePersistence();</span><br><span class="line">        entitydrowned.moveToBlockPosAndAngles(pos, <span class="number">0.0F</span>, <span class="number">0.0F</span>);</span><br><span class="line">        entitydrowned.onInitialSpawn(worldIn.getDifficultyForLocation(pos), (IEntityLivingData)<span class="literal">null</span>, (NBTTagCompound)<span class="literal">null</span>);</span><br><span class="line">        worldIn.spawnEntity(entitydrowned);</span><br><span class="line">        <span class="keyword">if</span> (pos.getY() &gt; worldIn.getSeaLevel()) &#123;</span><br><span class="line">           worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), <span class="number">2</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           worldIn.setBlockState(pos, Blocks.WATER.getDefaultState(), <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>在这里，根据不同的函数（<code>function</code>），调用了不同的代码，比如生成箱子、生成溺尸。无一例外的，他们往往对附近环境进行的判断和适应，来达到更好的结构生成效果，这是单纯的
+NBT 数据无法做到的。</p>
+<h2 id="维度与世界类型">维度与世界类型</h2>
+<p>这一部分看似已经超出了狭义的“世界生成”，但其实它们有与世界生成千丝万缕的联系。</p>
 <p>这里指简单介绍了几个方法，在新的教程里，有关于这一部分更详细的介绍。</p>
-<hr>
-<p><code>Dimension#createChunkGenerator</code> 和 <code>IForgeWorldType#createChunkGenerator</code></p>
+<hr />
+<p><code>Dimension#createChunkGenerator</code> 和
+<code>IForgeWorldType#createChunkGenerator</code></p>
 <p>默认行为：前者返回当前维度的区块生成器，后者调用前者。其中前者被废弃要求调用后者。</p>
 <p>因为返回了一个区块生成器（而里面实际上就包含了生物群系提供器），所以决定了这个世界的地形生成。</p>
 <p>自定义维度或自定义世界类型时应当覆盖。</p>
-<hr>
+<hr />
 <p><code>IForgeWorldType#getBiomeLayer</code></p>
 <p>略，见新教程。</p>
-<h2 id="应用：自定义"><a href="#应用：自定义" class="headerlink" title="应用：自定义"></a>应用：自定义</h2><p>唉唉唉，等一下，你确定这不是 Forge 干的事情？</p>
-<p>是的，新版的矿物生成完全不需要 Forge 插手即可实现自定义<del>于是Forge就真的懒到没有插手</del>，其他相关内容 Forge 也少了很多的话语权，大量 Forge 钩子消失，甚至出现了存在但未被使用的 Forge 事件（来自旧版本），可见原版对 Forge 的冲击。下面的内容尽量少的提及 Forge 知识，但不会回避 Forge。</p>
-<h3 id="自定义矿物生成"><a href="#自定义矿物生成" class="headerlink" title="自定义矿物生成"></a>自定义矿物生成</h3><p>我们在mod主类的构造器里这么写：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Biomes.PLAINS.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, </span><br><span class="line">    Biome.createCompositeFeature(Feature.MINABLE, </span><br><span class="line">        <span class="keyword">new</span> MinableConfig(MinableConfig.IS_ROCK, Blocks.GOLD_BLOCK.getDefaultState(), <span class="number">9</span>), </span><br><span class="line">        Biome.COUNT_RANGE, <span class="keyword">new</span> CountRangeConfig(<span class="number">20</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">64</span>)));</span><br></pre></td></tr></table></figure>
+<h2 id="应用自定义">应用：自定义</h2>
+<p>唉唉唉，等一下，你确定这不是 Forge 干的事情？</p>
+<p>是的，新版的矿物生成完全不需要 Forge
+插手即可实现自定义<del>于是Forge就真的懒到没有插手</del>，其他相关内容
+Forge 也少了很多的话语权，大量 Forge
+钩子消失，甚至出现了存在但未被使用的 Forge
+事件（来自旧版本），可见原版对 Forge 的冲击。下面的内容尽量少的提及
+Forge 知识，但不会回避 Forge。</p>
+<h3 id="自定义矿物生成">自定义矿物生成</h3>
+<p>我们在mod主类的构造器里这么写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Biomes.PLAINS.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, </span><br><span class="line">    Biome.createCompositeFeature(Feature.MINABLE, </span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">MinableConfig</span>(MinableConfig.IS_ROCK, Blocks.GOLD_BLOCK.getDefaultState(), <span class="number">9</span>), </span><br><span class="line">        Biome.COUNT_RANGE, <span class="keyword">new</span> <span class="title class_">CountRangeConfig</span>(<span class="number">20</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">64</span>)));</span><br></pre></td></tr></table></figure>
 <p>我就完成了矿物生成的注册，上面的代码可以让金块像铁矿一样地在平原的地下生成，我们不妨来解析一下。</p>
 <p><code>Biomes.PLAINS</code>，即平原，在实际应用中，我们往往会用<code>ForgeRegistries.BIOMES.forEach(biome -&gt; biome.add...());</code>来向所有生物群系种添加，但是你就得找一个所有模组<code>Biome</code>都已经全部注册完成的地方调用了。</p>
 <p><code>addFeature</code>可以用于添加特性或是花，<code>addCarver</code>则是添加镂空器，<code>addStructure</code>添加结构。我们直接调用了<code>Biome</code>的工厂方法<code>createCompositeFeature</code>创建复合特性，使用了<code>Feature</code>预定义的minable特性及其相应配置，配合<code>Biome</code>里面的预定义的定位器及其相应配置，对应这个方法的四个参数。另外，也可以在<code>Biome</code>里找到<code>createWorldCarverWrapper</code>和<code>createCompositeFlowerFeature</code>。</p>
-<p><strong>[提示]</strong> 不难看出，<code>Biome</code>和<code>Feature</code>里面都预定义了大量的实用特性、定位器，甚至还有镂空器和一些<code>protected</code>的<code>IBlockState</code>，应该尽可能多的使用它们。</p>
-<h3 id="自定义结构"><a href="#自定义结构" class="headerlink" title="自定义结构"></a>自定义结构</h3><p>不不不，我不会真的写一个结构给你看，我只会提出几个自定义结构时所需要的注意事项：</p>
+<p><strong>[提示]</strong>
+不难看出，<code>Biome</code>和<code>Feature</code>里面都预定义了大量的实用特性、定位器，甚至还有镂空器和一些<code>protected</code>的<code>IBlockState</code>，应该尽可能多的使用它们。</p>
+<h3 id="自定义结构">自定义结构</h3>
+<p>不不不，我不会真的写一个结构给你看，我只会提出几个自定义结构时所需要的注意事项：</p>
 <ul>
-<li><p>在<code>StructurePiece</code>里面提供了很多摆放方块的方法，请务必使用这些方法而不是直接放置，这不仅可以防止你放置到结构的外面，还会根据结构的方向对你的方块转向。</p>
-</li>
-<li><p>任何结构及其部分都需要在<code>StructureIO</code>进行注册，否则会导致结构无法生成并造成游戏崩溃。原版采用大写下划线的形式（如：<code>Desert_Pyramid</code>），但是我更加建议是<code>modid + &#39;:&#39; + 小写下划线</code>（即<code>ResourceLocation</code>）的形式，这样有助于防止模组之间发生命名冲突，并更加规范、统一。</p>
-</li>
+<li><p>在<code>StructurePiece</code>里面提供了很多摆放方块的方法，请务必使用这些方法而不是直接放置，这不仅可以防止你放置到结构的外面，还会根据结构的方向对你的方块转向。</p></li>
+<li><p>任何结构及其部分都需要在<code>StructureIO</code>进行注册，否则会导致结构无法生成并造成游戏崩溃。原版采用大写下划线的形式（如：<code>Desert_Pyramid</code>），但是我更加建议是<code>modid + ':' + 小写下划线</code>（即<code>ResourceLocation</code>）的形式，这样有助于防止模组之间发生命名冲突，并更加规范、统一。</p></li>
 </ul>
-<h3 id="自定义生物群系"><a href="#自定义生物群系" class="headerlink" title="自定义生物群系"></a>自定义生物群系</h3><p>不不不，我不会真的写一个生物群系给你看，我只会提出几个自定义生物群系时所需要的注意事项：</p>
+<h3 id="自定义生物群系">自定义生物群系</h3>
+<p>不不不，我不会真的写一个生物群系给你看，我只会提出几个自定义生物群系时所需要的注意事项：</p>
 <ul>
-<li>你是不是发现许多<code>Biome</code>的构造器都有共同的代码？是的，极大的自由同时也带来了极大的工作量。好在在新的版本里面，Mojang 也意识到也改善了这一点：他们为此设置了一个类，里面装满了许多生物群系共用的特性添加的代码。这毫无疑问可以直接被我们调用，或者作为我们设置组合的参考。</li>
+<li>你是不是发现许多<code>Biome</code>的构造器都有共同的代码？是的，极大的自由同时也带来了极大的工作量。好在在新的版本里面，Mojang
+也意识到也改善了这一点：他们为此设置了一个类，里面装满了许多生物群系共用的特性添加的代码。这毫无疑问可以直接被我们调用，或者作为我们设置组合的参考。</li>
 <li>出生点生物群系会被优先选中为出生点，若你的生物群系想被选中，可以直接向<code>BiomeProvider#BIOMES_TO_SPAWN_IN</code>中添加。</li>
 <li>更多内容参见我的新教程。</li>
 </ul>
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>下面介绍 1.13 Forge 提供的事件和钩子。</p>
-<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>值得注意的是，原有的<code>MinecraftForge#TERRAIN_GEN_BUS</code>和<code>MinecraftForge#ORE_GEN_BUS</code>已经被移除。</p>
+<h2 id="附录">附录</h2>
+<p>下面介绍 1.13 Forge 提供的事件和钩子。</p>
+<h3 id="事件">事件</h3>
+<p>值得注意的是，原有的<code>MinecraftForge#TERRAIN_GEN_BUS</code>和<code>MinecraftForge#ORE_GEN_BUS</code>已经被移除。</p>
 <p><code>~</code>表示上面的主事件。</p>
 <p>值得注意的是，弃用指的不是<code>@Deprecated</code>而是简单的“存在，但是从未被使用”。</p>
-<div class="table-container">
 <table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 73%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>事件</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>BiomeEvent</code></td>
 <td>生物群系相关事件<br>参见前文生物群系栏</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>~.GetVillageBlockID</code></td>
 <td>获取村庄特色方块</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>~.BiomeColor</code></td>
 <td>生物群系颜色相关事件<br><strong><em>新版已经弃用</em></strong><br>参见前文生物群系栏</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>~.GetGrassColor</code></td>
 <td>获取草的颜色<br><strong><em>新版已经弃用</em></strong><br>参见前文生物群系栏</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>~.GetFoliageColor</code></td>
 <td>获取植物的颜色<br><strong><em>新版已经弃用</em></strong><br>参见前文生物群系栏</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>~.GetWaterColor</code></td>
 <td>获取水的颜色<br><strong><em>新版已经弃用</em></strong><br>参见前文生物群系栏</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>ChunkGeneratorEvent</code></td>
 <td>区块生成器相关的事件<br>参见前文区块生成部分</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>~.ReplaceBiomeBlocks</code></td>
 <td>替换生物群系方块<br>参见前文地表构造器栏</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>~.InitNoiseField</code></td>
 <td>初始化噪声字段事件<br>参见前文高度图部分</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>InitNoiseGensEvent</code></td>
 <td>噪声生成器事件<br>参见前文高度图栏</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>WorldTypeEvent</code></td>
 <td>世界类型相关事件<br>参见前文世界类型栏</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>~.BiomeSize</code></td>
 <td>生物群系大小时间<br>参见前文<code>GenLayer</code>的产生栏</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>~.InitBiomeGens</code></td>
 <td>初始化生物群系生成（即<code>GenLayer</code>）<br><strong><em>新版已经弃用</em></strong><br>参见前文<code>GenLayer</code>的产生栏</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="钩子"><a href="#钩子" class="headerlink" title="钩子"></a>钩子</h3><div class="table-container">
+<h3 id="钩子">钩子</h3>
 <table>
+<colgroup>
+<col style="width: 58%" />
+<col style="width: 41%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>钩子</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>TerrainGen#getModdedNoiseGenerators</code></td>
 <td>获取模组修改后的噪声生成器</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>LayerUtil#getModdedBiomeSize</code></td>
 <td>获取模组修改后的生物群系大小</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>ForgeEventFactory#onReplaceBiomeBlocks</code></td>
 <td>构造模组修改后的地表</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>本来这个介绍是附在我的《浅析 1.13 Minecraft - MCP | Forge - FML》里面的，不过我后来直接放弃了那个项目，专心投身于这个部分。</p>
-<p>1.13 Mojang 做出的努力使我眼前一亮，世界生成可以说是最重要的一部分，Mojang 迈出了第一步，希望这不是最后一步。</p>
-<p>我这篇文章写的我很艰辛，大量未反混淆的的代码和 Mojang 奇怪的脑回路使我感到痛苦，但是我还是在最短的时间内肝出这篇文章，不出意外，是世界上第一篇（中文）新版地形生成解析。</p>
-<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
-<li>MCP 对 Minecraft 源代码的反混淆，如果不是他们，我也不能写出这篇文章。</li>
+<h2 id="后记">后记</h2>
+<p>本来这个介绍是附在我的《浅析 1.13 Minecraft - MCP | Forge -
+FML》里面的，不过我后来直接放弃了那个项目，专心投身于这个部分。</p>
+<p>1.13 Mojang
+做出的努力使我眼前一亮，世界生成可以说是最重要的一部分，Mojang
+迈出了第一步，希望这不是最后一步。</p>
+<p>我这篇文章写的我很艰辛，大量未反混淆的的代码和 Mojang
+奇怪的脑回路使我感到痛苦，但是我还是在最短的时间内肝出这篇文章，不出意外，是世界上第一篇（中文）新版地形生成解析。</p>
+<h2 id="鸣谢">鸣谢</h2>
+<ul>
+<li>MCP 对 Minecraft
+源代码的反混淆，如果不是他们，我也不能写出这篇文章。</li>
 <li>森林蝙蝠 审读并提出来让我加入的结构的部分。</li>
 <li>33 让我加入浅析新版本世界生成与旧版本的本质区别和好处分析一栏。</li>
 <li>素学姐 和 3T 对教程提出的宝贵建议。</li>
 <li>感谢 chyx 指出我文章中一系列的谬误。</li>
-<li>土球（ustc_zzzz）制作的 <a target="_blank" rel="noopener" href="https://mm2bc.ustc-zzzz.net/">BBCode 转换器</a>，为当初发布到 MCBBS 提供了便利。</li>
+<li>土球（ustc_zzzz）制作的 <a
+target="_blank" rel="noopener" href="https://mm2bc.ustc-zzzz.net/">BBCode 转换器</a>，为当初发布到
+MCBBS 提供了便利。</li>
 </ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>按参考内容质量、数量降序排列：</p>
+<h2 id="参考">参考</h2>
+<p>按参考内容质量、数量降序排列：</p>
 <ul>
-<li>Minecraft 1.13.2 源代码 - 反编译、反混淆 by MCP 快照 20180921-1.13</li>
+<li>Minecraft 1.13.2 源代码 - 反编译、反混淆 by MCP 快照
+20180921-1.13</li>
 <li>MinecraftForge 1.13.2-25.0.10 源代码</li>
-<li>Minecraft 旧版（1.12.2）源码 - 反编译、反混淆 by MCP </li>
+<li>Minecraft 旧版（1.12.2）源码 - 反编译、反混淆 by MCP</li>
 <li>MinecraftForge 旧版（1.12.2-14.23.5.2768）源代码</li>
 <li>Minecraft 维基百科 - 英文、中文相关页面</li>
 <li>土球的旧版本地形生成解析</li>
 </ul>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li><a target="_blank" rel="noopener" href="http://www.mcbbs.net/thread-811614-1-1.html">海螺的水桶地形生成解析（MCBBS）</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20754279/answer/133715741">土球的旧版本地形生成解析（知乎）</a></li>
+<h2 id="相关链接">相关链接</h2>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="http://www.mcbbs.net/thread-811614-1-1.html">海螺的水桶地形生成解析（MCBBS）</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.zhihu.com/question/20754279/answer/133715741">土球的旧版本地形生成解析（知乎）</a></li>
 </ul>
 
-      
     </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yaossg.com/blog/1-13-worldgen/" data-id="cl3bfsk5e0007b8oxatd5dh8x" class="article-share-link">Share</a>
-      
 
-      
+    
+    
+    
 
-      
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/worldgen/" rel="tag"># worldgen</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/blog/rc9gn/" rel="next" title="rc9gn">
+      rc9gn <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%85%E6%9E%90-1.13-%E4%B8%96%E7%95%8C%E7%94%9F%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text">浅析 1.13 世界生成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%8D%E7%89%88%E8%AF%B4%E6%98%8E"><span class="nav-number">1.1.</span> <span class="nav-text">再版说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90%E4%B8%BA%E4%BB%80%E4%B9%88"><span class="nav-number">1.3.</span> <span class="nav-text">引子：为什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E7%94%9F%E6%88%90%E6%A6%82%E8%BF%B0"><span class="nav-number">1.4.</span> <span class="nav-text">区块生成概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.5.</span> <span class="nav-text">区块生成任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">1.5.1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E5%AE%9A%E7%94%9F%E7%89%A9%E7%BE%A4%E7%B3%BB"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">选定生物群系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E5%BA%A6%E5%9B%BE"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">高度图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%B0%E8%A1%A8%E6%9E%84%E9%80%A0%E5%99%A8"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">地表构造器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%82%E7%A9%BA%E6%B5%81%E4%BD%93%E9%95%82%E7%A9%BA"><span class="nav-number">1.5.2.</span> <span class="nav-text">镂空、流体镂空</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85%E9%A5%B0"><span class="nav-number">1.5.3.</span> <span class="nav-text">装饰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%89%E7%85%A7"><span class="nav-number">1.5.4.</span> <span class="nav-text">光照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E7%89%A9%E7%94%9F%E6%88%90"><span class="nav-number">1.5.5.</span> <span class="nav-text">生物生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B6%E5%B0%BE"><span class="nav-number">1.5.6.</span> <span class="nav-text">收尾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E5%8C%BA%E5%9D%97%E5%A4%84%E7%90%86%E5%90%8E"><span class="nav-number">1.5.7.</span> <span class="nav-text">完整区块、处理后</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E4%BA%86%E7%BB%93%E6%9D%9F%E4%BA%86"><span class="nav-number">1.6.</span> <span class="nav-text">结束了？结束了。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E7%89%A9%E7%BE%A4%E7%B3%BB"><span class="nav-number">1.7.</span> <span class="nav-text">生物群系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E7%94%9F%E6%88%90"><span class="nav-number">1.8.</span> <span class="nav-text">结构生成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#buildcomponent"><span class="nav-number">1.8.1.</span> <span class="nav-text">buildComponent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#addcomponentparts"><span class="nav-number">1.8.2.</span> <span class="nav-text">addComponentParts</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.9.</span> <span class="nav-text">模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%89%B2%E7%9B%98"><span class="nav-number">1.9.1.</span> <span class="nav-text">调色盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#templatestructurepiece"><span class="nav-number">1.9.2.</span> <span class="nav-text">TemplateStructurePiece</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%B4%E5%BA%A6%E4%B8%8E%E4%B8%96%E7%95%8C%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.10.</span> <span class="nav-text">维度与世界类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="nav-number">1.11.</span> <span class="nav-text">应用：自定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9F%BF%E7%89%A9%E7%94%9F%E6%88%90"><span class="nav-number">1.11.1.</span> <span class="nav-text">自定义矿物生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%93%E6%9E%84"><span class="nav-number">1.11.2.</span> <span class="nav-text">自定义结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%94%9F%E7%89%A9%E7%BE%A4%E7%B3%BB"><span class="nav-number">1.11.3.</span> <span class="nav-text">自定义生物群系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-number">1.12.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.12.1.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%92%A9%E5%AD%90"><span class="nav-number">1.12.2.</span> <span class="nav-text">钩子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">1.13.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%B8%A3%E8%B0%A2"><span class="nav-number">1.14.</span> <span class="nav-text">鸣谢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">1.15.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-number">1.16.</span> <span class="nav-text">相关链接</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yaossg</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yaossg</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
     </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/blog/rc9gn/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          rc9gn
-        
-      </div>
-    </a>
-  
-  
-</nav>
 
   
-</article>
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
 
-</section>
-      
-      <aside id="sidebar">
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/math/" rel="tag">math</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/rc9gn/" rel="tag">rc9gn</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
+<script src="/blog/js/utils.js"></script>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/blog/tags/math/" style="font-size: 10px;">math</a> <a href="/blog/tags/rc9gn/" style="font-size: 10px;">rc9gn</a>
-    </div>
-  </div>
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/muse.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/blog/analytic-geometry/">analytic-geometry</a>
-          </li>
-        
-          <li>
-            <a href="/blog/intro/">Intro</a>
-          </li>
-        
-          <li>
-            <a href="/blog/rc9gn/">rc9gn</a>
-          </li>
-        
-          <li>
-            <a href="/blog/1-13-worldgen/">1.13-worldgen</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
-    <div class="widget">
-      <ul>
-        
-      </ul>
-    </div>
-  </div>
 
   
-</aside>
-      
-    </div>
-    <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2022 Yaossg<br>
-      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
-    </div>
-  </div>
-</footer>
-  </div>
-  <nav id="mobile-nav">
-  
-    <a href="/blog/" class="mobile-nav-link">Home</a>
-  
-    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-  <!-- totop start -->
-<div id="totop">
-<a title="totop"><img src="/blog/img/scrollup.png"/></a>
-</div>
 
-<!-- totop end -->
-
-
-<!-- 百度分享 start -->
-
-<!-- 百度分享 end -->
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-
-
-
-<! -- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-                processEscapes: true
-                    
-}
-  
-        });
-</script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-                  
-}
-    
-        });
-</script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Queue(function() {
-            var all = MathJax.Hub.getAllJax(), i;
-            for(i=0; i < all.length; i += 1) {
-                            all[i].SourceElement().parentNode.className += ' has-jax';
-                                    
-            }
-                
-        });
-</script>
-
-<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-
-<script src="/blog/js/script.js"></script>
-
-
-</div>
 </body>
 </html>
