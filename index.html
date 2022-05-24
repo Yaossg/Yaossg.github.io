@@ -45,7 +45,7 @@
 	  <hr>
       <h2>作品</h2>
       <hr>
-      <span id="works">作品列表加载需要 JavaScript，如果无法正常显示，可以查看本页面的源代码（第 100 行起）。</span>
+      <span id="works">作品列表加载需要 JavaScript，如果无法正常显示，可以查看本页面的源代码。</span>
       <hr>
       <footer class="text-center">
         <div class="container">
@@ -146,7 +146,8 @@ let json = [
     }
 ]
 
-let ws = json.map(work => String.raw`
+let out = '<div class="row">'
+let ws = json.forEach(work => out += String.raw`
 <div class="col-md-4 col-sm-12">
   <div class="card">
     <div class="card-body">
@@ -158,10 +159,6 @@ let ws = json.map(work => String.raw`
   </div>
 </div>
 `);
-let out = '<div class="row">'
-for (let i = 0; i < ws.length; ++i) {
-  out += ws[i]
-}
 out += "</div>"
 document.getElementById("works").innerHTML = out
 
