@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>运算符（下） - Yaossg's Doc</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u8fd0\u7b97\u7b26\uff08\u4e0b\uff09";
+        var mkdocs_page_input_path = "cripplec/op-2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Yaossg's Doc
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Yaossg's Doc</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cripple C</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Cripple C</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../token/">符号</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../text/">文本</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../404.html">预处理器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../op-1/">运算符（上）</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">运算符（下）</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">位运算与逻辑运算符</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">位移运算</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">按位与、按位或</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">&amp; 和 &amp;&amp;、|和||</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#iso646h">&lt;iso646.h&gt;</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">求值顺序</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">逗号运算符</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">短路求值</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">条件运算符</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../int/">整数</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../conv/">隐式转换</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../404.html">cdecl</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Yaossg's Doc</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Cripple C &raquo;</li>
+      <li>运算符（下）</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">运算符（下）</h1>
+<h2 id="_2">位运算与逻辑运算符</h2>
+<h3 id="_3">位移运算</h3>
+<p>当你想要把整数的高位和低位拼在一起时，如果你这么写：</p>
+<pre><code class="language-C">r = hi &lt;&lt; 4 + lo; // 等价于 r = hi &lt;&lt; (4 + lo)
+</code></pre>
+<p>在<code>lo == 0</code>时，你还能得到正确的结果，但多数时候都不会那么侥幸。</p>
+<p>除了加括号，这里还有一种比较合理的解决方法，就是全面使用位运算，这样也更符合直觉：</p>
+<pre><code class="language-C">r = hi &lt;&lt; 4 | lo; // 等价于 r = (hi &lt;&lt; 4) | lo
+</code></pre>
+<p>在这里可能还算容易发现，怕就怕有人看到这样的代码：</p>
+<pre><code class="language-C">apple = banana * 8 + 3;
+</code></pre>
+<p>突然想起，乘二的幂，就等于左移相同的位数啊！于是把它“优化“成了这样：</p>
+<pre><code class="language-C">apple = banana &lt;&lt; 3 + 3;
+</code></pre>
+<p>于是苹果就数量就从香蕉的八倍多三变成了六十四倍。</p>
+<p>同样到道理适用于右移和除法，但是关于这两个运算符，还有更深层次的区别，参见整数那一章。</p>
+<h3 id="_4">按位与、按位或</h3>
+<p>下面的代码检测<code>flag</code>的最低一位是否为<code>1</code>：</p>
+<pre><code class="language-C">if (flag &amp; 1 == 1) 
+    ...
+</code></pre>
+<p>这段代码可以工作的很好，但是当你想要改成检测最低两位时：</p>
+<pre><code class="language-C">if (flag &amp; 3 == 3) 
+    ...
+</code></pre>
+<p>你会发现它还是检测的最低一位！问题出在哪？</p>
+<p>没错，<code>flag &amp; 3 == 3</code>的真实含义是<code>flag &amp; (3 == 3)</code>！这也解释了为什么第一个例子意外地可以工作！</p>
+<p>联系运算符那一章，建议对整数放在条件表达式里的情况加上<code>!= 0</code>，于是原本正确的</p>
+<pre><code class="language-C">if (flag &amp; MASK) // 等价于 (flag &amp; MASK) != 0
+    ...
+</code></pre>
+<p>就可能被“画蛇添足”地改进为</p>
+<pre><code class="language-C">if (flag &amp; MASK != 0) // 等价于 flag &amp; (MASK != 0)
+    ...
+</code></pre>
+<p>含义就悄悄地被改变了，只要<code>MASK</code>不为<code>0</code>（基本上没可能），这句话又成判断最低一位了。</p>
+<p>除此之外，不要忘记三个位运算的优先级是不同的。</p>
+<h3 id="_5"><code>&amp;</code> 和 <code>&amp;&amp;</code>、<code>|</code>和<code>||</code></h3>
+<p>你可能会感到奇怪，为什么<code>&amp;</code>和<code>|</code>有如此低的优先级，相比于其他算术运算符，这两个算术运算符未免也太低了吧。答案是因为历史原因。C 的一个卓越贡献就是把逻辑（logical）运算符和按位（bitwise）运算符拆分成了两对不同的运算符，而不是混淆在一起——这是具有划时代意义的。成也萧何败萧何，正由于是从原运算符拆分而得，不便于与原运算符区别过大，所以保留了相近的优先级，成了数十年来的历史遗留。实际上，观察任何一个现代编程语言的运算符优先级和结合律，都或多或少可以看到 C 语言的影子。</p>
+<p>既然当初决定把它们拆开，我们就更应该注意到，<code>&amp;</code>和<code>&amp;&amp;</code>不是等价的，<code>|</code>和<code>||</code>不是等价的。这样的不等价体现在两个方面。</p>
+<p>最直观的是运算结果的不等价。即使我们只关心结果的真假，也未必相同：例如<code>1 &amp; 2 == 0</code>为假，但<code>1 &amp;&amp; 2 == 1</code>为真。</p>
+<p>更重要的是，<code>&amp;&amp;</code>和<code>||</code>作为逻辑运算符，有非常重要的“短路求值”的特性。我会在后文详细介绍。</p>
+<p><code>~</code>和<code>!</code>区别也很大，不应该混淆，这里就不再赘述了。</p>
+<h3 id="iso646h"><code>&lt;iso646.h&gt;</code></h3>
+<p>为了方便一些不支持某些特殊符号的键盘，C95 在<code>&lt;iso646.h&gt;</code>头文件中规定了下面的宏：（在 C++ 中，它们被直接定义为了关键字）</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>宏</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;&amp;</code></td>
+<td><code>and</code></td>
+</tr>
+<tr>
+<td><code>&amp;=</code></td>
+<td><code>and_eq</code></td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td><code>bitand</code></td>
+</tr>
+<tr>
+<td><code>|</code></td>
+<td><code>bitor</code></td>
+</tr>
+<tr>
+<td><code>~</code></td>
+<td><code>compl</code></td>
+</tr>
+<tr>
+<td><code>!</code></td>
+<td><code>not</code></td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td><code>not_eq</code></td>
+</tr>
+<tr>
+<td><code>||</code></td>
+<td><code>or</code></td>
+</tr>
+<tr>
+<td><code>|=</code></td>
+<td><code>or_eq</code></td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td><code>xor</code></td>
+</tr>
+<tr>
+<td><code>^=</code></td>
+<td><code>xor_eq</code></td>
+</tr>
+</tbody>
+</table>
+<p>其中<code>and</code>表示<code>&amp;&amp;</code>，<code>or</code>表示<code>||</code>，<code>not</code>表示<code>!</code>对于其他某些语言的用户来说是比较熟悉的（例如 Python）。但是我们仔细看就会发现：明明<code>and</code>和<code>or</code>都是逻辑运算符，<code>and_eq</code>和<code>or_eq</code>就摇身一变变成位运算符的复合赋值运算符了。明明位运算<code>bitand</code>和<code>bitor</code>都有<code>bit</code>前缀，却偏偏<code>xor</code>没有。这是非常怪诞的，所以需要我们注意。</p>
+<h2 id="_6">求值顺序</h2>
+<p>求值顺序是独立于运算符优先级和结合性的存在，与这两者都没有关系。例如</p>
+<pre><code class="language-C">f1() * f2() + f3()
+</code></pre>
+<p>函数<code>f3()</code>可能在<code>f1()</code>和<code>f2()</code>之前、之后甚至之间调用——因为这就这个表达式的计算过程而言是不影响的——谁先被调用不影响我计算的是<code>f1() * f2() + f3()</code>。</p>
+<p>我们来看一下下面这个例子。</p>
+<pre><code class="language-C">int i = 0, x[10], y[10];
+while (i &lt; 10)
+    x[i] = y[i++];
+</code></pre>
+<p>实际上，你不能保证是赋值符号左侧的<code>i</code>先求值还是右侧的<code>i</code>先求值。所以你面临着两种可能性，即<code>x[i]=y[i]</code>或<code>x[i + 1] = y[i]</code>。同样的如果你把它对调变成<code>x[i++] = y[i]</code>也是不行的。解决这个问题最直接的办法就是老老实实把自增单独提出来</p>
+<pre><code class="language-C">for (int i = 0; i &lt; 10; ++i)
+    x[i] = y[i];
+</code></pre>
+<p>或者，如果你实在是一个忠实的自增爱好者，你可以试试</p>
+<pre><code class="language-C">int* p = x, q = y;
+while (p != x + 10)
+    *p++ = *q++;
+</code></pre>
+<p>虽然这里两侧都进行了自增，但是是互不影响的，因此没有什么问题。</p>
+<p>除了上面这样的问题，下面的代码都是应该避免的：</p>
+<pre><code class="language-C">i++ + ++i;
+f(i++, i++);
+f(i = 1, i = 2);
+a[i] = i++;
+</code></pre>
+<p>这会引发未定义行为（undefined behavior）——需要注意的是，未定义行为未必导致未定义结果，例如<code>j = i++ + ++i</code>无论以哪种求值顺序进行计算，都会得到<code>j = i += 2</code>的结果，但是过程是我们无法预测的。当然，更多情况下，我们还是会遇到未定义的结果。</p>
+<hr />
+<p>然而，标准还是明确规定了四个运算符的求值顺序，它们是<code>&amp;&amp;</code>、<code>||</code>、<code>?:</code>和<code>,</code>。</p>
+<h3 id="_7">逗号运算符</h3>
+<p>逗号运算符规定先计算左表达式，再计算右表达式，最后返回左表达式的值。而因为逗号运算符是左结合的，所以在一连串的逗号运算符连接的表达式，总是从第一个开始依次往后执行，并返回最后一个表达式的值。</p>
+<p>逗号运算符的本意是在不方便插入多个语句的地方（例如<code>for</code>的最后一个子句里）插入多个表达式。因此逗号拥有最低的优先级。所以下面的代码</p>
+<pre><code class="language-C">a = 1, 2
+</code></pre>
+<p>并不会把<code>a</code>赋值为<code>2</code>，因为它实际的含义是</p>
+<pre><code class="language-C">(a = 1), 2
+</code></pre>
+<p>所以<code>a</code>是<code>1</code>，<code>2</code>被直接丢掉了。</p>
+<p>所以<code>a, b == b</code>为真，虽然确实是因为逗号运算符返回最后一个操作数，但不是因为<code>(a, b) == b</code>，而是因为<code>a, (b == b)</code>。</p>
+<p>需要注意的是，逗号运算符的解析，只在没有逗号要求的情况下发生：</p>
+<pre><code class="language-C">f(1, 2, 3); // 调用 f(int, int, int)，不是逗号运算符
+g((1, 2, 3)); // 调用 g(int)，是逗号运算符
+</code></pre>
+<p>类似的情况还在复合初始化、宏等地方出现。</p>
+<p>这就需要我们注意到求值顺序的问题，不能想当然的把逗号运算符的求值顺序往一切逗号上面套：</p>
+<pre><code class="language-C">x = 1, x = 2, x = 3; // OK, x = 3
+f(x = 1, x = 2, x = 3); // UB!
+a[x = 1, x = 2, x = 3]; // OK, a[x = 3]
+</code></pre>
+<p>注意最后一行不是多维数组的访问（这对有多维数组的语言使用者来说可能比较熟悉），逗号在这里只是一个普通的运算符而已。</p>
+<h3 id="_8">短路求值</h3>
+<p>短路求值，说的是，只有<code>&amp;&amp;</code>第一个操作数为真才回去求值第二个操作数，<code>||</code>只有第一个操作数为假才回去求值第二个操作数。这很容易帮助我们写出下面这样的代码：</p>
+<pre><code class="language-C">if (y != 0 &amp;&amp; x / y &gt; t)
+    ...
+</code></pre>
+<p>这里我们不用担心会发生除以零的问题——因为只有<code>y != 0</code>为真，<code>x / y &gt; t</code>才会被求值。同样的，</p>
+<pre><code class="language-C">if (ch || (ch = getchar()))
+    ...
+</code></pre>
+<p>只有在<code>ch</code>为<code>'\0'</code>的时候，才会调用<code>getchar()</code>读入一个字符。</p>
+<p>你可能注意到一个细节——这样的形式完全可以单独拿出来用。（这里我们使用<code>, 0</code>的方法让结果一定可以参与逻辑运算）</p>
+<pre><code class="language-C">cond() &amp;&amp; (clause(), 0); // if (cond()) clause();
+cond() || (clause(), 0); // if (!cond()) clause();
+</code></pre>
+<p>如果我们再大胆一点，也许我们可以进行进一步的组合。（想一想，为什么<code>then_clause,</code>后面跟的是<code>1</code>？）</p>
+<pre><code class="language-C">cond() &amp;&amp; (then_clause(), 1) || (else_clause(), 0); 
+// if (cond()) then_clause(); else else_clause();
+</code></pre>
+<p>等等，我们是不是有一种更直接的方法：（想一想，下面哪个括号是不能省去的？）</p>
+<pre><code class="language-C">cond() ? (then_clause(), 1) : (else_clause(), 0); 
+</code></pre>
+<p>没错，你可能才意识到，其实条件运算符也完全具备短路求值的特性——如果条件的真假值没有确定，后面两个子句也不会被执行。即时确定了，也只会选择其中一个执行，另外一个不会执行。</p>
+<hr />
+<p>解决这些求值顺序问题的方法呼之欲出：</p>
+<ol>
+<li>把有副作用的语句单独拆开来，明确执行的顺序</li>
+<li>借助有求值顺序的运算符来实现</li>
+</ol>
+<h2 id="_9">条件运算符</h2>
+<p>不知道你注意到没有，条件运算符的结合性是从右向左的。也就是说，下面的代码</p>
+<pre><code class="language-C">a &gt; b &amp;&amp; a &gt; c ? a : b &gt; c ? b : c
+</code></pre>
+<p>的含义是</p>
+<pre><code class="language-C">a &gt; b &amp;&amp; a &gt; c ? a : (b &gt; c ? b : c)
+</code></pre>
+<p>而不是左结合的</p>
+<pre><code class="language-C">(a &gt; b &amp;&amp; a &gt; c ? a : b &gt; c) ? b : c
+</code></pre>
+<p>这可能有些出会意料，可能没人会预料到出现左结合的形式，但是极个别语言（点名批评 PHP）还真就有这样的例外。</p>
+<p>可以看到如果不加括号其实上面的代码是很难读的，不过条件运算符的结合性给了我们一种格式化的思路：</p>
+<pre><code class="language-C">a &gt; b &amp;&amp; a &gt; c 
+    ? a 
+    : b &gt; c 
+        ? b 
+        : c
+</code></pre>
+<p>或者把问号冒号都对齐，也是可以的。</p>
+<p>你可能注意到赋值运算符和条件运算符微妙的关系了。在 C 语言里面条件运算符比赋值运算符优先级要高，因此下面的代码的含义显而易见</p>
+<pre><code class="language-C">c = a &gt; b ? a : b; // 选取 a 和 b 中的最大值
+</code></pre>
+<p>在 C++ 里，条件运算符和赋值运算符是同一个等级，但是上面句子的含义却没有变。因为它们都是右结合的运算符，所以即使优先级相同，结合性仍然保证了他们的先后顺序。例外出现在下面这个例子：</p>
+<pre><code class="language-C">a &gt; b ? c = a : c = b;
+</code></pre>
+<p>在 C++ 中它是合法的，被解读为</p>
+<pre><code class="language-C++">(a &gt; b) ? (c = a) : (c = b);
+</code></pre>
+<p>但是在 C 语言里，因为条件运算符优先级较高，它的意思是</p>
+<pre><code class="language-C">(a &gt; b ? c = a : c) = b;
+</code></pre>
+<p>而 C 语言的三目运算符返回的是右值，因此编译失败。（而在 C++ 里，如果三目运算符两个分支都是左值，那么返回的也是左值，所以<code>(a &gt; b ? a : b) = c</code>是可以的。）</p>
+<p>你可能已经注意到了，问号和冒号之间天然的有一个括号的语义在里面，里面的优先级不会受到外部干扰。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../op-1/" class="btn btn-neutral float-left" title="运算符（上）"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../int/" class="btn btn-neutral float-right" title="整数">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../op-1/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../int/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>隐式转换 - Yaossg's Doc</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u9690\u5f0f\u8f6c\u6362";
+        var mkdocs_page_input_path = "cripplec/conv.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Yaossg's Doc
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Yaossg's Doc</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cripple C</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Cripple C</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../token/">符号</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../text/">文本</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../404.html">预处理器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../op-1/">运算符（上）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../op-2/">运算符（下）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../int/">整数</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">隐式转换</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">转换情形</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">指针</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#void">void*的隐式转换</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">空指针</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">退化</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">布尔类型</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">整数类型</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">浮点类型</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">提升和共同类型</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">浮点数的提升</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">浮点数的共同类型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">整型的提升</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_13">整型的共同类型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_14">陷阱：比较</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_15">陷阱：提升</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_16">启示录</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../404.html">cdecl</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Yaossg's Doc</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Cripple C &raquo;</li>
+      <li>隐式转换</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">隐式转换</h1>
+<p>类型系统帮助我们识别数据，是 C 语言非常重要的部分。但作为一个强类型的语言，比起显式的类型转换，C 语言程序中却更多充斥着隐式转换（implicit conversion）。这样的转换，在悄无声息间发生，为程序员对程序的编写和识别带来了很大的便利，也造成了很大的困扰。</p>
+<p>在开始之前，我们先了解一个事实：在 C 语言里面，字符常量是<code>int</code>类型的，而 C++ 里才是<code>char</code>类型的。假设<code>int</code>有 32 位，那么</p>
+<pre><code class="language-C">printf(&quot;%d&quot;, sizeof 'a'); // C 输出 4，C++ 输出 1
+</code></pre>
+<p>这里不是什么隐式转换所致，它本来就是这样。请勿与后面讲到的提升混淆。</p>
+<h2 id="_2">转换情形</h2>
+<p>隐式转换包括以下三类：</p>
+<ol>
+<li>赋值、初始化、传参、返回，称为如同赋值的转换。</li>
+<li>可变参数提升。</li>
+<li>算术转换（提升、共同类型）。</li>
+</ol>
+<p>这里第一类里面说的传参特制的带类型的参数的传参（如<code>printf</code>的第一个参数），对于不带类型的可变参数（如<code>printf</code>的后续参数）是算作第二类里的。同样的，算术运算中的提升算作第三类，而可变参数中的提升算作第二类。</p>
+<p>下面我具体说说哪些是值得注意的。</p>
+<h2 id="_3">指针</h2>
+<h3 id="void"><code>void*</code>的隐式转换</h3>
+<p>C 语言<code>void*</code>类型的指针隐式转换为任意类型的指针，这主要是为了方便下面这样的代码：</p>
+<pre><code class="language-C">int* p = malloc(sizeof(int)); // malloc returns void*
+int* q = calloc(10, sizeof(int)); // calloc returns void*
+</code></pre>
+<p>然而这样做带来的危险也显而易见——如果你没有那么容易观察到你需要的类型和你有的类型，就可能不知不觉间造成谬误：</p>
+<pre><code class="language-C">void f(double* np);
+// 一万行代码
+int a;
+// 一万行代码
+void* p = &amp;a;
+// 一万行代码
+f(p); // Oops
+f(malloc(sizeof(int))); // Oops
+</code></pre>
+<p>好在 C++ 不允许这么做——如果你想提高你的代码的可读性和可移植性性，你最好加上显式的转换。</p>
+<h3 id="_4">空指针</h3>
+<p>C 语言定义了宏<code>NULL</code>，用它来表示空指针。两种典型的实现是</p>
+<pre><code class="language-C">#define NULL 0
+#define NULL ((void*) 0)
+</code></pre>
+<p>第二种看上去可能更合理一些。然而，由于上面提到的原因，第二种是不兼容 C++ 的。因此一般采用第一种。</p>
+<p>这给我们带来一个非常反直觉的结论：绝大多数地整数都不允许被隐式转换为指针的情况下，有着唯有一个例外——0！而且这个 0 还不能是普通的 0，必须是常数 0！更让人反直觉的是，在这种情况下，空字符 NUL（即<code>'\0'</code>，别忘了它的类型可是<code>int</code>哦）和空指针 NULL 已然是完全等价的了，真不可不让人感叹大自然的鬼斧神工。</p>
+<h3 id="_5">退化</h3>
+<p>退化（decay）说的是两件事情：</p>
+<ol>
+<li>数组转换为指向数组首元素的指针</li>
+<li>函数转换为指向函数自己的指针</li>
+</ol>
+<p>因此，数组名称从不是指向数组首元素的指针，除非它发生了退化：</p>
+<pre><code class="language-C">int a[10];
+printf(&quot;%d\n&quot;, sizeof (a));     // 输出 sizeof(int) * 10
+printf(&quot;%d\n&quot;, sizeof (a + 0)); // 输出 sizeof(void*)
+printf(&quot;%d\n&quot;, sizeof (+a));    // 仅 C++ 允许，输出 sizeof(void*)
+
+int *p1 = a; // 指向数组首元素 a[0] 的指针
+int (*p2)[10] = &amp;a; // 指向整个数组 a 的指针
+</code></pre>
+<p>不过函数由于退化成指向自己的指针，显得没那么严格：</p>
+<pre><code class="language-C">void f(void);
+void (*fp)(void) = f; // f 从 void(void) 退化为 void(*)(void)
+fp(); // 简略形式：OK
+(*fp)(); // 标准形式：OK
+(*****fp)(); // 反复解引用成函数再退化回函数指针指针
+</code></pre>
+<p>最后一行可能令人略感疑惑，它实际上发生了如下的转换：</p>
+<p><img alt="" src="../implicit-cycle.png" /></p>
+<h2 id="_6">布尔类型</h2>
+<p>布尔类型是 C99 才加入 C 的，但是这样的转换一直都存在，那就是当上下文需要一个布尔值时（例如<code>if</code>中，或<code>&amp;&amp;</code>运算符两边等），算术类型就会隐式转换为布尔值（真或假）来参加运算。</p>
+<p>在学习 C 之初，我们就接触到一个概念：在整数转为布尔值的时候，零为假，非零为真，而反过来转换的时候呢，假为零，真为一，是不对称的。但是别忘了，算数类型不仅包括整型，还有浮点型。因此要注意下面这样的情况：</p>
+<p><img alt="" src="../boolean-conv.png" /></p>
+<p>总的来说，加一个<code>!= 0</code>是解决问题最有效的方法。但还是那句话，别忘了加括号。</p>
+<p>还有一点需要注意，隐式转为布尔类型，除了在分支和循环条件中之外，还有逻辑运算符<code>&amp;&amp;</code>、<code>||</code>两侧和<code>!</code>运算符后面，别把它们忘了。</p>
+<h2 id="_7">整数类型</h2>
+<p>任何两个整数类型之间都可以互相隐式转换。</p>
+<p>如果目标类型可以表示原值，则值不变。如果不行，那么：</p>
+<ul>
+<li>
+<p>如果目标类型是无符号数，则值会被取这个类型的最大值加一的摸，使得这个值能放入这个类型中。</p>
+</li>
+<li>
+<p>如果目标类型是有符号数，结果是实现定义的。C++20 之后，有符号数按照无符号数的方式处理。</p>
+</li>
+</ul>
+<p>实现定义的原因不难理解：毕竟有符号数怎么实现的也是实现定义的。好在我们通常不需要担心这个问题，如同整数那一章说的那样。</p>
+<h2 id="_8">浮点类型</h2>
+<p>虽然浮点数表示的数范围比整数更大，但是精度上却并非如此：</p>
+<pre><code class="language-C">float f = 20000001; // x = 20000000
+</code></pre>
+<p>也就是说，<code>int</code>和<code>float</code>之间的相互转换，都是会丢失精度的。此时此刻，如果你对<code>f</code>进行自增，将不会有任何作用。</p>
+<p>好在，<code>int</code>的所有值都可以用<code>double</code>精确表示。这也是从<code>int</code>到<code>double</code>的转换不被认为会丢失精度的原因。</p>
+<p>与不痛不痒的整型溢出不同，当整型与浮点数之间的转换涉及溢出的时候，意料之外的事情往往会发生：</p>
+<pre><code class="language-C">int i = 1e10F; // UB for 32-bit int
+float f = 1 + (long long)FLT_MAX; // UB
+</code></pre>
+<p>即使是浮点数之间的转换，溢出同样是危险的：</p>
+<pre><code class="language-C">float f = 2 * (double)FLT_MAX; // UB
+</code></pre>
+<p>当然，最恶名昭著的还是二进制浮点数无法精确表示十进制小数的问题：</p>
+<pre><code class="language-C">double d = 0.1; // d = 0.1000000000000000055511151231257827021181583404541015625
+float f = d;    // f = 0.100000001490116119384765625
+0.1 + 0.2 == 0.3; // 假！
+</code></pre>
+<p>在这里，你要认识到，你所看到的这些字面量的精确值，从未真正的在计算机中存在过。你可以把它们作为“离这个数最近的浮点数”的一个标志，但你休想真正的得到这个数字的精确值本身。</p>
+<p>这就是为什么在统计和处理财务数据的时候，是不可以使用二进制浮点数的。</p>
+<h2 id="_9">提升和共同类型</h2>
+<p>高潮来了。</p>
+<p>提升（promotion）和共同类型（common type）作为最常见的隐式类型转换，无时无刻不在影响着程序的走向。</p>
+<p>在这一节，为了讨论方便，我们作出一些假定：</p>
+<table>
+<thead>
+<tr>
+<th><code>T</code></th>
+<th><code>sizeof(T)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>short</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>int</code>，<code>long</code>和<code>float</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>long long</code> 和 <code>double</code></td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>注意<code>sizeof(char) == 1</code>不需要假定，因为这是必须的。也要注意，上面的假定完全是为了叙述方便，并非四海皆准。</p>
+<h3 id="_10">浮点数的提升</h3>
+<p>为什么在<code>scanf</code>里，<code>"%f"</code>和<code>"%lf"</code>分别指代<code>float</code>和<code>double</code>，不可以混淆，而在<code>printf</code>中却无所谓？原因是，在可变参数传递的时候，发生了类型的提升，一切的<code>float</code>都会被提升为<code>double</code>传递。而<code>scanf</code>接受的是<code>float*</code>和<code>double*</code>（你不会又忘了取地址吧），就不会进行这样的提升。</p>
+<p>例如下面这个例子中，已知<code>3.14F</code>在内存中的表示和<code>1078523331</code>一致。由于类型的提升，#1 处传入的<code>float</code>被提升为了<code>double</code>，从而二进制的形式发生了巨大的改变，而#2，虽然传入的<code>int</code>不需要进行提升，但是<code>%g</code>期望的是读取一个提升之后的<code>double</code>而不是提升前的<code>float</code>，因此最后读取到的内容也完全不同。</p>
+<pre><code class="language-C">float f = 3.14F;
+int i = *(int*)&amp;f; // i = 1078523331
+printf(&quot;%d\n&quot;, f); // #1 输出 1610612736
+printf(&quot;%g\n&quot;, i); // #2 输出 5.32861e-315
+</code></pre>
+<p>换成<code>long long</code>和<code>double</code>，由于不存在类型提升的问题，因此结果就完全符合预期了。</p>
+<pre><code class="language-C">printf(&quot;%lld\n&quot;, 3.14); // 输出 4614253070214989087
+printf(&quot;%lg\n&quot;, 4614253070214989087LL); // 输出 3.14
+</code></pre>
+<p>综上，浮点数的提升一句话就说完了：在可变参数列表中，<code>float</code>会被提升为<code>double</code>。</p>
+<h3 id="_11">浮点数的共同类型</h3>
+<p>在浮点运算中，遵循相同保持不变、谁大转成谁、整数向浮点数靠拢的原则：</p>
+<pre><code class="language-C">printf(&quot;%d\n&quot;, sizeof(1.0F + 1.0F)); // 输出 4
+printf(&quot;%d\n&quot;, sizeof(1.0D + 1.0F)); // 输出 8
+printf(&quot;%d\n&quot;, sizeof(1 + 1.0F));    // 输出 4
+printf(&quot;%d\n&quot;, sizeof(1 + 1.0D));    // 输出 8
+</code></pre>
+<p>请注意浮点数提升只在可变参数情况下发生，在常规运算中均为找共同类型。</p>
+<h3 id="_12">整型的提升</h3>
+<pre><code class="language-C">short x = 32767;
+printf(&quot;%d\n&quot;, sizeof (x));     // #A 输出 2
+printf(&quot;%d\n&quot;, sizeof (+x));    // #B 输出 4
+printf(&quot;%d\n&quot;, x + 1);          // #1 输出 32768
+printf(&quot;%d\n&quot;, x + (short)1);   // #2 输出 32768
+printf(&quot;%d\n&quot;, (short)(x + 1)); // #3 输出 -32768
+printf(&quot;%hd\n&quot;, x + 1);         // #4 输出 -32768
+</code></pre>
+<p>虽然 #A #B 仅仅相差一个<code>+</code>，可是类型已经悄然从<code>short</code>提升到了<code>int</code>。#2 处，即时两个操作数都是<code>short</code>，也被提升为了<code>int</code>。这表明：不仅是在可变参数列表中，在任何的算术运算中，只要整数的类型大小小于<code>int</code>，都会被提升到<code>int</code>。</p>
+<p>注意，这样的提升是无视符号性（signedness）的，也就是是说<code>unsigned char</code>和<code>unsigned short</code>经过提升之后还是会得到<code>int</code>（除非<code>short</code>和<code>int</code>一样大——这在 16 位的机器上比较常见——那么会被提升到<code>unsigned int</code>）。</p>
+<p>注意，#1~#4 中的加法，两侧的操作数都是先提升到<code>int</code>之后在进行计算的，所以它们的共同类型自然而然是<code>int</code>。但如果提升之后，类型仍有所不同，又该如何呢？</p>
+<h3 id="_13">整型的共同类型</h3>
+<p>真正的高潮来了。</p>
+<p>开始之前我们先定义一下整数类型的阶，注意我们这里说的阶指的是它的地位而不是实际的<code>sizeof</code>大小。</p>
+<p>对于有符号数：<code>signed char &lt; signed short &lt; singned int &lt; signed long &lt; signed long long</code></p>
+<p>无符号数同理，只需要把<code>signed</code>换成<code>unsigned</code>即可。</p>
+<p>对于两个不同的类型，他们的共同类型是：</p>
+<ol>
+<li>如果两个类型的符号性相同（就是说，都是无符号或都是有符号），那么它们的共同类型即为高阶的那一个。</li>
+<li>否则，如果无符号数比有符号数高阶或同阶，有符号数会被转换为无符号数。</li>
+<li>否则，如果有符号数能装下无符号数所有值，无符号数会被转换为有符号数。</li>
+<li>否则，两个都会被转换为有符号类型（即高阶的那个类型）的无符号版本。</li>
+</ol>
+<p>我们来看几个例子（阅读前请回顾一下本节开头的假定及其注意事项）</p>
+<pre><code class="language-C">(char)'a' + 1L
+</code></pre>
+<p>首先，<code>'a'</code>是<code>int</code>的（忘了吗？看看本章开头），然后被转为<code>char</code>，接着被提升为<code>int</code>。因为两侧都是<code>signed</code>的，属于情况 #1，所以直接取高阶者，即将左侧的<code>int</code>转为<code>long</code>。最后的结果是<code>2L</code>。</p>
+<pre><code class="language-C">2U - 10
+</code></pre>
+<p>两侧符号性不同，且同阶，属于情况 #2，所以有符号数转换为无符号数，即<code>2U - 10U</code>。最后的结果为<code>4294967288U</code>。</p>
+<pre><code class="language-C">0UL - 1LL
+</code></pre>
+<p>两侧符号性不同，且有符号数可以装下无符号数的所有情况，所以无符号数会被转换为有符号数，即<code>0LL - 1LL</code>。最后的结果为<code>-1LL</code>。</p>
+<pre><code class="language-C">0U - 1L
+</code></pre>
+<p>两侧符号性不同，且有符号数不可以装下无符号数的所有情况（因为<code>sizeof(int) == sizeof(long)</code>，所以<code>UINT_MAX &gt; INT_MAX = LONG_MAX</code>），所以两个都会被转换为有符号类型（即高阶的那个类型）的无符号版本，即<code>0UL - 1UL</code>。最后的结果为<code>4294967295UL</code>。</p>
+<p>你可能注意到了，最后那种最怪最怪的规则，是针对 C 语言特色的，两个不同阶整数类型大小相同而设计的，可谓用心良苦。（实际上前面提到提升的时候也提到了<code>short</code>和<code>int</code>也可能存在这种情况）</p>
+<p>共同类型复杂就复杂在符号性上，这里面潜藏着严重的问题。</p>
+<h3 id="_14">陷阱：比较</h3>
+<pre><code class="language-C">unsigned int i = 1;
+if (-1 &lt; i) // 假！
+    ...
+</code></pre>
+<p>问题就出在，两侧的共同类型是<code>unsigned int</code>，也就是说，左边的<code>-1</code>被转换为无符号数再与<code>i</code>比较，而这显然是假的！解决方法是，将<code>i</code>也转换为有符号数再进行比较。</p>
+<p>可能在这里还比较明显，如果把变量<code>i</code>换成<code>sizeof(int)</code>，你还能看出来吗？没错，<code>sizeof</code>的返回类型<code>size_t</code>，恰好就是一个无符号类型。推而广之，不管是 C 语言的<code>strlen</code>函数，还是 C++ 的容器的<code>size()</code>函数等，都是返回的是<code>size_t</code>。无符号数到处有，需要我们时时警惕。</p>
+<h3 id="_15">陷阱：提升</h3>
+<pre><code class="language-C">char readByte();
+signed int i = readByte(); // 小心！
+unsigned int u = readByte(); // 小心！
+</code></pre>
+<p>这里<code>readByte</code>函数返回了<code>char</code>，他很可能是一个有符号数（当然，也有可能是无符号数，参见整数那章），那么如果它返回的字节实际上的内容是<code>255</code>，这里就被讹为<code>-1</code>了，那么<code>i</code>的值就成了<code>-1</code>，而<code>u</code>的值就成了<code>4294967295U</code>（即<code>(unsigned int)-1</code>）。这无疑是非常糟糕的。在 Java 这样自诩清高，宁可删掉无符号数来解决无符号数带来 bug 的语言里来说，更为棘手。</p>
+<p>解决方案一：改用无符号的函数返回类型</p>
+<pre><code class="language-C">unsigned char readByte();
+</code></pre>
+<p>解决方案二：手动转为等大无符号类型</p>
+<pre><code class="language-C">signed int i = (unsigned char) readByte(); // i = 255
+unsigned int u = (unsigned char) readByte(); // u = 255U
+</code></pre>
+<p>解决方案三：（适合于 Java 这种没有无符号数的语言）</p>
+<pre><code class="language-Java">int i = readByte() &amp; 0xFF;
+</code></pre>
+<p>在 Java 里整数类型照样会提升，不过<code>&amp; 0xFF</code>很好的帮我们解决了这个问题：因为无论如何，整数在提升的时候，低位是不变的。高位视正负和目标类型的符号性来填充 0 或者 1。因此这里我们直接取出低位，也就是原来的字节的内容。</p>
+<h3 id="_16">启示录</h3>
+<p>可以看出，潘多拉的魔盒正是符号性，这样看来 Java 删去无符号数或许也有一定道理。解决这个问题的办法就是：无论进行什么运算的时候，一定要注意两边操作数整数的符号。最妥当的方法就是：保证两侧的符号性相同。这样转换就仅仅只会发生在整数大小之间。此外，还是那句话，在涉及位运算时，统统使用无符号整数，会省去不少的麻烦。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../int/" class="btn btn-neutral float-left" title="整数"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../int/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
