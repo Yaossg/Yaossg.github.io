@@ -48,6 +48,8 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="index.html">Cripple C</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="concept.html">基本概念</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="token.html">符号</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="text.html">文本</a>
@@ -116,7 +118,7 @@ char hi2[2] = &quot;hi&quot;; // char hi2[2] = {'h', 'i'}; and Error in C++
 </code></pre>
 <p>更加广为人诟病的是，明明作为一个实际上不应该可变的字符数组，字符串常量却在 C 语言中拥有非<code>const</code>的类型，进而也可以赋值给非<code>const</code>的字符指针。</p>
 <pre><code class="language-C">char* s = &quot;string-literal&quot;; // OK in C, Error since C++11
-s[0] = 'r'; // Undefined Behavior
+s[0] = 'r'; // UB
 </code></pre>
 <p>如果一个字符串常量非常长，想要写到多行里面，怎么办？一种古老的方法是在行末加反斜杠<code>\</code>来抵消换行符，如</p>
 <pre><code class="language-C">const char* greetings = &quot;hello\
@@ -256,8 +258,7 @@ const wchar_t* r = L&quot;123&quot; L&quot;123&quot;; // 同上
 <p>开始前先个问你一个问题：<code>'\42'</code>是多少？</p>
 <p>答案是<code>34</code>。八进制总是令人着迷。你还会<a href="int.html">再见到它</a>的。</p>
 <hr />
-<p>八进制转义序列最多接受三位八进制数，且会在第一个非八进制数字处停止。十六进制转义序列没有这个限制，接受任意位十六进制数，但也会在第一个非十六进制数字处停止。（你也可以将其理解为一种贪心法）</p>
-<p>如果转义序列的值超出了它字符类型的范围，结果是未定义的。</p>
+<p>八进制转义序列最多接受三位八进制数，且会在第一个非八进制数字处停止。十六进制转义序列没有这个限制，接受任意位十六进制数，但也会在第一个非十六进制数字处停止（你也可以将其理解为一种贪心法）。如果转义序列的值超出了它字符类型的范围，结果是未定义的。</p>
 <p>Unicode 的转义序列要求的长度是固定的。短了非法，长了直接不算作转义序列的一部分。由于 Unicode 编码的取值范围是0~0xD800，0xE000~0x10FFFF（中间为什么缺了一段？为什么最大值是这么奇怪的一个数字？请参见 UTF-16 的设计方案），所以八位十六进制的 Unicode 转义序列注定至少有前两位是 0（我也很难理解他们为什么要这么设计……可能是为了说明字符确实是 32 位？抑或是为日后的扩展做准备？）。</p>
 <p>Unicode 转义序列还有一个不同之处在于，它表示的永远是一个实实在在的 Unicode 字符，而不是表示任何一种编码。它会根据字符串的编码进行具体的转译，例如对于字符 🍌（U+1f34c）来说：</p>
 <pre><code class="language-C">char ch0     =  '🍌'; // ill-formed
