@@ -54,6 +54,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="text.html">文本</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="preprocessor.html">预处理器</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="op-1.html">运算符（上）</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="op-2.html">运算符（下）</a>
@@ -76,7 +78,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#_9">&amp; 和 &amp;&amp;、|和||</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#iso646h">&lt;iso646.h&gt;</a>
+    <li class="toctree-l3"><a class="reference internal" href="#iso646">iso646</a>
     </li>
         </ul>
     </li>
@@ -85,6 +87,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="int.html">整数</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="conv.html">隐式转换</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="cdecl.html">cdecl</a>
                   </li>
               </ul>
       </div>
@@ -271,7 +275,7 @@ cond() || (clause(), 0); // if (!cond()) clause();
 <p>最直观的是运算结果的不等价。即使我们只关心结果的真假，也未必相同：例如<code>1 &amp; 2 == 0</code>为假，但<code>1 &amp;&amp; 2 == 1</code>为真。</p>
 <p>更重要的是，<code>&amp;&amp;</code>和<code>||</code>作为逻辑运算符，拥有短路求值的特性，这是<code>&amp;</code>和<code>|</code>所不具备的。</p>
 <p><code>~</code>和<code>!</code>区别也很大，不容易混淆，这里就不再赘述了。</p>
-<h3 id="iso646h"><code>&lt;iso646.h&gt;</code></h3>
+<h3 id="iso646">iso646</h3>
 <p>为了方便一些不支持某些特殊符号的键盘，C95 在<code>&lt;iso646.h&gt;</code>头文件中规定了下面的宏：（在 C++ 中，它们被直接定义为了关键字）</p>
 <table>
 <thead>

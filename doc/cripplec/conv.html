@@ -54,6 +54,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="text.html">文本</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="preprocessor.html">预处理器</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="op-1.html">运算符（上）</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="op-2.html">运算符（下）</a>
@@ -90,15 +92,17 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#_13">整型的共同类型</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_14">陷阱：比较</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_14">陷阱：提升</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_15">陷阱：提升</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_15">陷阱：共同类型</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#_16">启示录</a>
     </li>
         </ul>
     </li>
     </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="cdecl.html">cdecl</a>
                   </li>
               </ul>
       </div>
@@ -238,9 +242,8 @@ float f = d;    // f = 0.100000001490116119384765625
 <p>在这里，你要认识到，你所看到的这些字面量的精确值，从未真正的在计算机中存在过。你可以把它们作为“离这个数最近的浮点数”的一个标志，但你休想真正的得到这个数字的精确值本身。</p>
 <p>这就是为什么在统计和处理财务数据的时候，是不可以使用二进制浮点数的。</p>
 <h2 id="_9">提升和共同类型</h2>
-<p>高潮来了。</p>
 <p>提升（promotion）和共同类型（common type）作为最常见的隐式类型转换，无时无刻不在影响着程序的走向。</p>
-<p>在这一节，为了讨论方便，我们作出一些假定：</p>
+<p>在这一节，为了讨论方便，我们作出一些假定。这些假定完全是为了叙述方便，而不是标准。注意<code>sizeof(char) == 1</code>不需要假定，因为这是必须的。</p>
 <table>
 <thead>
 <tr>
@@ -263,7 +266,6 @@ float f = d;    // f = 0.100000001490116119384765625
 </tr>
 </tbody>
 </table>
-<p>注意<code>sizeof(char) == 1</code>不需要假定，因为这是必须的。也要注意，上面的假定完全是为了叙述方便，并非四海皆准。</p>
 <h3 id="_10">浮点数的提升</h3>
 <p>为什么在<code>scanf</code>里，<code>"%f"</code>和<code>"%lf"</code>分别指代<code>float</code>和<code>double</code>，不可以混淆，而在<code>printf</code>中却无所谓？原因是，在可变参数传递的时候，发生了类型的提升，一切的<code>float</code>都会被提升为<code>double</code>传递。而<code>scanf</code>接受的是<code>float*</code>和<code>double*</code>（你不会又忘了取地址吧），就不会进行这样的提升。</p>
 <p>例如下面这个例子中，已知<code>3.14F</code>在内存中的表示和<code>1078523331</code>一致。由于类型的提升，#1 处传入的<code>float</code>被提升为了<code>double</code>，从而二进制的形式发生了巨大的改变，而#2，虽然传入的<code>int</code>不需要进行提升，但是<code>%g</code>期望的是读取一个提升之后的<code>double</code>而不是提升前的<code>float</code>，因此最后读取到的内容也完全不同。</p>
@@ -295,11 +297,10 @@ printf(&quot;%d\n&quot;, (short)(x + 1)); // #3 输出 -32768
 printf(&quot;%hd\n&quot;, x + 1);         // #4 输出 -32768
 </code></pre>
 <p>虽然 #A #B 仅仅相差一个<code>+</code>，可是类型已经悄然从<code>short</code>提升到了<code>int</code>。#2 处，即时两个操作数都是<code>short</code>，也被提升为了<code>int</code>。这表明：不仅是在可变参数列表中，在任何的算术运算中，只要整数的类型大小小于<code>int</code>，都会被提升到<code>int</code>。</p>
-<p>注意，这样的提升是无视符号性（signedness）的，也就是是说<code>unsigned char</code>和<code>unsigned short</code>经过提升之后还是会得到<code>int</code>（除非<code>short</code>和<code>int</code>一样大——这在 16 位的机器上比较常见——那么会被提升到<code>unsigned int</code>）。</p>
+<p>注意，这样的提升是无视符号性（signedness）的，也就是是说<code>unsigned char</code>和<code>unsigned short</code>经过提升之后还是会得到<code>int</code>（对于后者来说，除非<code>short</code>和<code>int</code>一样大——这在 16 位的机器上比较常见——那么会被提升到<code>unsigned int</code>）。</p>
 <p>注意，#1~#4 中的加法，两侧的操作数都是先提升到<code>int</code>之后在进行计算的，所以它们的共同类型自然而然是<code>int</code>。但如果提升之后，类型仍有所不同，又该如何呢？</p>
 <h3 id="_13">整型的共同类型</h3>
-<p>真正的高潮来了。</p>
-<p>开始之前我们先定义一下整数类型的阶，注意我们这里说的阶指的是它的地位而不是实际的<code>sizeof</code>大小。</p>
+<p>开始之前我们先定义一下整数类型的阶（rank），注意我们这里说的阶指的是它的地位而不是实际的<code>sizeof</code>大小。</p>
 <p>对于有符号数：<code>signed char &lt; signed short &lt; singned int &lt; signed long &lt; signed long long</code></p>
 <p>无符号数同理，只需要把<code>signed</code>换成<code>unsigned</code>即可。</p>
 <p>对于两个不同的类型，他们的共同类型是：</p>
@@ -323,15 +324,9 @@ printf(&quot;%hd\n&quot;, x + 1);         // #4 输出 -32768
 </code></pre>
 <p>两侧符号性不同，且有符号数不可以装下无符号数的所有情况（因为<code>sizeof(int) == sizeof(long)</code>，所以<code>UINT_MAX &gt; INT_MAX = LONG_MAX</code>），所以两个都会被转换为有符号类型（即高阶的那个类型）的无符号版本，即<code>0UL - 1UL</code>。最后的结果为<code>4294967295UL</code>。</p>
 <p>你可能注意到了，最后那种最怪最怪的规则，是针对 C 语言特色的，两个不同阶整数类型大小相同而设计的，可谓用心良苦。（实际上前面提到提升的时候也提到了<code>short</code>和<code>int</code>也可能存在这种情况）</p>
-<p>共同类型复杂就复杂在符号性上，这里面潜藏着严重的问题。</p>
-<h3 id="_14">陷阱：比较</h3>
-<pre><code class="language-C">unsigned int i = 1;
-if (-1 &lt; i) // 假！
-    ...
-</code></pre>
-<p>问题就出在，两侧的共同类型是<code>unsigned int</code>，也就是说，左边的<code>-1</code>被转换为无符号数再与<code>i</code>比较，而这显然是假的！解决方法是，将<code>i</code>也转换为有符号数再进行比较。</p>
-<p>可能在这里还比较明显，如果把变量<code>i</code>换成<code>sizeof(int)</code>，你还能看出来吗？没错，<code>sizeof</code>的返回类型<code>size_t</code>，恰好就是一个无符号类型。推而广之，不管是 C 语言的<code>strlen</code>函数，还是 C++ 的容器的<code>size()</code>函数等，都是返回的是<code>size_t</code>。无符号数到处有，需要我们时时警惕。</p>
-<h3 id="_15">陷阱：提升</h3>
+<hr />
+<p>提升和共同类型的复杂规则主要体现在符号性的处理上。下面分别介绍两个典型的提升和共同类型的陷阱。</p>
+<h3 id="_14">陷阱：提升</h3>
 <pre><code class="language-C">char readByte();
 signed int i = readByte(); // 小心！
 unsigned int u = readByte(); // 小心！
@@ -348,6 +343,13 @@ unsigned int u = (unsigned char) readByte(); // u = 255U
 <pre><code class="language-Java">int i = readByte() &amp; 0xFF;
 </code></pre>
 <p>在 Java 里整数类型照样会提升，不过<code>&amp; 0xFF</code>很好的帮我们解决了这个问题：因为无论如何，整数在提升的时候，低位是不变的。高位视正负和目标类型的符号性来填充 0 或者 1。因此这里我们直接取出低位，也就是原来的字节的内容。</p>
+<h3 id="_15">陷阱：共同类型</h3>
+<pre><code class="language-C">unsigned int i = 1;
+if (-1 &lt; i) // 假！
+    ...
+</code></pre>
+<p>问题就出在，两侧的共同类型是<code>unsigned int</code>，也就是说，左边的<code>-1</code>将会被转换为无符号数再与<code>i</code>比较，一种典型的等价形式就是<code>4294967295u &lt; i</code>，而这显然是假的！解决方法是，将<code>i</code>也转换为有符号数再进行比较。</p>
+<p>可能在这里还比较明显，如果把变量<code>i</code>换成<code>sizeof(int)</code>，你还能看出来吗？没错，<code>sizeof</code>的返回类型<code>size_t</code>，恰好就是一个无符号类型。推而广之，不管是 C 语言的<code>strlen</code>函数，还是 C++ 的容器的<code>size()</code>函数等，都是返回的是<code>size_t</code>。无符号数到处有，需要我们时时警惕。</p>
 <h3 id="_16">启示录</h3>
 <p>可以看出，潘多拉的魔盒正是符号性，这样看来 Java 删去无符号数或许也有一定道理。解决这个问题的办法就是：无论进行什么运算的时候，一定要注意两边操作数整数的符号。最妥当的方法就是：保证两侧的符号性相同。这样转换就仅仅只会发生在整数大小之间。此外，还是那句话，在涉及位运算时，统统使用无符号整数，会省去不少的麻烦。</p>
               
@@ -355,6 +357,7 @@ unsigned int u = (unsigned char) readByte(); // u = 255U
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="int.html" class="btn btn-neutral float-left" title="整数"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="cdecl.html" class="btn btn-neutral float-right" title="cdecl">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -383,6 +386,8 @@ unsigned int u = (unsigned char) readByte(); // u = 255U
     
       <span><a href="int.html" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="cdecl.html" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

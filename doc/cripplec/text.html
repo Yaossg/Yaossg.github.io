@@ -70,6 +70,8 @@
     </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="preprocessor.html">预处理器</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="op-1.html">运算符（上）</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="op-2.html">运算符（下）</a>
@@ -77,6 +79,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="int.html">整数</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="conv.html">隐式转换</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="cdecl.html">cdecl</a>
                   </li>
               </ul>
       </div>
@@ -108,6 +112,7 @@
                 <h1 id="_1">文本</h1>
 <blockquote>
 <p><em>Oh what a tangled web we weave, when we first practice to deceive</em> ——Walter Scott</p>
+<p>⚠️ 你先别急 ⚠️ 🚧 本页面仍在施工中 🚧</p>
 </blockquote>
 <h2 id="_2">字符串</h2>
 <p>与一些语言（例如 Python）不同，C 语言是区分字符（character）和字符串（string）的。用单引号括起来的是字符，双引号括起来的是字符串。因此这两个符号也是不可以混淆的。一些编译器可能会允许单引号内包含多个字符（并一般会同时给出警告），但是一定要切记不能依赖于这样的扩展特性。</p>
@@ -279,6 +284,7 @@ char16_t err[] = u&quot;\ud83c\udf4c&quot;; // ERROR: U+d83c 和 U+df4c 不是 U
 <blockquote>
 <p>🚧 施工中 🚧</p>
 </blockquote>
+<p>一种替换的方案在<a href="op-2.html#iso646">这里</a>介绍。</p>
 <h2 id="_6">通用字符名</h2>
 <blockquote>
 <p>🚧 施工中 🚧</p>
@@ -385,7 +391,7 @@ int main(void) &lt;%
 printf(&quot;??/n&quot;);      // 输出换行符
 x ??'= 3;            // x ^= 3;
 </code></pre>
-<p>相信你看到三字符满脑子肯定都是<code>??!</code>。它早就已经过时，还带来这么多问题。好在 C++17 已经正义删除了这个特性。</p>
+<p>相信你看到三字符满脑子肯定都是<code>??!</code>。实际上，三字符早已过时，还问题重重。C++17 已经正义删除了这个特性。某些编译器，例如 gcc，在默认情况下也不会允许三字符的使用。</p>
 <hr />
 <p>下表总结了三种转义符号会被翻译的情形。</p>
 <table>
@@ -423,7 +429,7 @@ x ??'= 3;            // x ^= 3;
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="token.html" class="btn btn-neutral float-left" title="符号"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="op-1.html" class="btn btn-neutral float-right" title="运算符（上）">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="preprocessor.html" class="btn btn-neutral float-right" title="预处理器">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -453,7 +459,7 @@ x ??'= 3;            // x ^= 3;
       <span><a href="token.html" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="op-1.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="preprocessor.html" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

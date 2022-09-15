@@ -54,6 +54,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="text.html">文本</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="preprocessor.html">预处理器</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="op-1.html">运算符（上）</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="op-2.html">运算符（下）</a>
@@ -92,6 +94,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="conv.html">隐式转换</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="cdecl.html">cdecl</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -120,7 +124,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="_1">整数</h1>
-<p><em>integral range 是什么意思，是积分区间还是整型范围？</em></p>
+<p><em>程序员为什么没有办法分清万圣节和圣诞节？</em></p>
 <h2 id="_2">整数类型</h2>
 <p>毫无疑问，整数是编程中使用最多的数据类型。C 语言提供了丰富的整数类型，如下表所示：</p>
 <table>
@@ -133,28 +137,28 @@
 </thead>
 <tbody>
 <tr>
-<td>signed char</td>
-<td>unsigned char</td>
+<td><code>signed char</code></td>
+<td><code>unsigned char</code></td>
 <td>8</td>
 </tr>
 <tr>
-<td>signed short int<br/>signed short<br/>short int<br/>short</td>
-<td>unsigned short int<br/>unsigned short</td>
+<td><code>signed short int</code><br/><code>signed short</code><br/><code>short int</code><br/><code>short</code></td>
+<td><code>unsigned short int</code><br/><code>unsigned short</code></td>
 <td>至少 16</td>
 </tr>
 <tr>
-<td>signed int<br/>signed<br/>int</td>
-<td>unsigned int<br/>unsigned</td>
+<td><code>signed int</code><br/><code>signed</code><br/><code>int</code></td>
+<td><code>unsigned int</code><br/><code>unsigned</code></td>
 <td>至少 16</td>
 </tr>
 <tr>
-<td>signed long int<br/>signed long<br/>long int<br/>long</td>
-<td>unsigned long int<br/>unsigned long</td>
+<td><code>signed long int</code><br/><code>signed long</code><br/><code>long int</code><br/><code>long</code></td>
+<td><code>unsigned long int</code><br/><code>unsigned long</code></td>
 <td>至少 32</td>
 </tr>
 <tr>
-<td>signed long long int<br/>signed long long<br/>long long int<br/>long long</td>
-<td>unsigned long long int<br/>unsigned long long</td>
+<td><code>signed long long int</code><br/><code>signed long long</code><br/><code>long long int</code><br/><code>long long</code></td>
+<td><code>unsigned long long int</code><br/><code>unsigned long long</code></td>
 <td>至少 64</td>
 </tr>
 </tbody>
@@ -186,7 +190,7 @@ printf(&quot;%d\n&quot;, -1 &gt;&gt; 1);
 <p>而右移的这个问题，我们可以进一步讨论一下。对于有符号数而言，我们一般把最高位补 0 的右移成为逻辑右移，最高位补符号位的右移成为算术右移。C 语言和 C++20 之前都没有对此作明确的规定，也就是说任何一种右移都可能，因此最好不要依赖于这一点。推而广之的，我建议在进行位运算的时候，尽可能的使用无符号整数，来确保运算不会因为其他算术运算对符号位的特殊处理而收到干扰。关于这一点，你会在<a href="conv.html#整型的共同类型">这里</a>中了解更多。</p>
 <h3 id="_8">求余还是求模</h3>
 <p>根据前面除法的定义，我们已经可以知道，<code>%</code>是求余而不是求模（与之对应的，Python 的<code>%</code>就是求模）。</p>
-<p>注意，C 语言的<code>%</code>的操作数只能是整数，这是比较特殊的。如果想用浮点数，可以使用<code>&lt;math.h&gt;</code>提供的<code>fmod</code>（对，虽然是求余，但是名字是<code>fmod</code>，而<code>remainder</code>既不是求余也不是求模）。</p>
+<p>注意，C 语言的<code>%</code>的操作数只能是整数。如果想用浮点数，可以使用<code>&lt;math.h&gt;</code>提供的<code>fmod</code>（对，虽然是求余，但是名字是<code>fmod</code>，而<code>remainder</code>既不是求余也不是求模）。</p>
 <p>于是，我们已经合理定义了下面这些运算：</p>
 <pre><code class="language-C">3 / 2 == 1 &amp;&amp; 3 % 2 == 1;
 -3 / 2 == -1 &amp;&amp; -3 % 2 == -1;
@@ -198,13 +202,13 @@ printf(&quot;%d\n&quot;, -1 &gt;&gt; 1);
 <h2 id="_9">定长整型</h2>
 <p>C99 引入了<code>&lt;stdint.h&gt;</code>和<code>&lt;inttypes.h&gt;</code>，来解决整数不定长的问题。但它们也带来了一些问题。</p>
 <p><code>&lt;stdint.h&gt;</code>中定义的定长整型基本的格式是：</p>
-<pre><code>[u]int[N (optional) |_leastN|_fastN|max|ptr (optional) ]_t
+<pre><code>[u]int[N|_leastN|_fastN|max|ptr]_t
 </code></pre>
 <p>其中 N 替换为 8, 16, 32, 64 中的一个。</p>
 <p>u 的前缀表示无符号数。由于是宏定义，所以下面这种写法大概率也是合法的，但不是良好的形式：</p>
 <pre><code class="language-C">unsigned int64_t x; // why not uint64_t?
 </code></pre>
-<p>可能令你有些意外的是，标准不保证编译器给出<code>intN_t</code>的定义。也就是说，从整型的最初的设计，到定长整型的定义，自始至终没有要求编译器真正意义上给出某个定长的整型。这种过分的灵活性是双刃剑。好在大部分的实现还是会给出定长的宏定义。</p>
+<p>可能令你有些意外的是，标准不保证实现给出<code>[u]intN_t</code>的定义。也就是说，从整型的最初的设计，到定长整型的定义，自始至终没有要求编译器真正意义上给出某个定长的整型。这种过分的灵活性是双刃剑。好在大部分的实现还是会给出定长的宏定义。标准同样不保证实现给出<code>[u]intptr_t</code>的定义。</p>
 <p><code>[u]intmax_t</code>和<code>[u]intptr_t</code>很好理解，就是最长的整型，和指针对应的整型。<code>least</code>和<code>fast</code>是干嘛的？答案是，<code>least</code>是我们最熟悉的话术：至少 N 比特的整型（这也解释了为什么它可以保证被提供）；而<code>fast</code>则是略令人费解的：最快的 N 比特的整型。例如一种典型的做法是把<code>int_fast16_t</code>定义为<code>int</code>，因为实际上对<code>short</code>的计算都先提升到了<code>int</code>，计算完毕之后又转换回了<code>short</code>（参见<a href="conv.html#整型的提升">这里</a>）。遗憾的是，这样做虽然是有一定道理的，但同样是不能保证的。正因为这里对“最快”的描述非常模糊，我很认同 gcc 对此的理解：<em>Not actually guaranteed to be fastest for all purposes</em>。</p>
 <p>假设有这样一段代码：</p>
 <pre><code class="language-C">int a;
