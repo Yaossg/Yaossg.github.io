@@ -1,167 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Yaossg's Home Page</title>
-    <!-- Bootstrap -->
-    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
-	<link rel="icon" href="images/sausage.png", type="image/x-icon"> 
-	<link rel="shortcut icon" href="images/sausage.png", type="image/x-icon">
-  </head>
-  <body>
-    <div class="container">
-      <hr>
-	  <h1>Yaossg's Home Page</h1>
-      <hr>
-      <div class="row">
-        <div class="col-md-8 col-sm-12">
-          <div class="media">
-            <img class="mr-3" src="images/sausage-128.png">
-            <div class="media-body">
-              <h5 class="mt-0">Yaossg</h5>
-              an MCer as well as an MCModder, a Terrarian<br>
-			  a fan of PVZ Series and Angry Birds Series<br>
-			  a fan of specific Musicals and Cartoon Series<br>
-			  Programming mainly in C/C++ Java Kotlin<br>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-12">
-          <h5 class="mt-0">College Student</h5>
-          Born in Beibei, Chongqing, China<br>
-          Freshman in School of Information and Communication Engineering, UESTC<br>
-          Sophomore in School of Computer Science and<br> Engineering (School of Cybersecurity), UESTC
-        </div>
-      </div>
-      <hr>
-	  <div class="row">
-      <div class="col-md-3 col-sm-6"><h2>链接：</h2></div>
-      <div class="col-md-3 col-sm-6"><a href="https://yaossg.com/blog" class="btn btn-primary"><h3>个人博客</h3></a></div>
-      <div class="col-md-3 col-sm-6"><a href="https://github.com/Yaossg" class="btn btn-primary"><h3>Github 主页</h3></a></div>
-      <div class="col-md-3 col-sm-6"><a href="https://space.bilibili.com/282144386" class="btn btn-primary"><h3>B 站主页</h3></a></div>
-    </div>
-	  <hr>
-      <h2>作品</h2>
-      <hr>
-      <span id="works">作品列表加载需要 JavaScript，如果无法正常显示，可以查看本页面的源代码。</span>
-      <hr>
-      <footer class="text-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <p>Copyright © Yaossg. All rights reserved.</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap-4.4.1.js"></script>
-    <!-- Yaossg's Home Page Generator -->
-    <script>
-const statuses = {
-    "archived": ["Archived", "dark"],
-    "progressing": ["Progressing", "primary"],
-    "active": ["Active", "success"],
-    "inactive": ["Inactive", "secondary"],
-    "deprecated": ["Deprecated", "warning"]
-}
+<!doctype html>
+<html lang="zh" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yaossg</title>
+  <meta name="Description" content="Home Page of Yaossg">
+  <meta name="color-scheme" content="dark light">
+  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css"/>
+</head>
 
-let json = [
-    {
-        "title": "浅析 1.13 世界生成",
-        "link": "https://yaossg.com/blog/1-13-worldgen/",
-        "status": "archived",
-        "desc": "香肠的世界生成文章"
-    }, {
-        "title": "再析世界生成：生物群系",
-        "link": "https://yaossg.com/biome/",
-        "status": "active",
-        "desc": "香肠的世界生成文章"
-    }, {
-        "title": "SGS",
-        "link": "https://yaossg.com/sgs/",
-        "status": "active",
-        "desc": "香肠游戏服务器"
-    }, {
-        "title": "EndPoem",
-        "link": "https://yaossg.com/end-poem/",
-        "status": "archived",
-        "desc": "终末之诗"
-    }, {
-        "title": "Tetris",
-        "link": "https://github.com/Yaossg/Tetris",
-        "status": "archived",
-        "desc": "C++初学者 的 俄罗斯方块"
-    }, {
-        "title": "MCLink",
-        "link": "https://github.com/Yaossg/MCLink",
-        "status": "archived",
-        "desc": "MC 风格连连看"
-    }, {
-        "title": "SausageCore",
-        "link": "https://github.com/Yaossg/SausageCore",
-        "status": "archived",
-        "desc": "香肠 1.12.2 模组的核心库"
-    }, {
-        "title": "ManaCraft",
-        "link": "https://github.com/Yaossg/ManaCraft",
-        "status": "archived",
-        "desc": "香肠模组开发试水之作"
-    }, {
-        "title": "ProjectGene",
-        "link": "https://github.com/Yaossg/ProjectGene",
-        "status": "archived",
-        "desc": "生物中基因藏"
-    }, {
-        "title": "Sausage's Factory",
-        "link": ".",
-        "status": "deprecated",
-        "desc": "香肠的工厂"
-    }, {
-        "title": "misc",
-        "link": "https://github.com/Yaossg/misc",
-        "status": "active",
-        "desc": "C++ 的小玩意"
-    }, {
-        "title": "cppStream",
-        "link": "https://github.com/Yaossg/cppStream",
-        "status": "archived",
-        "desc": "C++ 里面 Stream 的简单实现"
-    }, {
-		"title": "MathToy",
-        "link": "https://github.com/Yaossg/MathToy",
-        "status": "active",
-        "desc": "香肠的 C++ 数学玩具"
-    }, {
-		"title": "SauScript",
-        "link": "https://github.com/Yaossg/SauScript",
-        "status": "active",
-        "desc": "香肠自制脚本语言"
-    }
-]
-
-let out = '<div class="row">'
-let ws = json.forEach(work => out += String.raw`
-<div class="col-md-4 col-sm-12">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">${work.title}</h5>
-      <h5 class="text-right"><span class="badge badge-${statuses[work.status][1]}">${statuses[work.status][0]}</span></h5>
-      <p class="card-text">${work.desc}</p>
-      <a href="${work.link}" class="btn btn-info">View Details</a>
+<body>
+  <div class="vi">
+    <h1 class="animate-slide-in-down">Yaossg</h1>
+    <div class="quote">
+      <span class="quote-line quote-line-start animate-slide-in-left"></span>
+      <span class="quote-icon quote-icon-start animate-slide-in-down">
+        <i class="icon icon-quotes-left"></i>
+      </span>
+      <p class="quote-content animate-slide-in-down">不积跬步，无以至千里。不积小流，无以成江海。</p>
+      <p class="quote-author animate-slide-in-down">《劝学篇》—— <em>荀子</em></p>
+      <span class="quote-icon quote-icon-end animate-slide-in-up">
+        <i class="icon icon-quotes-right"></i>
+      </span>
+      <span class="quote-line quote-line-end animate-slide-in-right"></span>
+    </div>
+    <div class="links">
+      <a href="https://yaossg.com/projects.html" class="animate-slide-in-down">Projects</a>
+      <a href="https://yaossg.com/blog" class="animate-slide-in-down">Blog</a>
+      <a href="https://github.com/Yaossg" class="animate-slide-in-down">GitHub</a>
+      <a href="https://space.bilibili.com/282144386" class="animate-slide-in-down">Bilibili</a>
+    </div>
+    <div class="location">
+      <span class="location-icon animate-slide-in-up">
+        <i class="icon icon-map-pin"></i>
+      </span>
+      <span class="location-text animate-slide-in-down">UESTC, Chengdu, China</span>
     </div>
   </div>
-</div>
-`);
-out += "</div>"
-document.getElementById("works").innerHTML = out
 
-    </script>
-  </body>
+  <script src="assets/vendors/jquery-3.3.1.min.js"></script>
+  <script>
+    $(function () {
+      var SLIDE_IN_DOWN = { opacity: 1, top: 0 };
+      var SLIDE_IN_UP = { opacity: 1, bottom: 0 };
+      var SLIDE_IN_LEFT = { left: 0 };
+      var SLIDE_IN_RIGHT = { right: 0 };
+
+      executeAnimations();
+
+      function executeAnimations() {
+        $.when()
+          .then(animateTitle)
+          .then(animateQuote)
+          .then(animateLinks)
+          .then(animateLocation);
+      }
+
+      function animateTitle() {
+        return animate('h1', SLIDE_IN_DOWN);
+      }
+
+      function animateQuote() {
+        return $.when(
+          animate('.quote-line-start', SLIDE_IN_LEFT),
+          animate('.quote-line-end',SLIDE_IN_RIGHT),
+          animate('.quote-icon-start', SLIDE_IN_DOWN),
+          animate('.quote-icon-end', SLIDE_IN_UP)
+        )
+          .then(function () {
+            return animate('.quote-content', SLIDE_IN_DOWN);
+          })
+          .then(function () {
+            return animate('.quote-author', SLIDE_IN_DOWN);
+          });
+      }
+
+      function animateLinks() {
+        var DELAY_STEP = 200;
+        var elements = $('.links a');
+        var concurrent = $.makeArray(elements)
+          .map(function (element, index) {
+            return animate(element, SLIDE_IN_DOWN, index * DELAY_STEP);
+          });
+
+        return $.when.apply($, concurrent);
+      }
+
+      function animateLocation() {
+        return $.when(
+          animate('.location-icon', SLIDE_IN_UP),
+          animate('.location-text', SLIDE_IN_DOWN)
+        );
+      }
+
+      function animate(selector, properties, delay, options) {
+        delay = delay || 0;
+        return $(selector).delay(delay)
+          .animate(properties, options)
+          .promise();
+      }
+    });
+  </script>
+</body>
 </html>
