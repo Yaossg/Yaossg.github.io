@@ -14,20 +14,21 @@
 <body>
   <div class="vi">
     <h1 class="animate-slide-in-down">Yaossg</h1>
+    <img class="animate-slide-in-down" src="images/sausage-128.png" alt="Yaossg" />
     <div class="quote">
       <span class="quote-line quote-line-start animate-slide-in-left"></span>
       <span class="quote-icon quote-icon-start animate-slide-in-down">
         <i class="icon icon-quotes-left"></i>
       </span>
-      <p class="quote-content animate-slide-in-down">不积跬步，无以至千里。不积小流，无以成江海。</p>
-      <p class="quote-author animate-slide-in-down">《劝学篇》—— <em>荀子</em></p>
+      <p class="quote-content animate-slide-in-down">路漫漫其修远兮，吾将上下而求索。</p>
+      <p class="quote-author animate-slide-in-down">—— 屈原《离骚》</p>
       <span class="quote-icon quote-icon-end animate-slide-in-up">
         <i class="icon icon-quotes-right"></i>
       </span>
       <span class="quote-line quote-line-end animate-slide-in-right"></span>
     </div>
     <div class="links">
-      <a href="https://yaossg.com/projects.html" class="animate-slide-in-down">Projects</a>
+      <a href="https://yaossg.com/profile.html" class="animate-slide-in-down">Profile</a>
       <a href="https://yaossg.com/blog" class="animate-slide-in-down">Blog</a>
       <a href="https://github.com/Yaossg" class="animate-slide-in-down">GitHub</a>
       <a href="https://space.bilibili.com/282144386" class="animate-slide-in-down">Bilibili</a>
@@ -59,7 +60,11 @@
       }
 
       function animateTitle() {
-        return animate('h1', SLIDE_IN_DOWN);
+        return $.when(
+          animate('h1', SLIDE_IN_DOWN)
+        ).then(function() {
+          return animate('img', SLIDE_IN_DOWN);
+        });
       }
 
       function animateQuote() {
