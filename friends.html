@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yaossg's Friends</title>
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <style>
+      .alt0 { background: #fafafa; }
+      .alt1 { background: #ffffff; }
+
+      .frind-ship img {
+        border-radius: 50%;
+      }
+
+      .frind-ship {
+          padding: 10px 20px;
+          display: flex;
+          align-items: center;
+      }
+
+      .frind-ship div {
+          color: #000;
+          padding-left: 10px;
+      }
+
+      .frind-ship img {
+          width: 100px;
+          height: 100px;
+          flex-shrink: 0;
+      }
+
+      .frind-ship h1 {
+          padding-bottom: 5px;
+          border-bottom: 2px solid #000;
+          position: relative;
+          top: -3px;
+          left: 3px;
+      }
+
+      .frind-ship p {
+          position: relative;
+          top: -10px;
+          left: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <hr>
+	  <h1>Yaossg's Friends</h1>
+      <hr>
+      <span id="friends">友链列表加载需要 JavaScript，如果无法正常显示，可以查看本页面的源代码。</span>
+      <hr>
+      <footer class="text-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <p>Yaossg's Friends</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.4.1.js"></script>
+    <script>
+let friends = [
+    {
+      "avatar": "https://avatars.githubusercontent.com/u/42486439",
+      "link": "https://blog.stapxs.cn",
+      "name": "Stapxs",
+      "desc": "林槐"
+    }, 
+    {
+      "avatar": "http://q1.qlogo.cn/g?b=qq&nk=2734825077&s=100",
+      "link": "https://switefaster.github.io/",
+      "name": "Switefaster",
+      "desc": "Sebrarin"
+    }, 
+    {
+      "avatar": "https://gravatar.loli.net/avatar/d9464e8ea970cefdfb729b7301d04232?s=100&d=mp",
+      "link": "https://blog.zapic.moe/",
+      "name": "Zapic",
+      "desc": "中推顶流"
+    }, 
+    {
+      "avatar": "http://q1.qlogo.cn/g?b=qq&nk=754503921&s=100",
+      "link": "https://izzel.io/",
+      "name": "IzzelAliz",
+      "desc": "海螺"
+    },
+    {
+      "avatar": "https://avatars.githubusercontent.com/u/8004211",
+      "link": "https://blog.ustc-zzzz.net/",
+      "name": "ustc-zzzz",
+      "desc": "土球"
+    }, 
+    {
+      "avatar": "https://avatars.githubusercontent.com/u/32478104",
+      "link": "https://github.com/KunoSayo",
+      "name": "KunoSayo",
+      "desc": "ljyys"
+    }, 
+    {
+      "avatar": "https://avatars.githubusercontent.com/u/64351788",
+      "link": "https://fullstack-sake.github.io/",
+      "name": "sake",
+      "desc": "机器学习爷"
+    }, 
+    {
+      "avatar": "https://4ever-xxxl.github.io/img/avatar.jpg",
+      "link": "https://4ever-xxxl.github.io/",
+      "name": "xxxl",
+      "desc": "凝聚图灵网安爷"
+    }, 
+    {
+      "avatar": "https://avatars.githubusercontent.com/u/36410093",
+      "link": "https://xukafy.github.io/",
+      "name": "XuKaFy",
+      "desc": "凝聚图灵开发爷"
+    }, 
+    {
+      "avatar": "http://q1.qlogo.cn/g?b=qq&nk=2921349622&s=100",
+      "link": "https://www.cnblogs.com/timlzh",
+      "name": "Timlzh",
+      "desc": "全栈爷"
+    }, 
+    {
+      "avatar": "https://malossov.github.io/uploads/avator.png",
+      "link": "https://malossov.github.io/",
+      "name": "Malossov",
+      "desc": "科协爷"
+    }, 
+    {
+      "avatar": "http://q1.qlogo.cn/g?b=qq&nk=1641064392&s=100",
+      "link": "https://zbwer.github.io/",
+      "name": "zbwer",
+      "desc": "项目爷"
+    }, 
+    {
+      "avatar": "https://avatars.githubusercontent.com/u/108183563",
+      "link": "https://zzzremake.github.io/",
+      "name": "remake",
+      "desc": "图灵爷"
+    }, 
+    {
+      "avatar": "http://q1.qlogo.cn/g?b=qq&nk=1580422201&s=100",
+      "link": "https://blog.hareta.ren/",
+      "name": "syrinka",
+      "desc": "开发运维爷"
+    }, 
+    {
+      "avatar": "http://q1.qlogo.cn/g?b=qq&nk=463135821&s=100",
+      "link": "https://codeforces.com/profile/lotato",
+      "name": "lotato",
+      "desc": "土豆，我的土豆"
+    },
+]
+
+let out = '<div class="row">'
+let i = 0
+friends.forEach(friend => out += String.raw`
+<div class="col-lg-4 col-md-6 col-sm-12">
+  <div class="card alt${i++ & 1}">
+    <a href="${friend.link}">
+    <div class="card-body frind-ship">
+      <img src="${friend.avatar}" height=100 width=100/>
+      <div>
+        <h1 class="card-title">${friend.name}</h1>
+        <p class="card-text">${friend.desc}</p>
+      </div>
+    </div>
+    </a>
+  </div>
+</div>
+`);
+out += "</div>"
+document.getElementById("friends").innerHTML = out
+
+    </script>
+  </body>
+</html>

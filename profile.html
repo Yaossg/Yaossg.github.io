@@ -63,7 +63,7 @@ const statuses = {
     "deprecated": ["Deprecated", "warning"]
 }
 
-let json = [
+let works = [
     {
         "title": "浅析 1.13 世界生成",
         "link": "https://yaossg.com/blog/1-13-worldgen/",
@@ -144,8 +144,8 @@ let json = [
 
 let out = '<div class="row">'
 let i = 0
-let ws = json.forEach(work => out += String.raw`
-<div class="col-md-4 col-sm-12">
+works.forEach(work => out += String.raw`
+<div class="col-lg-4 col-md-6 col-sm-12">
   <div class="card alt${i++ & 1}">
     <div class="card-body">
       <h5 class="card-title">${work.title}</h5>
