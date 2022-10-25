@@ -124,7 +124,10 @@
 <p>函数<code>f3()</code>可能在<code>f1()</code>和<code>f2()</code>之前、之后甚至之间调用——因为这就这个表达式的计算过程而言是不影响的。例如我先计算<code>f3()</code>也不影响我之后再算<code>f1()</code>和<code>f2()</code>之后再先乘除后加减。但另一方面，如果这三个函数确确实实是有副作用的，例如修改了某个全局变量，进行了输入输出操作等，产生的结果却是是有可能不同的。例如</p>
 <pre><code class="language-C">getchar() - getchar();
 </code></pre>
-<p>输入<code>ab</code>，你很难知道上面的表达式结果会是<code>1</code>还是<code>-1</code>。</p>
+<p>输入<code>ab</code>，你很难保证上面的表达式结果会是<code>1</code>还是<code>-1</code>。更有意思的是，下面这个表达式：</p>
+<pre><code class="language-C">-(getchar() - getchar())
+</code></pre>
+<p>很有可能与前者有一模一样的结果。既然先求值谁是未定义的，也就是无所谓的，那么这个负号实际上就被编译器直接去掉了。</p>
 <hr />
 <p>我们来看下面这个例子。</p>
 <pre><code class="language-C">int i = 0, x[10], y[10];
