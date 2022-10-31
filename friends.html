@@ -8,9 +8,6 @@
     <title>Yaossg's Friends</title>
     <link href="assets/css/bootstrap-4.4.1.css" rel="stylesheet">
     <style>
-        .alt0 {
-            background: #fafafa;
-        }
 
         a:hover {
             text-decoration: none;
@@ -130,52 +127,58 @@
                 "desc": "ljyys"
             },
             {
+                "avatar": "https://blog.stapxs.cn/usr/uploads/2020/03/2635148446.jpg",
+                "link": "https://doodlehuang.wordpress.com/",
+                "name": "Doodle",
+                "desc": "DoodleHuang"
+            },
+            {
                 "avatar": "https://avatars.githubusercontent.com/u/64351788",
                 "link": "https://fullstack-sake.github.io/",
                 "name": "sake",
-                "desc": "机器学习爷"
+                "desc": "冉冉"
             },
             {
                 "avatar": "https://4ever-xxxl.github.io/img/avatar.jpg",
                 "link": "https://4ever-xxxl.github.io/",
-                "name": "xxxl",
-                "desc": "凝聚图灵网安爷"
+                "name": "xlykle",
+                "desc": "磊子哥"
             },
             {
                 "avatar": "https://avatars.githubusercontent.com/u/36410093",
                 "link": "https://xukafy.github.io/",
                 "name": "XuKaFy",
-                "desc": "凝聚图灵开发爷"
+                "desc": "X. F. K."
             },
             {
                 "avatar": "http://q1.qlogo.cn/g?b=qq&nk=2921349622&s=100",
                 "link": "https://www.cnblogs.com/timlzh",
                 "name": "Timlzh",
-                "desc": "全栈爷"
+                "desc": "HiTlZm"
             },
             {
                 "avatar": "https://malossov.github.io/uploads/avator.png",
                 "link": "https://malossov.github.io/",
                 "name": "Malossov",
-                "desc": "科协爷"
+                "desc": "书扬"
             },
             {
                 "avatar": "http://q1.qlogo.cn/g?b=qq&nk=1641064392&s=100",
                 "link": "https://zbwer.github.io/",
                 "name": "zbwer",
-                "desc": "前端爷"
+                "desc": "bwgg"
             },
             {
                 "avatar": "https://avatars.githubusercontent.com/u/108183563",
                 "link": "https://zzzremake.github.io/",
                 "name": "remake",
-                "desc": "图灵爷"
+                "desc": "ZzzRemake"
             },
             {
                 "avatar": "https://avatars.githubusercontent.com/u/61999173",
                 "link": "https://blog.hareta.ren/",
                 "name": "syrinka",
-                "desc": "开发运维爷"
+                "desc": "上行线路"
             },
             {
                 "avatar": "http://q1.qlogo.cn/g?b=qq&nk=463135821&s=100",
@@ -183,13 +186,27 @@
                 "name": "lotato",
                 "desc": "土豆，我的土豆"
             },
+            {
+                "avatar": "https://avatars.githubusercontent.com/u/69978374?v=4",
+                "link": "https://github.com/RisingEntropy",
+                "name": "Entropy",
+                "desc": "RisingEntropy"
+            },
+            {
+                "avatar": "https://fattyray.github.io/fattyrays_homepage/profile.jpg",
+                "link": "https://fattyray.github.io/fattyrays_homepage/",
+                "name": "Sary",
+                "desc": "fattyrays"
+            },
         ]
 
         let out = '<div class="row">'
-        let i = 0
+      
+        friends.sort(() => Math.random() - 0.5)
+
         friends.forEach(friend => out += String.raw`
 <div class="col-lg-4 col-md-6 col-sm-12 cell">
-  <div class="card alt${i++ & 1}">
+  <div class="card">
     <a href="${friend.link}">
     <div class="card-body frind-ship">
       <img src="${friend.avatar}" height=100 width=100/>
@@ -205,12 +222,10 @@
 `);
         out += "</div>"
         document.getElementById("friends").innerHTML = out
-        var boxbg = document.getElementsByClassName('alt1');
-        const hexcolors = ['#f7fcfc', '#f0f8fa', '#e8f5f7', '#d1ebef', '#e1f2f5', '#d9eff2'];
-        const colorslen = hexcolors.length;
-        for (let i = 0; i < boxbg.length; i++) {
-            let rand_pos = Math.floor(Math.random() * colorslen);
-            boxbg[i].style.backgroundColor = hexcolors[rand_pos];
+        const cards = document.getElementsByClassName('card')
+        const colors = ['#ffffff', '#f7fcfc', '#f0f8fa', '#e8f5f7', '#d1ebef', '#e1f2f5', '#d9eff2']
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]
         }
     </script>
 </body>
