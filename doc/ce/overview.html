@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Yaossg" name="author"/><link href="https://yaossg.com/doc/ce/overview.html" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>概述 - Yaossg's Doc</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "\u6982\u8ff0";
+        var mkdocs_page_input_path = "ce/overview.md";
+        var mkdocs_page_url = "/doc/ce/overview.html";
+      </script>
+<script defer="" src="../js/jquery-3.6.0.min.js"></script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href="../index.html"> Yaossg's Doc
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Yaossg's Doc</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Cripple C</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cripplec/index.html">Cripple C</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cripplec/concept.html">基本概念</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cripplec/token.html">符号</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cripplec/text.html">文本</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cripplec/preprocessor.html">预处理器</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cripplec/op-1.html">运算符（上）</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cripplec/op-2.html">运算符（下）</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cripplec/int.html">整数</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cripplec/conv.html">隐式转换</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cripplec/cdecl.html">cdecl</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">字符集与编码</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="overview.html">概述</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#_2">字符集与编码是什么？</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#_3">什么是字符集？</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_4">什么是编码？</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_5">字符和字素是什么？</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#_6">控制字符</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_7">组合字符</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_8">编码与解码</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="../index.html">Yaossg's Doc</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a alt="Docs" class="icon icon-home" href="../index.html"></a> »</li>
+<li>字符集与编码 »</li>
+<li>概述</li>
+<li class="wy-breadcrumbs-aside">
+<a class="icon icon-github" href="https://github.com/Yaossg/doc/edit/master/docs/ce/overview.md"> Edit on GitHub</a>
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="_1">字符集与编码</h1>
+<p>本文中，字节（byte）指无符号八位二进制整数。</p>
+<h2 id="_2">字符集与编码是什么？</h2>
+<h3 id="_3">什么是字符集？</h3>
+<p>字符的集合就叫字符集（character set）。字符在字符集中分配的编号叫做码位（codepoint）。</p>
+<p>例如 <script type="math/tex">S=\{\text{你,好,世,界}\}</script> 就是一个只有四个字符的字符集。我们可以给这四个字符的分配码位 <script type="math/tex">0,1,2,3</script>，但码位的分配实际上不一定连续或从零开始，因此也可以是 <script type="math/tex">2,3,5,7</script>，或是任意四个互不相同的自然数。但要注意，字符相同，但是字符对应码位不同的字符集不是相同的字符集。</p>
+<h3 id="_4">什么是编码？</h3>
+<p>字符集中的字符与字节序列之间的映射叫字符集的编码（encoding）。</p>
+<p>例如 <script type="math/tex">f</script> 将上面四个字符分别映射为 <code>0x00</code>、<code>0x01</code>、<code>0x02</code>、<code>0x03</code>，就可以称 <script type="math/tex">f</script> 是字符集 <script type="math/tex">S</script> 的一种编码。 </p>
+<p>同一个字符集可以有多个编码方案。比如将这四个字符映射为 <code>0x00</code>、<code>0x01 0x00</code>、<code>0x01 0x01 0x00</code>、<code>0x01 0x01 0x01 0x00</code>。</p>
+<p>上面的例子表明：</p>
+<ul>
+<li>与字符建立映射的是字节序列，而不只是单个字节。</li>
+<li>字符的码位和编码是两个不同的概念，但字符的码位可以作为编码的依据。</li>
+<li>同一码位的字符在不同编码方案下得到的字节序列可能不同。</li>
+</ul>
+<hr/>
+<p>可以看出，字符集和编码是<strong>联系紧密</strong>却<strong>完全不同</strong>的两个概念。</p>
+<h2 id="_5">字符和字素是什么？</h2>
+<p>字符（character）是编码的最小独立单位。即对于字符序列 <script type="math/tex">c_1c_2\dots c_{n}</script> 它编码后的字节序列应该是 <script type="math/tex">f(c_1)f(c_2)\dots f(c_{n})</script>。</p>
+<p>字素（grapheme），又可译作字形，是文字、符号渲染的最小独立单位。</p>
+<p>与日常生活中的定义不同，在计算机中，字符不一定是代表某个固定的字素的文字、符号，下面举两类例子说明。</p>
+<h3 id="_6">控制字符</h3>
+<p>控制字符（control character）一般不会直接渲染出字素，但往往能改变其它字符的渲染行为，例如换行符、制表符、从右往左符等；或者帮助计算机对字符串进行识别，如 NUL、BOM 等。</p>
+<h3 id="_7">组合字符</h3>
+<p>组合字符（combining character）可以与其它字符组合成一个字素。例如字素 Å，实际上是由字符 A 和组合字符  ̊ 组合而成。类似地，👩🏽 是由 👩 和 🏽 组合而成。你可以用 python 来简单验证这一点：</p>
+<pre><code class="language-python">&gt;&gt;&gt; len("Å")
+2
+&gt;&gt;&gt; 'A'+'̊'
+'Å'
+</code></pre>
+<p>当组合字符紧随能与之组合的字符时，就可能被渲染器渲染为一个字素，且这样的组合是可以进行多次的。例如 👨‍❤️‍💋‍👨 = 👨+ZWJ+❤+VS-16+ZWJ+💋+ZWJ+👨。（没错，男男亲嘴）</p>
+<p>上面的例子表明：一个字素可能包含多个字符。而一个字符又可以编码成多个字节，最后编码形成字节序列的过程可能如下图所示：</p>
+<div class="mermaid">graph
+
+grapheme["grapheme👩🏽"]
+grapheme--&gt;character1["character1👩"]
+grapheme--&gt;character2["character2 🏽"]
+character1--&gt;byte1["byte1 0xf0"]
+character1--&gt;byte2["byte2 0x9f"]
+character1--&gt;byte3["byte3 0x91"]
+character1--&gt;byte4["byte4 0xa9"]
+character2--&gt;byte5["byte5 0xf0"]
+character2--&gt;byte6["byte6 0x9f"]
+character2--&gt;byte7["byte7 0x8f"]
+character2--&gt;byte8["byte8 0xbd"]
+</div>
+<h2 id="_8">编码与解码</h2>
+<p>中文里，编码不仅是名词，也是动词。动词编码（encode）的反义词是解码（decode）。其反应的过程如下所示。</p>
+<div class="mermaid">graph LR
+chars["字符序列"]
+bytes["字节序列"]
+chars--&gt;|编码|bytes
+bytes--&gt;|解码|chars
+</div>
+<p>考虑到字符是编码的最小独立单位，因此编码器（encoder）只需要实现一个字符到字节序列的编码即可实现字符序列的编码。同理，解码器（decoder）也只需要解码出字节序列的首个字符即可实现字节序列的解码。</p>
+<p>因此，当我们讨论编解码时，单个字符及其对应的字节序列，是我们关注的核心话题。</p>
+<p>为了便于讨论，我们把字符序列编码后得到的字节序列称为字符串（string）。<em>字符串的长度（length）究竟应该是字节数，字符数，还是字素数？难说。</em></p>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../cripplec/cdecl.html" title="cdecl"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span>
+<a class="fa fa-github" href="https://github.com/Yaossg/doc" style="color: #fcfcfc"> GitHub</a>
+</span>
+<span><a href="../cripplec/cdecl.html" style="color: #fcfcfc">« Previous</a></span>
+</span>
+</div>
+<script>var base_url = '..';</script>
+<script defer="" src="../js/theme_extra.js"></script>
+<script defer="" src="../js/theme.js"></script>
+<script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script defer="" src="../search/main.js"></script>
+<script defer="">
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+<script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script><script>mermaid.initialize({});</script></body>
+</html>
