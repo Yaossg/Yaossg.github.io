@@ -75,9 +75,11 @@
     <ul class="current">
                 <li class="toctree-l2 current"><a class="reference internal current" href="ascii.html">ASCII</a>
     <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#ebcdic">EBCDIC</a>
+    <li class="toctree-l3"><a class="reference internal" href="#iso-646">ISO 646</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#iso-646-gb-1988">ISO 646 与 GB 1988</a>
+    <li class="toctree-l3"><a class="reference internal" href="#ascii_1">扩展 ASCII</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ebcdic">番外：EBCDIC</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#_1">参考资料</a>
     </li>
@@ -117,25 +119,18 @@
 <li>作为字符集，它包含了 33 个控制字符和 95 个可打印（printable）字符，对应 0~127 共 128 个码位。</li>
 <li>作为编码，它使用字节的低七位表示字符的码位，因此 ASCII 编码的字节序列中每个字节都与一个字符对应。</li>
 </ul>
-<p>需要注意的是，ASCII 的码位 0~31 是控制字符没错，但不要忘了 127 也是。夹在中间的是可打印字符。</p>
-<p>似乎就讲完了？你先别急！</p>
-<h2 id="ebcdic">EBCDIC</h2>
-<blockquote>
-<p>略读小节：不爱看就跳过吧</p>
-</blockquote>
-<p>ASCII 并非没有竞争者。在那个勃勃生机万物竟发的年代，ASCII 只是众多字符集中的一个。</p>
-<p>EBCDIC（Extended Binary Coded Decimal Interchange Code，扩展二进制编码十进制交换代码）是 IBM 推出的一套字符编码，起源于 BCD 码和穿孔卡片（punched cards），在当时也有一定的影响力。但是它最终失败了，销声匿迹于历史的长河之中。</p>
-<p>然而它的缺点很明显：拉丁字母不是连续排列的，中间间断了多次，这给使用带来了极大地不便；默认支持的可打印字符较少，且被松散地排列在 0x40 到 0xFF 之间，剩下不连续的空位留给扩展字符，使得扩展与非扩展字符混杂在一起；互不兼容的诸多扩展版本让本就凌乱的标准雪上加霜；混乱的设计更是让与 ASCII 的兼容无从谈起。</p>
-<blockquote>
-<p>Professor: "So the American government went to IBM to come up with an encryption standard, and they came up with—"</p>
-<p>Student: "EBCDIC!"</p>
-<p>教授：“美国政府造访 IBM，让他们提出一套加密标准，他们提出了——”</p>
-<p>学生：“EBCDIC！”</p>
-<p>—— the Unix fortune file of 4.3BSD Reno (1990)</p>
-</blockquote>
-<p>最终 ASCII 获胜了，EBCDIC 消失在了历史的长河之中。</p>
-<h2 id="iso-646-gb-1988">ISO 646 与 GB 1988</h2>
-<p>ISO 646 是 ASCII 的国际标准版本。但是考虑到不是所有国家都使用美国的标点符号，因此规定了下面这些符号可以被替换为其它的字符。下表列出中日英德的四个变体：（其中中国的标准即 GB 1988）</p>
+<p>需要注意的是，字符的分类从实际的性质和区块（block）的划分上是有所不同的：</p>
+<ul>
+<li>
+<p>ASCII 的码位 0~31 是控制字符没错，但不要忘了 127 也是控制字符。32 空格是不是控制字符存在争议。</p>
+</li>
+<li>
+<p>码位 0-31 的字符被划分为 C0 Controls（C0 控制字符），码位 32-127 的字符被划分为 Basic Latin（基本拉丁字母）。</p>
+</li>
+</ul>
+<p>可以发现 C0 并没有包含 ASCII 所有控制字符，Basic Latin 下除了拉丁字母还有数字、标点符号等，但区块就是这么分的。</p>
+<h2 id="iso-646">ISO 646</h2>
+<p>ISO 646 是 ASCII 的国际标准版本。但是考虑到不是所有国家都使用美国的标点符号，因此规定，各个国家可以根据自己的需要，将下面这些符号替换为其它的字符。下表列出中日英德的四个变体：（其中中国的标准即 GB 1988）</p>
 <table>
 <thead>
 <tr>
@@ -249,13 +244,124 @@
 </table>
 <p>不要觉得德国的看上去很魔幻，实际上大部分欧洲国家皆是如此，只是这里不便列出更多。这也揭示了 C 语言的双字符、三字符还有头文件<code>&lt;iso646.h&gt;</code>的由来，参见<a href="../../cripplec/text.html">这里</a>。</p>
 <p><em>时至今日，你仍然能看到不少日本的计算机的反斜杠被显示为日元符号——不过比起软盘和传真机，这倒也不是不可以接受就是了。</em></p>
-<hr />
-<p>这种直接修改已分配码位字符的做法似乎确实不妥。好在最后我们逐渐放弃了这种修改 ASCII 的形式，转而选择扩展 ASCII——毕竟 0x80~0xFF 的码位还未分配嘛。这便是下一节的内容。</p>
+<h2 id="ascii_1">扩展 ASCII</h2>
+<p>ISO 646 推荐的直接修改已分配的 ASCII 码位的字符的做法似乎确实不妥。因此我们逐渐转向扩展 ASCII——毕竟 0x80~0xFF 的码位还未分配嘛。</p>
+<p>扩展 ASCII 编码一共讨论、公布了 15 种方案，并被标准化为了 ISO 8859-n，其中 n 为数字 1、2、3、4、5、6、7、8、9、10、11、13、14、15、16 中的一个。（别看了，缺的是 12）</p>
+<p>0x80~0xFF 是如何被分配的呢？为了跟 0x00-0x7F 长得像一点，它也分为两个区块：</p>
+<ul>
+<li>
+<p>0x80-0x9F 是 C1 Controls（C1 控制字符）。ISO 6429 标准规定了 C0 Controls 和 C1 Controls。</p>
+</li>
+<li>
+<p>剩下的码位 0xA0~0xFF 为一个区块，如下表所示：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ISO 8859</th>
+<th>区块名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 8859-1</td>
+<td>Latin-1</td>
+<td>西欧语言</td>
+</tr>
+<tr>
+<td>ISO 8859-2</td>
+<td>Latin-2</td>
+<td>中欧语言</td>
+</tr>
+<tr>
+<td>ISO 8859-3</td>
+<td>Latin-3</td>
+<td>南欧语言</td>
+</tr>
+<tr>
+<td>ISO 8859-4</td>
+<td>Latin-4</td>
+<td>北欧语言</td>
+</tr>
+<tr>
+<td>ISO 8859-5</td>
+<td>Cyrillic</td>
+<td>斯拉夫语言</td>
+</tr>
+<tr>
+<td>ISO 8859-6</td>
+<td>Arabic</td>
+<td>阿拉伯语</td>
+</tr>
+<tr>
+<td>ISO 8859-7</td>
+<td>Greek</td>
+<td>希腊语</td>
+</tr>
+<tr>
+<td>ISO 8859-8</td>
+<td>Hebrew</td>
+<td>希伯来语</td>
+</tr>
+<tr>
+<td>ISO 8859-9</td>
+<td>Latin-5</td>
+<td>土耳其语</td>
+</tr>
+<tr>
+<td>ISO 8859-10</td>
+<td>Latin-6</td>
+<td>北日耳曼语族</td>
+</tr>
+<tr>
+<td>ISO 8859-11</td>
+<td>Thai</td>
+<td>泰语</td>
+</tr>
+<tr>
+<td>ISO 8859-13</td>
+<td>Latin-7</td>
+<td>波罗的语族</td>
+</tr>
+<tr>
+<td>ISO 8859-14</td>
+<td>Latin-8</td>
+<td>凯尔特语族</td>
+</tr>
+<tr>
+<td>ISO 8859-15</td>
+<td>Latin-9</td>
+<td>芬兰语</td>
+</tr>
+<tr>
+<td>ISO 8859-16</td>
+<td>Latin-10</td>
+<td>罗马尼亚语</td>
+</tr>
+</tbody>
+</table>
+<p>别担心，我们不关心上面所有的方案——被运用的最广泛的方案，毫无疑问的，便是 ISO 8859-1。后来它也成为了 Unicode 的一部分。</p>
+<h2 id="ebcdic">番外：EBCDIC</h2>
+<p>ASCII 并非没有竞争者。在那个勃勃生机万物竟发的年代，ASCII 只是众多字符集中的一个。</p>
+<p>EBCDIC（Extended Binary Coded Decimal Interchange Code，扩展二进制编码十进制交换代码）是 IBM 推出的一套字符编码，起源于 BCD 码和穿孔卡片（punched cards），在当时也有一定的影响力。但是它最终失败了，销声匿迹于历史的长河之中。</p>
+<p>然而它的缺点很明显：拉丁字母不是连续排列的，中间间断了多次，这给使用带来了极大地不便；默认支持的可打印字符较少，且被松散地排列在 0x40 到 0xFF 之间，剩下不连续的空位留给扩展字符，使得扩展与非扩展字符混杂在一起；互不兼容的诸多扩展版本让本就凌乱的标准雪上加霜；混乱的设计更是让与 ASCII 的兼容无从谈起。</p>
+<blockquote>
+<p>Professor: "So the American government went to IBM to come up with an encryption standard, and they came up with—"</p>
+<p>Student: "EBCDIC!"</p>
+<p>教授：“美国政府造访 IBM，让他们提出一套加密标准，他们提出了——”</p>
+<p>学生：“EBCDIC！”</p>
+<p>—— the Unix fortune file of 4.3BSD Reno (1990)</p>
+</blockquote>
+<p>最终 ASCII 获胜了，EBCDIC 消失在了历史的长河之中。</p>
 <h2 id="_1">参考资料</h2>
 <ul>
 <li>https://en.wikipedia.org/wiki/ASCII</li>
-<li>https://en.wikipedia.org/wiki/EBCDIC</li>
 <li>https://en.wikipedia.org/wiki/ISO/IEC_646</li>
+<li>https://en.wikipedia.org/wiki/ISO/IEC_8859</li>
+<li>https://en.wikipedia.org/wiki/C0_and_C1_control_codes</li>
+<li>https://en.wikipedia.org/wiki/EBCDIC</li>
 </ul>
               
             </div>

@@ -16,6 +16,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://yaossg.com/doc/ce/ascii/gbk.html</loc>
+         <lastmod>2022-11-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://yaossg.com/doc/cripplec/index.html</loc>
          <lastmod>2022-11-09</lastmod>
          <changefreq>daily</changefreq>
