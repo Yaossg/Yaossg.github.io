@@ -85,7 +85,11 @@
     </li>
     </ul>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="gbk.html">GBK</a>
+                </li>
     </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendix.html">附录</a>
                   </li>
               </ul>
       </div>
@@ -130,7 +134,7 @@
 </ul>
 <p>可以发现 C0 并没有包含 ASCII 所有控制字符，Basic Latin 下除了拉丁字母还有数字、标点符号等，但区块就是这么分的。</p>
 <h2 id="iso-646">ISO 646</h2>
-<p>ISO 646 是 ASCII 的国际标准版本。但是考虑到不是所有国家都使用美国的标点符号，因此规定，各个国家可以根据自己的需要，将下面这些符号替换为其它的字符。下表列出中日英德的四个变体：（其中中国的标准即 GB 1988）</p>
+<p>ISO 646 是 ASCII 的国际标准版本。但是考虑到不是所有国家都使用美国的标点符号，因此规定，各个国家可以根据自己的需要，将下面这些符号替换为其它的字符。下表列出中日英德的四个变体：（其中中国的国家标准即 GB 1988）</p>
 <table>
 <thead>
 <tr>
@@ -250,7 +254,7 @@
 <p>0x80~0xFF 是如何被分配的呢？为了跟 0x00-0x7F 长得像一点，它也分为两个区块：</p>
 <ul>
 <li>
-<p>0x80-0x9F 是 C1 Controls（C1 控制字符）。ISO 6429 标准规定了 C0 Controls 和 C1 Controls。</p>
+<p>0x80-0x9F 是 C1 Controls（C1 控制字符）。C0 和 C1 Controls 由 ISO 6429 标准规定。</p>
 </li>
 <li>
 <p>剩下的码位 0xA0~0xFF 为一个区块，如下表所示：</p>
@@ -259,7 +263,7 @@
 <table>
 <thead>
 <tr>
-<th>ISO 8859</th>
+<th>ISO 8859-n</th>
 <th>区块名称</th>
 <th>说明</th>
 </tr>
@@ -345,7 +349,7 @@
 <p>别担心，我们不关心上面所有的方案——被运用的最广泛的方案，毫无疑问的，便是 ISO 8859-1。后来它也成为了 Unicode 的一部分。</p>
 <h2 id="ebcdic">番外：EBCDIC</h2>
 <p>ASCII 并非没有竞争者。在那个勃勃生机万物竟发的年代，ASCII 只是众多字符集中的一个。</p>
-<p>EBCDIC（Extended Binary Coded Decimal Interchange Code，扩展二进制编码十进制交换代码）是 IBM 推出的一套字符编码，起源于 BCD 码和穿孔卡片（punched cards），在当时也有一定的影响力。但是它最终失败了，销声匿迹于历史的长河之中。</p>
+<p>EBCDIC（Extended Binary Coded Decimal Interchange Code，扩展二进制编码十进制交换代码）是 IBM 推出的一套字符编码，起源于 BCD 码和穿孔卡片（punched cards），在当时也有一定的影响力。</p>
 <p>然而它的缺点很明显：拉丁字母不是连续排列的，中间间断了多次，这给使用带来了极大地不便；默认支持的可打印字符较少，且被松散地排列在 0x40 到 0xFF 之间，剩下不连续的空位留给扩展字符，使得扩展与非扩展字符混杂在一起；互不兼容的诸多扩展版本让本就凌乱的标准雪上加霜；混乱的设计更是让与 ASCII 的兼容无从谈起。</p>
 <blockquote>
 <p>Professor: "So the American government went to IBM to come up with an encryption standard, and they came up with—"</p>
@@ -354,7 +358,7 @@
 <p>学生：“EBCDIC！”</p>
 <p>—— the Unix fortune file of 4.3BSD Reno (1990)</p>
 </blockquote>
-<p>最终 ASCII 获胜了，EBCDIC 消失在了历史的长河之中。</p>
+<p>最终 ASCII 获胜了，则而 EBCDIC 消失在了历史的长河之中。</p>
 <h2 id="_1">参考资料</h2>
 <ul>
 <li>https://en.wikipedia.org/wiki/ASCII</li>
@@ -368,6 +372,7 @@
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../overview.html" class="btn btn-neutral float-left" title="概述"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="gbk.html" class="btn btn-neutral float-right" title="GBK">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -396,6 +401,8 @@
     
       <span><a href="../overview.html" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="gbk.html" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
