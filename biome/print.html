@@ -338,7 +338,7 @@
 <p>采用了全新的世界格式 <strong>Anvil</strong>。 与过去不同的是，生物群系信息不再动态计算，而是被储存在了区块文件中：世界一旦生成，这一数值就不会发生改变。这种做法的提高了游戏运行效率，当然这也给外部修改提供了可能。</p>
 <p>加入了丛林，预留给树木的四个数据值占满了，大家都以为树木“齐了”，以后还会有更多树吗？</p>
 <h2 id="17"><a class="header" href="#17">1.7</a></h2>
-<p>~~迪斯科山！~~Jeb语 平顶山的奇丽景色可能让人第一时间让人关注到这次更新上来。</p>
+<p><del>迪斯科山！（Jeb 语）</del> 平顶山的奇丽景色可能让人第一时间让人关注到这次更新上来。</p>
 <p>此次更新加入的生物群系比以前所有版本加入的生物群系加起来还要多，引入了大量的<strong>变种</strong>生物群系。变种是多样化生物群系的好手段。比如在 1.6 时移除的沙漠湖泊，被作为沙漠的一个变种——一种带湖泊的沙漠重新加入。</p>
 <p>相邻的生物群系会尽可能的避免突变（从最热到最冷，从最干到最湿），宏观上平滑度有所增加。但也只是尽可能的，所以也比较有限。</p>
 <p>移除了过多的海洋、加入了深海。更新前的几乎无尽的海洋不复存在，世界超过半数面积变为了陆地，为新加入的生物群系提供了空间。而深海的加入使海洋的层次更为分明。更新前，玩家分明是生活在一座座被无限大海洋的包围的巨型岛屿上的；更新后，反而成了海洋破碎分布在大陆之间。</p>
@@ -609,7 +609,7 @@
 <p>过去基岩的添加也是这个阶段所为。但是这其实是比较荒诞的，也就是，如果你覆盖了地表构造，就必须兼顾基岩生成。更加让人感到啼笑皆非的是，基岩生成是从 255 格开始向下判定 😅！现在基岩生成独立出来了，也不会从那么高就开始判断生成基岩了。</p>
 <hr />
 <h3 id="原生生物生成"><a class="header" href="#原生生物生成">原生生物生成</a></h3>
-<p>原生生物指的是世界生成之后就已经在世界中的生物。原生生物的生成次数 <strong>X</strong> 符合几何分布，即 <strong>X</strong>~G(1-p)。其中 p 是生物群系生物生成信息中的生物生成概率。每次生成会根据权重随机在候选列表中选一个进行生成。</p>
+<p>原生生物指的是世界生成之后就已经在世界中的生物。原生生物的生成次数 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span> 符合几何分布，即 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">G</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mclose">)</span></span></span></span>。其中 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span></span></span></span> 是生物群系生物生成信息中的生物生成概率。每次生成会根据权重随机在候选列表中选一个进行生成。</p>
 <h2 id="区段"><a class="header" href="#区段">区段</a></h2>
 <p><strong>区段（Section）</strong> 是区块沿 y 轴切割得到的 16 等分之一。区段是区块文件中存储方块状态、亮度的最小单位。这里我们主要介绍方块的储存。</p>
 <p><strong>调色盘（Palette）</strong> 是方块状态储存中用到的一种压缩方式。如何理解调色盘呢，我们可以从字面意思来类比说明。</p>
