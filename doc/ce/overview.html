@@ -120,13 +120,12 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="_1">字符集与编码：概述</h1>
-<p>本文中，字节（byte）指无符号八位二进制整数。</p>
 <h2 id="_2">字符集与编码是什么？</h2>
 <h3 id="_3">什么是字符集？</h3>
 <p>字符的集合就叫字符集（character set）。字符在字符集中分配的编号叫做码位（codepoint）。</p>
 <p>例如 <script type="math/tex">S=\{\text{你,好,世,界}\}</script> 就是一个只有四个字符的字符集。我们可以给这四个字符的分配码位 <script type="math/tex">0,1,2,3</script>，但码位的分配实际上不一定连续或从零开始，因此也可以是 <script type="math/tex">2,3,5,7</script>，或是任意四个互不相同的自然数。但要注意，字符相同，但是字符对应码位不同的字符集不是相同的字符集。</p>
 <h3 id="_4">什么是编码？</h3>
-<p>字符集中的字符与字节序列之间的映射叫字符集的编码（encoding）。</p>
+<p>字符集中的字符与字节（byte）序列之间的映射叫字符集的编码（encoding）。</p>
 <p>例如 <script type="math/tex">f</script> 将上面四个字符分别映射为 <code>0x00</code>、<code>0x01</code>、<code>0x02</code>、<code>0x03</code>，就可以称 <script type="math/tex">f</script> 是字符集 <script type="math/tex">S</script> 的一种编码。 </p>
 <p>同一个字符集可以有多个编码方案。比如将这四个字符映射为 <code>0x00</code>、<code>0x01 0x00</code>、<code>0x01 0x01 0x00</code>、<code>0x01 0x01 0x01 0x00</code>。</p>
 <p>上面的例子表明：</p>

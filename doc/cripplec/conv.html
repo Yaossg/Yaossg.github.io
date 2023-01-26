@@ -140,7 +140,7 @@
 <h1 id="_1">隐式转换</h1>
 <p>类型系统帮助我们识别数据，是 C 语言非常重要的部分。但作为一个强类型的语言，比起显式的类型转换，C 语言程序中却更多充斥着隐式转换（implicit conversion）。这样的转换，在悄无声息间发生，为程序员对程序的编写和识别带来了很大的便利，也造成了很大的困扰。</p>
 <p>在开始之前，我们先了解一个事实：在 C 语言里面，字符常量是<code>int</code>类型的，而 C++ 里才是<code>char</code>类型的。假设<code>int</code>有 32 位，那么</p>
-<pre><code class="language-C">printf("%d", sizeof 'a'); // C 输出 4，C++ 输出 1
+<pre><code class="language-C">printf("%zu", sizeof 'a'); // C 输出 4，C++ 输出 1
 </code></pre>
 <p>这里不是什么隐式转换所致，它本来就是这样。请勿与后面讲到的提升混淆。</p>
 <h2 id="_2">转换情形</h2>
