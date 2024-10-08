@@ -4,7 +4,7 @@
         <title>Yaossg's Site Blog</title>
         <link>https://yaossg.com/site/blog</link>
         <description>Yaossg's Site Blog</description>
-        <lastBuildDate>Sat, 31 Aug 2024 01:17:46 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 08 Oct 2024 09:02:35 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -12,7 +12,7 @@
             <title><![CDATA[never say never? ——简介现代类型系统]]></title>
             <link>https://yaossg.com/site/blog/never</link>
             <guid>https://yaossg.com/site/blog/never</guid>
-            <pubDate>Sat, 31 Aug 2024 01:17:46 GMT</pubDate>
+            <pubDate>Tue, 08 Oct 2024 09:02:35 GMT</pubDate>
             <description><![CDATA[注意：本文之探讨现代类型系统中的一些实践，供大家参考。多有不严谨之处，望学术大佬海涵。]]></description>
             <content:encoded><![CDATA[<blockquote>
 <p>注意：本文之探讨现代类型系统中的一些实践，供大家参考。多有不严谨之处，望学术大佬海涵。</p>
