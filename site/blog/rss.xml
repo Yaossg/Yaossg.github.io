@@ -4,15 +4,25 @@
         <title>Yaossg's Site Blog</title>
         <link>https://yaossg.com/site/blog</link>
         <description>Yaossg's Site Blog</description>
-        <lastBuildDate>Mon, 04 Nov 2024 14:40:30 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 25 Nov 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
+            <title><![CDATA[定风波·分配寄存器]]></title>
+            <link>https://yaossg.com/site/blog/reg-alloc</link>
+            <guid>https://yaossg.com/site/blog/reg-alloc</guid>
+            <pubDate>Mon, 25 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[游览九寨沟后诗兴大发，故作此词。]]></description>
+            <content:encoded><![CDATA[<p>游览九寨沟后诗兴大发，故作此词。</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">汇编构建 CFG</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">深度优先标次第</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">def use 连一起</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">遍历</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">溢出变量权重低</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">调用返回 ra 记</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">偏移</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">栈帧指针要对齐</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">函数开头结尾里</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">传递</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">存取 saved by callee</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content:encoded>
+            <category>pl</category>
+        </item>
+        <item>
             <title><![CDATA[never say never? ——简介现代类型系统]]></title>
             <link>https://yaossg.com/site/blog/never</link>
             <guid>https://yaossg.com/site/blog/never</guid>
-            <pubDate>Mon, 04 Nov 2024 14:40:30 GMT</pubDate>
+            <pubDate>Sun, 23 Jun 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[注意：本文之探讨现代类型系统中的一些实践，供大家参考。多有不严谨之处，望学术大佬海涵。]]></description>
             <content:encoded><![CDATA[<blockquote>
 <p>注意：本文之探讨现代类型系统中的一些实践，供大家参考。多有不严谨之处，望学术大佬海涵。</p>
@@ -131,7 +141,7 @@
 <!-- -->
 <p>现在还有个小问题没有解决：如果一个类型系统里面同时有 <code>never</code> 和 <code>null</code>，怎么会出现两个 Bottom Type 呢？难道它们两个都是所有类型的子类型？</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="never-1"><code>never?</code><a class="hash-link" aria-label="Direct link to never-1" title="Direct link to never-1" href="https://yaossg.com/site/blog/never#never-1">​</a></h2>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="空语义">空语义<a class="hash-link" aria-label="Direct link to 空语��义" title="Direct link to 空语义" href="https://yaossg.com/site/blog/never#%E7%A9%BA%E8%AF%AD%E4%B9%89">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="空语义">空语义<a class="hash-link" aria-label="Direct link to 空语义" title="Direct link to 空语义" href="https://yaossg.com/site/blog/never#%E7%A9%BA%E8%AF%AD%E4%B9%89">​</a></h3>
 <p>要先回答这个问题，我们不妨来看看 <code>null</code> 究竟是什么意思。</p>
 <p><code>null</code> 最初用来表示空指针，引申为，一个不存在的对象。由于人们常常忘记检查它的存在，所以带来的问题比较多。现代的编程语言有两个实际上等价的解决方案：<code>Option&lt;T&gt;</code> 和 Nullability。</p>
 <p>一种方法，<code>Option&lt;T&gt; = T | ()</code>，即要么有值，要么是 <code>()</code>。这样在使用的时候就必须先排除是 <code>()</code> 的情形。</p>
@@ -145,6 +155,7 @@
 <p>我们也可以画出一个完整的，带 Nullability 的类图：</p>
 <!-- -->
 <p>推荐 BGM：<a href="https://www.bilibili.com/video/BV1sP411p7Hm/" target="_blank" rel="noopener noreferrer">Never Enough</a></p>]]></content:encoded>
+            <category>pl</category>
         </item>
         <item>
             <title><![CDATA[表连接算法概览]]></title>
@@ -309,6 +320,7 @@ t&amp;=&amp;\dfrac{\det(\pmb e_1,\pmb e_2,\pmb b)}{\det(\pmb e_1,\pmb e_2,-\pmb 
 <p>输出：</p>
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">'plain' took 5458.48 ms to complete 1 times 1024 x 1024 matrices multiplication</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">' simd' took 232.27 ms to complete 1 times 1024 x 1024 matrices multiplication, 95.74% faster</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content:encoded>
             <category>cpp</category>
+            <category>pl</category>
         </item>
         <item>
             <title><![CDATA[速通统计学]]></title>
