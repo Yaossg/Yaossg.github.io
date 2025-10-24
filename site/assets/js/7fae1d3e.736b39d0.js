@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksite=self.webpackChunksite||[]).push([[7345],{67086:t=>{t.exports=JSON.parse('{"tag":{"label":"fp","permalink":"/site/blog/tags/fp","allTagsPath":"/site/blog/tags","count":2,"unlisted":false},"listMetadata":{"permalink":"/site/blog/tags/fp","page":1,"postsPerPage":2,"totalPages":1,"totalCount":2,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
