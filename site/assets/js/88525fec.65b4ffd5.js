@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunksite=globalThis.webpackChunksite||[]).push([[3771],{23554:a=>{a.exports=JSON.parse('{"tags":[{"label":"mc","permalink":"/site/docs/tags/mc","count":1},{"label":"math","permalink":"/site/docs/tags/math","count":1},{"label":"algo","permalink":"/site/docs/tags/algo","count":1}]}')}}]);
